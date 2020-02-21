@@ -10,10 +10,13 @@ const publicPath = path.join(__dirname, 'public');
 const app = express();
 const cors = require('cors')
 const bodyParser = require('body-parser')
-
+//logging
+var morgan = require('morgan')
 var router = express.Router();
 
-var morgan = require('morgan')
+const login = require('./auth/login')
+const register = require('./auth/register')
+const passwordreset = require('./auth/passwordReset')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({
@@ -21,11 +24,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-//Logging
+//Console logging
 app.use(morgan('dev'));
 
-// Register a middleware that adds support for a URL encoded request body.
-// This is needed in order to send data to express using a FORM with a POST action.
 app.use(express.urlencoded({
     extended: true,
 }));
@@ -37,3 +38,7 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
     res.json({"hej":"då"})
 })
+
+app.use('/auth/register', register)
+app.use('/auth/login', login)
+app.use('/auth/resetpassword', passwordreset)
