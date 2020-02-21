@@ -53,3 +53,22 @@ POST /auth/login
     **Content:** `{"error":"The error message", payload:{}}`<br>
     **Description:** If wrong credentials or something else is wrong.
 
+
+### Request password reset
+```
+POST /auth/resetpassword/init
+```
+**Request body**<br>
+
+***Required***
+
+`email` - The email of the user to login.
+
+`username` - The username.
+
+*   **Response**
+
+    **Code:** 200<br>
+    **Content:** `{}`<br>
+    **Description:** Always returns OK.
+
