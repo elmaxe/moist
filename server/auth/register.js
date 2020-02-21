@@ -45,10 +45,10 @@ const registerUser = (username, email, password, callback) => {
             bcrypt.genSalt(saltRounds, (err, salt) => {
                 if (err) return callback(2, 'Hashing error, no user created.')
 
-                bcrypt.hash(password, salt, (err2, result) => {
+                bcrypt.hash(password, salt, (err2, hash) => {
                     if (err2) return callback(2, 'Hashing error, no user created.')
 
-                    st.run([username, email, password])
+                    st.run([username, email, hash])
                     st.finalize();
                     return callback(null, `User ${username} created and stored in database.`)
                 })
