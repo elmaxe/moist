@@ -40,7 +40,7 @@ const registerUser = (username, email, password, callback) => {
     db.get('SELECT * FROM Users WHERE username = ? OR email = ?', [username, email], (err, row) => {
         if (row === undefined) {
 
-            const st = db.prepare('INSERT INTO Users (username, email, password) VALUES (?, ?, ?)')
+            const st = db.prepare('INSERT INTO Users (username, email, password, registration_date) VALUES (?, ?, ?, ?)')
 
             bcrypt.genSalt(saltRounds, (err, salt) => {
                 if (err) return callback(2, 'Hashing error, no user created.')
@@ -48,7 +48,7 @@ const registerUser = (username, email, password, callback) => {
                 bcrypt.hash(password, salt, (err2, hash) => {
                     if (err2) return callback(2, 'Hashing error, no user created.')
 
-                    st.run([username, email, hash])
+                    st.run([username, email, hash, new Date().toISOString()])
                     st.finalize();
                     return callback(null, `User ${username} created and stored in database.`)
                 })
