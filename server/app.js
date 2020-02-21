@@ -37,7 +37,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    db.all('SELECT * FROM Users', (err, rows) => {
+    db.all('SELECT * FROM PasswordReset', (err, rows) => {
         res.send(rows)
     })
 })
@@ -45,3 +45,9 @@ app.get('/', (req, res) => {
 app.use('/auth/register', register)
 app.use('/auth/login', login)
 app.use('/auth/resetpassword', passwordreset)
+
+
+setInterval(() => {
+    console.log("Clearing password resets")
+    db.run(`DELETE FROM PasswordReset WHERE expires < ${Date.now()}`)
+}, 30000)
