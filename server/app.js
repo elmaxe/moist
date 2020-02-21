@@ -3,7 +3,7 @@
 const path = require('path');
 const express = require('express'); 
 const bcrypt = require('bcrypt');
-// const db = require('./database');
+const db = require('./database');
 
 const port = 4000;
 const publicPath = path.join(__dirname, 'public');
