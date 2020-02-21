@@ -2,7 +2,6 @@
 
 const path = require('path');
 const express = require('express'); 
-const bcrypt = require('bcrypt');
 const db = require('./database');
 
 const port = 4000;
@@ -36,7 +35,9 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    res.json({"hej":"då"})
+    db.all('SELECT * FROM Users', (err, rows) => {
+        res.send(rows)
+    })
 })
 
 app.use('/auth/register', register)
