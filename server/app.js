@@ -6,7 +6,7 @@ const db = require('./database');
 
 require('dotenv').config()
 
-const port = 4000;
+const port = process.env.PORT;
 const publicPath = path.join(__dirname, 'public');
 const app = express();
 const cors = require('cors')
