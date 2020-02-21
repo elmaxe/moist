@@ -4,6 +4,8 @@ const path = require('path');
 const express = require('express'); 
 const db = require('./database');
 
+require('dotenv').config()
+
 const port = 4000;
 const publicPath = path.join(__dirname, 'public');
 const app = express();
