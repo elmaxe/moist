@@ -28,7 +28,7 @@ The following environment variables are required to run the project:
 | PORT                  | Server port                           | ---                           |
 | MAIL_ADR              | Email address                         | ---                           |
 | MAIL_PSWD             | Email password                        | ---                           |
-
+| MAIL_SERVICE          | Email service                         | ---                           |
 ---
 ## Documentation
 * [Trefle API](https://trefle.io/)
