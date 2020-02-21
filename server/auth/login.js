@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
             if (err === 2) res.json({"error":"Wrong username or password", "payload":{}})
             return;
         }
-        res.status(200).json({"status":"OK", "error":null, "payload": {
+        res.status(200).json({"payload": {
             //TODO: Send cookie (and user data?)
         }})
     })

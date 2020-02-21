@@ -21,11 +21,9 @@ router.post('/', (req, res) => {
             else if (err === 2) res.json({"error":"Internal server error","payload":{}})
             return
         }
-        res.status(200).json({
-            "status": "OK",
-            "error": null,
-            "payload": {}
-        })
+        res.status(200).json({"payload": {
+            
+        }})
     })
 })
 
