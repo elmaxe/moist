@@ -16,9 +16,9 @@ router.post('/', (req, res) => {
     registerUser(username, email, password, (err, obj) => {
         if (err) {
             res.status(403)
-            if (err === 0) res.json({"status":"ERROR","error":"Invalid user data (empty?)", "payload":{}})
-            else if (err === 1) res.json({"status":"ERROR","error":"Username or email already exists", "payload":{}})
-            else if (err === 2) res.json({"status":"ERROR","error":"Internal server error","payload":{}})
+            if (err === 0) res.json({"error":"Invalid user data (empty?)", "payload":{}})
+            else if (err === 1) res.json({"error":"Username or email already exists", "payload":{}})
+            else if (err === 2) res.json({"error":"Internal server error","payload":{}})
             return
         }
         res.status(200).json({
