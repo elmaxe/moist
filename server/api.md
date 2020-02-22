@@ -55,8 +55,9 @@ POST /auth/login
 
 
 ### Request password reset
+Sends an email to the user, if there is one.
 ```
-POST /auth/resetpassword/init
+POST /auth/resetpassword/request
 ```
 **Request body**<br>
 
@@ -71,4 +72,36 @@ POST /auth/resetpassword/init
     **Code:** 200<br>
     **Content:** `{}`<br>
     **Description:** Always returns OK.
+
+### Set password reset
+```
+POST /auth/resetpassword/update
+```
+**Request body**<br>
+
+***Required***
+
+`email` - The email of the user to login.
+
+`password` - The new password.
+
+`key` - The password reset key.
+
+*   **Response**
+
+    **Code:** 200<br>
+    **Content:** `{"status":"Password reset"}`<br>
+    **Description:** If password successfully reset.
+
+    **Code:** 403<br>
+    **Content:** `{"status":"Password too short"}`<br>
+    **Description:** If password is too short.
+
+    **Code:** 404<br>
+    **Content:** `{"status":"Not a valid key"}`<br>
+    **Description:** If key is invalid.
+
+    **Code:** 500<br>
+    **Content:** `{"status":"Internal server error"}`<br>
+    **Description:** If something wrong happened.
 
