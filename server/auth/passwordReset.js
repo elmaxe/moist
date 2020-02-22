@@ -10,6 +10,8 @@ const saltRounds = require('./config')
 
 const validatePassword = require('./validatePassword')
 
+const sendEmail = require('./sendEmail')
+
 // router.get('/', (req, res) => {
 //     res.send({"newpassword":"hi from passwordreset"})
 // })
@@ -36,7 +38,7 @@ router.post('/request', (req, res) => {
                     return;
                 }
 
-                sendEmail(email, row.username, key, (err, obj) => {
+                sendEmail(email, resetPasswordSubject(row.username), resetPasswordMailBody(row.username, key), (err, obj) => {
                     if (err) {
                         console.log(err)
                         return res.status(200).json({})
@@ -126,34 +128,17 @@ const saveKey = (user_id, key, callback) => {
     })
 }
 
-const sendEmail = (email, username, key, callback) => {
-    var transporter = nodemailer.createTransport({
-        service: process.env.MAIL_SERVICE,
-        auth: {
-            user: process.env.MAIL_ADR,
-            pass: process.env.MAIL_PSWD
-        }
-    });
-    
-    const mailOptions = {
-        from: process.env.MAIL_ADR, // sender address
-        to: email, // list of receivers
-        subject: `Password reset, ${username}`, // Subject line
-        html: `<h2>Hi ${username}!</h2>
-        <p>A password reset has been requested for your account. Below is the code for resetting your password.</p>
-        <p>Reset code: ${key}</p>
-        <p>If you didn't request a password reset, ignore this email.</p>
-        <p>Sincerely,
-        <br><strong>The Moist Team</strong></p>`
-    };
-    
-    transporter.sendMail(mailOptions, function (err, info) {
-        // console.log(info)
-        // console.log(err)
-        if(err)
-            return callback(err, null)
-        else return callback(null, "Email sent.")
-    });
+const resetPasswordMailBody = (username, key) => {
+    return `<h2>Hi ${username}!</h2>
+    <p>A password reset has been requested for your account. Below is the code for resetting your password.</p>
+    <p>Reset code: ${key}</p>
+    <p>If you didn't request a password reset, ignore this email.</p>
+    <p>Sincerely,
+    <br><strong>The Moist Team</strong></p>`
+}
+
+const resetPasswordSubject = (username) => {
+    return `Password reset, ${username}`
 }
 
 module.exports = router
