@@ -4,6 +4,7 @@ var express = require('express')
 var router = express.Router()
 const db = require('../database');
 const bcrypt = require('bcrypt');
+const cryptoRandomString = require('crypto-random-string');
 
 const saltRounds = require('./config')
 
@@ -41,7 +42,7 @@ const registerUser = (username, email, password, callback) => {
     db.get('SELECT * FROM Users WHERE username = ? OR email = ?', [username, email], (err, row) => {
         if (row === undefined) {
 
-            const st = db.prepare('INSERT INTO Users (username, email, password, registration_date) VALUES (?, ?, ?, ?)')
+            const st = db.prepare('INSERT INTO Users (username, email, password, registration_date, email_confirmed) VALUES (?, ?, ?, ?, ?)')
 
             validatePassword(password, (err) => {
                 if (err) return callback(3, 'Password error, no user created.')
@@ -51,8 +52,9 @@ const registerUser = (username, email, password, callback) => {
     
                     bcrypt.hash(password, salt, (err2, hash) => {
                         if (err2) return callback(2, 'Hashing error, no user created.')
-    
-                        st.run([username, email, hash, new Date().toISOString()])
+                        
+                        //atm we automatically confirm the user, set to 0 before "production"
+                        st.run([username, email, hash, new Date().toISOString(), 1])
                         st.finalize();
                         return callback(null, `User ${username} created and stored in database.`)
                     })
@@ -72,13 +74,40 @@ router.post('/confirm', (req, res) => {
 })
 
 const sendConfirmEmail = (email, username) => {
-    let token = "wadi783h78g6327fgitw4476wg6328fhp92u"
-    sendEmail(email, confirmationSubject(username), confirmationBody(username, token), (err, msg) => {
+    let token = cryptoRandomString({length: 50, type: 'url-safe'})
+
+    db.get('SELECT id FROM Users WHERE email = ?', [email], (err, row) => {
         if (err) {
             console.log(err)
             return
         }
-        console.log(`Confirmation email sent to: ${email}`)
+        var d1 = new Date ();
+        var expireDate = new Date (d1);
+        //48 hours
+        expireDate.setTime(d1.getTime() + (1000*60*60*24*2));
+
+        //Hash token before storing in db
+        bcrypt.genSalt(saltRounds, (err, salt) => {
+            if (err) {
+                console.log("Hashing error")
+                return
+            }
+            bcrypt.hash(token, salt, (err2, hash) => {
+                if (err2) {
+                    console.log("Hashing error")
+                    return
+                }
+                db.run('INSERT INTO RegistrationConfirm (token, user_id, expires) VALUES (?, ?, ?)', [hash, row.id, expireDate])
+            })
+        })
+
+        sendEmail(email, confirmationSubject(username), confirmationBody(username, token), (err, msg) => {
+            if (err) {
+                console.log(err)
+                return
+            }
+            console.log(`Confirmation email sent to: ${email}`)
+        })
     })
 }
 
@@ -97,7 +126,7 @@ const confirmationBody = (username, token) => {
     return `<h2>Hi ${username}</h2>
     <p>Thank you for registering. Email confirmation is not yet implemented, but in the future there would be a working link below.</p>
     <p>
-      <a href="#">Confirm account</a>
+      <a href="#">${token}</a>
     </p>
     <p>Sincerely,
       <br><strong>The Moist Team</strong></p>`
