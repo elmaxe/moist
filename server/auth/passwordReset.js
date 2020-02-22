@@ -58,8 +58,18 @@ router.post('/update', (req, res) => {
         db.get('SELECT * FROM Users WHERE email = ?', [email], (err, row) => {
             if (err) return res.status(500).json({"error":"Internal server error"})
 
+            //User doesn't exist, but we say that the key is invalid
+            if (row === undefined) {
+                return res.status(404).json({"error":"Not a valid key"})
+            }
+
             db.get('SELECT * FROM PasswordReset WHERE user_id = ?', [row.id], (err, row2) => {
                 if (err) return res.status(500).json({"error":"Internal server error"})
+
+                //User exists but has no password reset key
+                if (row2 === undefined) {
+                    return res.status(404).json({"error":"Not a valid key"})
+                }
 
                 bcrypt.compare(key, row2.key, (err, equal) => {
                     if (equal) {
