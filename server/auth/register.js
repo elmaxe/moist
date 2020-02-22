@@ -7,6 +7,8 @@ const bcrypt = require('bcrypt');
 
 const saltRounds = require('./config')
 
+const validatePassword = require('./validatePassword')
+
 router.get('/', (req, res) => {
     res.send({"register":"hi from register"})
 })
@@ -19,6 +21,7 @@ router.post('/', (req, res) => {
             if (err === 0) res.json({"error":"Invalid user data (empty?)", "payload":{}})
             else if (err === 1) res.json({"error":"Username or email already exists", "payload":{}})
             else if (err === 2) res.json({"error":"Internal server error","payload":{}})
+            else if (err === 3) res.json({"error":"Password too short","payload":{}})
             return
         }
         res.status(200).json({"payload": {
@@ -40,18 +43,21 @@ const registerUser = (username, email, password, callback) => {
 
             const st = db.prepare('INSERT INTO Users (username, email, password, registration_date) VALUES (?, ?, ?, ?)')
 
-            bcrypt.genSalt(saltRounds, (err, salt) => {
-                if (err) return callback(2, 'Hashing error, no user created.')
+            validatePassword(password, (err) => {
+                if (err) return callback(3, 'Password error, no user created.')
 
-                bcrypt.hash(password, salt, (err2, hash) => {
-                    if (err2) return callback(2, 'Hashing error, no user created.')
-
-                    st.run([username, email, hash, new Date().toISOString()])
-                    st.finalize();
-                    return callback(null, `User ${username} created and stored in database.`)
+                bcrypt.genSalt(saltRounds, (err, salt) => {
+                    if (err) return callback(2, 'Hashing error, no user created.')
+    
+                    bcrypt.hash(password, salt, (err2, hash) => {
+                        if (err2) return callback(2, 'Hashing error, no user created.')
+    
+                        st.run([username, email, hash, new Date().toISOString()])
+                        st.finalize();
+                        return callback(null, `User ${username} created and stored in database.`)
+                    })
                 })
             })
-
         } else {
             return callback(1, 'Email or password already exists, no user created.')
         }
