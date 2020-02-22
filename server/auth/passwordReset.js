@@ -3,7 +3,6 @@ var router = express.Router()
 const db = require('../database')
 const bcrypt = require('bcrypt');
 
-const nodemailer = require('nodemailer');
 const cryptoRandomString = require('crypto-random-string');
 
 const saltRounds = require('./config')
