@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = require('./config')
 
 const validatePassword = require('./validatePassword')
+const sendEmail = require('./sendEmail')
 
 router.get('/', (req, res) => {
     res.send({"register":"hi from register"})
@@ -24,9 +25,8 @@ router.post('/', (req, res) => {
             else if (err === 3) res.json({"error":"Password too short","payload":{}})
             return
         }
-        res.status(200).json({"payload": {
-            
-        }})
+        res.status(200).json({"status":"Account created"})
+        sendConfirmEmail(email, username)
     })
 })
 
@@ -62,4 +62,36 @@ const registerUser = (username, email, password, callback) => {
             return callback(1, 'Email or password already exists, no user created.')
         }
     })
+}
+
+//----------------
+//Confirm email
+
+router.post('/confirm', (req, res) => {
+
+})
+
+const sendConfirmEmail = (email, username) => {
+    let token = "wadi783h78g6327fgitw4476wg6328fhp92u"
+    sendEmail(email, confirmationSubject(username), confirmationBody(username, token), (err, msg) => {
+        if (err) {
+            console.log(err)
+            return
+        }
+        console.log(`Confirmation email sent to: ${email}`)
+    })
+}
+
+const confirmationSubject = (username) => {
+    return `Confirm your account, ${username}`
+}
+
+const confirmationBody = (username, token) => {
+    return `<h2>Hi ${username}</h2>
+    <p>Thank you for registering. Confirm your email address by clicking the link below.</p>
+    <p>
+      <a href="http://localhost:3000/somefuturelink/${token}" rel="noopener noreferrer" target="_blank">Confirm account</a>
+    </p>
+    <p>Sincerely,
+      <br><strong>The Moist Team</strong></p>`
 }

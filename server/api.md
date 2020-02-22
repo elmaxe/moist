@@ -19,7 +19,7 @@ POST /auth/register
 *   **Success response**
 
     **Code:** 200<br>
-    **Content:** `{"payload":{}}`<br>
+    **Content:** `{"status":"Account created"}`<br>
     **Description:** If username or email is not taken and the user is registered in the database.
 
 *   **Error response**
