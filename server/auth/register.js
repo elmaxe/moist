@@ -87,10 +87,17 @@ const confirmationSubject = (username) => {
 }
 
 const confirmationBody = (username, token) => {
+    // return `<h2>Hi ${username}</h2>
+    // <p>Thank you for registering. Confirm your email address by clicking the link below.</p>
+    // <p>
+    //   <a href="http://localhost:3000/somefuturelink/${token}" rel="noopener noreferrer" target="_blank">Confirm account</a>
+    // </p>
+    // <p>Sincerely,
+    //   <br><strong>The Moist Team</strong></p>`
     return `<h2>Hi ${username}</h2>
-    <p>Thank you for registering. Confirm your email address by clicking the link below.</p>
+    <p>Thank you for registering. Email confirmation is not yet implemented, but in the future there would be a working link below.</p>
     <p>
-      <a href="http://localhost:3000/somefuturelink/${token}" rel="noopener noreferrer" target="_blank">Confirm account</a>
+      <a href="#">Confirm account</a>
     </p>
     <p>Sincerely,
       <br><strong>The Moist Team</strong></p>`
