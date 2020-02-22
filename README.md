@@ -19,6 +19,17 @@ Frontend is at `localhost:3000`<br>
 Backend is at `localhost:4000`
 
 ---
+## Required Environment tables
+The following environment variables are required to run the project:
+
+| Variable              | Description                           | Default                       |
+|-----------------------|---------------------------------------|-------------------------------|
+| SERVER_ADDRESS        | Server ip address                     | ---                           |
+| PORT                  | Server port                           | ---                           |
+| MAIL_ADR              | Email address                         | ---                           |
+| MAIL_PSWD             | Email password                        | ---                           |
+| MAIL_SERVICE          | Email service                         | ---                           |
+---
 ## Documentation
 * [Trefle API](https://trefle.io/)
 * [Moist API](/server/api.md)
