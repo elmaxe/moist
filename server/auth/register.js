@@ -66,13 +66,6 @@ const registerUser = (username, email, password, callback) => {
     })
 }
 
-//----------------
-//Confirm email
-
-router.post('/confirm', (req, res) => {
-
-})
-
 const sendConfirmEmail = (email, username) => {
     let token = cryptoRandomString({length: 50, type: 'url-safe'})
 
@@ -110,6 +103,28 @@ const sendConfirmEmail = (email, username) => {
         })
     })
 }
+
+//----------------
+//Confirm email
+
+// router.post('/confirm', (req, res) => {
+//     const {token} = req.body
+
+//     if (token === undefined || token.length === 0) {
+//         return res.status(404).json({"error":"Invalid token"})
+//     }
+
+//     confirmEmail(token, (err) => {
+//         if (err) return res.status(404).json({"error":"Invalid token"})
+//         return res.status(200).json({"status":"Account successfully confirmed"})
+//     })
+
+// })
+
+// const confirmEmail = (token, callback) => {
+//     //TODO: CONFIRM TOKEN
+//     return callback(null)
+// }
 
 const confirmationSubject = (username) => {
     return `Confirm your account, ${username}`

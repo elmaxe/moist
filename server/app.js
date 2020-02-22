@@ -36,7 +36,13 @@ app.listen(port, () => {
     console.info(`Listening on port ${port}!`);
 });
 
-app.get('/', (req, res) => {
+app.get('/debug/users', (req, res) => {
+    db.all('SELECT * FROM Users', (err, rows) => {
+        res.send(rows)
+    })
+})
+
+app.get('/debug/pwrdreset', (req, res) => {
     db.all('SELECT * FROM PasswordReset', (err, rows) => {
         res.send(rows)
     })
