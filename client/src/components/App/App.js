@@ -12,6 +12,7 @@ import NotFound from '../NotFound/NotFound';
 function App() {
   return (
     <BrowserRouter>
+      <div className="App fill-window">
         {/* TODO: PUT NAVBAR HERE */}
         <Switch>
           <Route exact path={ROUTES.LANDING} component={Landing} />
@@ -19,6 +20,7 @@ function App() {
           <Route exact path={ROUTES.REGISTER} component={Landing} />
           <Route component={NotFound} />
         </Switch>
+      </div>
     </BrowserRouter>
   );
 }
