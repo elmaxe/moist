@@ -8,6 +8,7 @@ import * as ROUTES from '../../routes';
 import Landing from '../Landing/Landing';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
+import Register from '../Register/Register';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Switch>
           <Route exact path={ROUTES.LANDING} component={Landing} />
           <Route exact path={ROUTES.LOGIN} component={Login} />
-          <Route exact path={ROUTES.REGISTER} component={Landing} />
+          <Route exact path={ROUTES.REGISTER} component={Register} />
           <Route component={NotFound} />
         </Switch>
       </div>
