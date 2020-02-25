@@ -4,7 +4,7 @@ import * as ROUTES from '../../routes';
 
 const Landing = () => {
     return (
-        <Redirect to={ROUTES.LOGIN} />
+        <Redirect to={ROUTES.REGISTER} />
     )
 }
 
