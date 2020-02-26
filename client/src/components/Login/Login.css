@@ -1,16 +1,16 @@
-.Register {
+.Login {
     width: 50vh;
     margin: auto;
 }
 
-.RegisterForm {
+.LoginForm {
     padding: 5%;
 }
-.RegisterButton {
+.LoginButton {
     width: 100%;
 }
 
-.RegisterLinks {
+.LoginLinks {
     text-align: center;
     padding: 3%;
 }

@@ -5,11 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 
+import Firebase, { FirebaseContext } from './components/Firebase';
+
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import combineReducers from './reducers/index'
+
+require('dotenv').config();
 
 const store = createStore(
     combineReducers,
@@ -20,9 +24,11 @@ const store = createStore(
 );
 
 ReactDOM.render(
+    <FirebaseContext.Provider value={new Firebase()}>
     <Provider store={store}>
         <App />
     </Provider>,
+    </FirebaseContext.Provider>,
     document.getElementById('root')
 );
 
