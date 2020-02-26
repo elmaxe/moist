@@ -36,7 +36,7 @@ class Register extends Component {
 
         const {username, email, passwordOne, passwordTwo, error} = this.state;
 
-        const isInvalid = username === '' || email === '' || passwordOne === '' || passwordTwo === '';
+        const isInvalid = username === '' || email === '' || passwordOne === '' || passwordTwo === '' || passwordOne !== passwordTwo;
 
         return (
             <div className="Register">
@@ -84,22 +84,23 @@ class Register extends Component {
                         />
                     </Form.Group>
                     <Row>
-                        <Col vh={1}>
                         <Button
                             variant="primary"
                             type="submit"
                             disabled={isInvalid}
+                            className="RegisterButton"
                             >
                             Register
-                        </Button>                        
-                        </Col>
-
-                        <Col vh={1}>
-                            <Link to={ROUTES.LOGIN}>Log in</Link>
-                            <br />
-                            <Link to={ROUTES.FORGOT_PASSWORD}>Forgot password</Link>                    
-                        </Col>
+                        </Button>   
                     </Row>
+                    <Col className="RegisterLinks">
+                        {/* <Col vh={1}> */}
+                        <Link to={ROUTES.LOGIN}>Sign in</Link>
+                        {/* </Col> */}
+                        {/* <Col vh={1}> */}
+                            {/* <Link to={ROUTES.FORGOT_PASSWORD}>Forgot password</Link>                     */}
+                        {/* </Col> */}
+                    </Col>
                 </Form>
             </div>
         )

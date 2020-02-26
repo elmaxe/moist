@@ -6,3 +6,11 @@
 .RegisterForm {
     padding: 5%;
 }
+.RegisterButton {
+    width: 100%;
+}
+
+.RegisterLinks {
+    text-align: center;
+    padding: 3%;
+}
