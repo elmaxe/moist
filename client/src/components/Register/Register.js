@@ -4,12 +4,24 @@ import { Link } from 'react-router-dom';
 import './Register.css';
 
 import * as ROUTES from '../../routes';
+import { FirebaseContext } from '../Firebase';
+import {connect} from 'react-redux';
 
 const initialState = {
     email: '',
     username: '',
     passwordOne: '',
     passwordTwo: '',
+    error: '',
+    success: false,
+}
+
+const SignUpPage = () => {
+    return (
+        <FirebaseContext.Consumer>
+            {firebase => <Register firebase={firebase}/>}
+        </FirebaseContext.Consumer>
+    )
 }
 
 class Register extends Component {
@@ -30,11 +42,21 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const {username, email, passwordOne} = this.state;
+
+        this.props.firebase
+        .doCreateUserWithEmailAndPassword(email, passwordOne)
+        .then(authUser => {
+            this.setState(() => ({... initialState}), () => this.setState({success:true}));
+        })
+        .catch(error => {
+            this.setState({error, success: false});
+        })
     }
 
     render() {
 
-        const {username, email, passwordOne, passwordTwo, error} = this.state;
+        const {username, email, passwordOne, passwordTwo, error, success} = this.state;
 
         const isInvalid = username === '' || email === '' || passwordOne === '' || passwordTwo === '' || passwordOne !== passwordTwo;
 
@@ -42,7 +64,8 @@ class Register extends Component {
             <div className="Register">
                 <Form className="RegisterForm" onSubmit={this.handleSubmit}>
                     <h1>Register</h1>
-                    {error && <Alert variant="danger">{error}</Alert>}
+                    {error && <Alert variant="danger">{error.message}</Alert>}
+                    {success && <Alert variant="success">Registration successful!<br /><Link to={ROUTES.LOGIN}>Sign in</Link></Alert>}
                     <Form.Group>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control 
@@ -107,4 +130,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default SignUpPage;

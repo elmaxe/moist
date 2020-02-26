@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import {connect} from 'react-redux'
+
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import * as ROUTES from '../../routes';
@@ -10,7 +12,10 @@ import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import Register from '../Register/Register';
 
-function App() {
+import { withFirebase } from '../Firebase';
+
+const AppBase = ({firebase}) => {
+  
   return (
     <BrowserRouter>
       <div className="App fill-window">
@@ -25,5 +30,7 @@ function App() {
     </BrowserRouter>
   );
 }
+
+const App = withFirebase(AppBase)
 
 export default App;
