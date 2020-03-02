@@ -54,10 +54,16 @@ class Register extends Component {
                 displayName: username
             }).then(() => {
                 console.log("Success")
+                this.props.firebase.auth.currentUser.sendEmailVerification()
+                .then(() => {
+                    console.log("sent")
+                }).catch((err) => {
+                    console.log(err)
+                })
             }).catch((err) => {
                 console.log(err)
             })
-            
+
             this.setState(() => ({... initialState}), () => this.setState({success:true}));
         })
         .catch(error => {
