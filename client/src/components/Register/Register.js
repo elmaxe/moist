@@ -6,6 +6,7 @@ import './Register.css';
 import * as ROUTES from '../../routes';
 import { FirebaseContext } from '../Firebase';
 import {connect} from 'react-redux';
+import { auth } from 'firebase';
 
 const initialState = {
     email: '',
@@ -47,6 +48,16 @@ class Register extends Component {
         this.props.firebase
         .doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {
+            // console.log(authUser)
+            // console.log(this.props.firebase.auth)
+            this.props.firebase.auth.currentUser.updateProfile({
+                displayName: username
+            }).then(() => {
+                console.log("Success")
+            }).catch((err) => {
+                console.log(err)
+            })
+            
             this.setState(() => ({... initialState}), () => this.setState({success:true}));
         })
         .catch(error => {
