@@ -41,7 +41,12 @@ class Login extends React.Component {
 
         this.props.firebase.doSignInWithEmailAndPassword(email, password)
         .then(authUser => {
-            this.setState({... initialState})
+            if (authUser.user.emailVerified) {
+                this.setState({... initialState})
+            } else {
+                this.setState(() => ({error:{message:"Account not yet verified. Verify your account to sign in."}}))
+            }
+            
         })
         .catch(error => {
             this.setState({error})
