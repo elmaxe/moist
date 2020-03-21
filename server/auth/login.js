@@ -8,9 +8,9 @@ const bcrypt = require('bcrypt');
 
 module.exports = router
 
-const validCredentials = (rec, res, next) => {
+const validCredentials = (req, res, next) => {
     const {password, email} = req.body
-    if (!passord || !email) {
+    if (!password || !email) {
         res.status(400).json({"error":"Missing credentials."})
         return
     }
@@ -28,7 +28,7 @@ router.post('/', validCredentials, (req, res) => {
             return
         }
         if (row === undefined) {
-            res.status(403).json({"error":"Invalid username or password."})
+            res.status(403).json({"error":"Invalid username or password1."})
             return
         }
         bcrypt.compare(password, row.password, (err, equal) => {
@@ -44,11 +44,11 @@ router.post('/', validCredentials, (req, res) => {
                     regDate: row.regDate
                 })
             } else {
-                res.status(403).json({"error":"Invalid username or password."})
+                res.status(403).json({"error":"Invalid username or password2."})
                 return
             }
         })
     });
 });
 
-export default login;
+module.exports = router

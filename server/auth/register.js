@@ -55,7 +55,7 @@ router.post('/', validUserData, (req, res) => {
                     return
                 }
 
-                insertUser.run([email, username, password, new Date()], (err) => {
+                insertUser.run([email, username, hash, new Date()], (err) => {
                     if (err) {
                         res.status(500).json({"error":"Internal server error"})
                         return
