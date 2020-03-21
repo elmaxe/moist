@@ -22,6 +22,7 @@ const store = createStore(
         logger
     )
 );
+console.log(store)
 
 ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>

@@ -3,20 +3,19 @@ import './Login.css';
 import * as ROUTES from '../../routes';
 import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Firebase, FirebaseContext } from '../Firebase';
+import { auth } from 'firebase';
+
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+
+import setUser from '../../actions/user'
+
+import FirebaseContext, {withFirebase} from '../Firebase'
 
 const initialState = {
     email: '',
     password: '',
     error: '',
-}
-
-const LoginPage = () => {
-    return (
-        <FirebaseContext.Consumer>
-            {firebase => <Login firebase={firebase} />}
-        </FirebaseContext.Consumer>
-    )
 }
 
 class Login extends React.Component {
@@ -43,6 +42,7 @@ class Login extends React.Component {
         .then(authUser => {
             if (authUser.user.emailVerified) {
                 this.setState({... initialState})
+                this.props.actions.setUser(authUser.user)
             } else {
                 this.setState(() => ({error:{message:"Account not yet verified. Verify your account to sign in."}}))
             }
@@ -108,4 +108,15 @@ class Login extends React.Component {
     }
 }
 
-export default LoginPage;
+const LoginPage = withFirebase(Login)
+
+const bindPropsToActionCreators  = (dispatch) => {
+    return {
+        actions: bindActionCreators({setUser}, dispatch)
+    }
+}
+
+export default connect(
+    state => ({state}),
+    bindPropsToActionCreators
+)(LoginPage);

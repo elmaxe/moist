@@ -1,6 +1,6 @@
 import {SET_USER, CLEAR_USER} from '../actions/user.js'
 
-const initialState = null
+const initialState = {}
 
 const user = (state = initialState, action) => {
     console.log(action)
@@ -9,7 +9,7 @@ const user = (state = initialState, action) => {
         case SET_USER:
             return action.user;
         case CLEAR_USER:
-            return null;
+            return {};
         default: return state;
     }
 }
