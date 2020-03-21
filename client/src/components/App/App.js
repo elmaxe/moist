@@ -11,13 +11,15 @@ import Landing from '../Landing/Landing';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import Register from '../Register/Register';
+import NavBar from "../Navbar/Navbar"
 
 import { withFirebase } from '../Firebase';
 
 const AppBase = ({firebase}) => {
-  
+
   return (
     <BrowserRouter>
+      <NavBar />
       <div className="App fill-window">
         {/* TODO: PUT NAVBAR HERE */}
         <Switch>
