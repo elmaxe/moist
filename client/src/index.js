@@ -12,6 +12,7 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import combineReducers from './reducers/index'
+import { doFirstAuth } from './actions/user';
 
 require('dotenv').config();
 
@@ -22,13 +23,14 @@ const store = createStore(
         logger
     )
 );
-console.log(store)
+
+// store.dispatch(doFirstAuth())
 
 ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>
     <Provider store={store}>
         <App />
-    </Provider>,
+    </Provider>
     </FirebaseContext.Provider>,
     document.getElementById('root')
 );

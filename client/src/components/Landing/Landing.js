@@ -1,10 +1,18 @@
 import React from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, Link } from 'react-router-dom';
 import * as ROUTES from '../../routes';
 
 const Landing = () => {
     return (
-        <Redirect to={ROUTES.REGISTER} />
+        <div>
+            This is the landing page<br />
+            <Link to={ROUTES.LOGIN} >
+                Login
+            </Link><br />
+            <Link to={ROUTES.REGISTER} >
+                Register
+            </Link>
+        </div>
     )
 }
 
