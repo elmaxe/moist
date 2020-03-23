@@ -5,10 +5,7 @@ var router = express.Router()
 const db = require('../database');
 
 router.get('/', (req, res) => {
-    res.send("Hej")
+    res.send("Plants")
 });
-
-const plants = require('./plant')
-router.use('/plants', plants)
 
 module.exports = router

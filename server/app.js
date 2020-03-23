@@ -82,7 +82,7 @@ app.listen(port, () => {
 app.use('/api/auth/login', login)
 app.use('/api/auth/logout', logout)
 app.use('/api/auth/register', register)
-app.use('/api/garden', garden)
+app.use('/api/gardens', garden)
 
 // app.use(express.static(path.join(__dirname, '../client/todoapp/build')))
 
