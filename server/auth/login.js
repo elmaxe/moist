@@ -20,15 +20,16 @@ const validCredentials = (req, res, next) => {
 router.post('/', validCredentials, (req, res) => {
     console.log(req.body);
     const {email, password} = req.body;
-    //db.run('INSERT INTO Users (email, password, username) VALUES (?,?,?)',['axel.elmarsson@gmail.com', 'reee', 'cancer'])
-    db.get('SELECT * FROM Users WHERE email = ?', [email], (err, row) => {
-        console.log(row)
+
+    const getUser = db.prepare('SELECT * FROM USERS WHERE email = ?')
+
+    getUser.get([email], (err, row) => {
         if (err) {
             res.status(500).json({"error":"Internal server error."})
             return
         }
         if (row === undefined) {
-            res.status(403).json({"error":"Invalid username or password1."})
+            res.status(403).json({"error":"Invalid username or password."})
             return
         }
         bcrypt.compare(password, row.password, (err, equal) => {
@@ -44,11 +45,11 @@ router.post('/', validCredentials, (req, res) => {
                     regDate: row.regDate
                 })
             } else {
-                res.status(403).json({"error":"Invalid username or password2."})
+                res.status(403).json({"error":"Invalid username or password."})
                 return
             }
         })
-    });
+    })
 });
 
 module.exports = router
