@@ -88,10 +88,10 @@ app.use('/api/upload', upload)
 
 app.use('/images', express.static(path.join(__dirname, './images')))
 
-// app.use(express.static(path.join(__dirname, '../client/todoapp/build')))
+// app.use(express.static(path.join(__dirname, '../client/build')))
 
 // app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/todoapp/build', 'index.html'))
+//     res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
 // })
 
 const httpServer = http.createServer(app)
