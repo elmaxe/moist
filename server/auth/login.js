@@ -6,8 +6,6 @@ var errr = ""
 const db = require('../database');
 const bcrypt = require('bcrypt');
 
-module.exports = router
-
 const validCredentials = (req, res, next) => {
     const {password, email} = req.body
     if (!password || !email) {
