@@ -42,7 +42,8 @@ router.post('/', validCredentials, (req, res) => {
                     id: row.id,
                     username: row.username,
                     email: row.email,
-                    regDate: row.regDate
+                    regDate: row.regDate,
+                    profilePicture: row.profilePicture
                 })
             } else {
                 res.status(403).json({"error":"Invalid username or password."})
