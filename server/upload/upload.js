@@ -27,7 +27,9 @@ router.post('/', (req, res) => {
             res.status(403).json({"error":"File type not allowed."})
             return
         }
-        let newName = uuid4() + ".png"
+
+        let newName = uuid4() + "." + result.ext
+
         //Utgår tydligen från app:s directory och inte upload.js
         imageFile.mv('./images/' + newName, (err) => {
             if (err) {
@@ -39,7 +41,7 @@ router.post('/', (req, res) => {
                 "status":"File uploaded.",
                 image: {
                     name: newName,
-                    mimetype: imageFile.mimetype,
+                    mimetype: result.mime,
                     path: '/images/' + newName,
                     size: imageFile.size
                 }
