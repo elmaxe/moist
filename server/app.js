@@ -74,6 +74,7 @@ const login = require('./auth/login')
 const logout = require('./auth/logout')
 const register = require('./auth/register')
 const garden = require('./garden/garden')
+const upload = require('./upload/upload')
 
 app.listen(port, () => {
     console.info(`Listening on port ${port}!`);
@@ -83,6 +84,9 @@ app.use('/api/auth/login', login)
 app.use('/api/auth/logout', logout)
 app.use('/api/auth/register', register)
 app.use('/api/gardens', garden)
+app.use('/api/upload', upload)
+
+app.use('/images', express.static(path.join(__dirname, './images')))
 
 // app.use(express.static(path.join(__dirname, '../client/todoapp/build')))
 
