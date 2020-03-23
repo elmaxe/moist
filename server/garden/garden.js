@@ -24,19 +24,24 @@ router.get('/get-all', validCookie, (req, res) => {
 });
 
 router.post('/get', validCookie, (req, res) => {
-    const {guid} = req.body
+    const {gid} = req.body
     const user = req.session.user
 
-    if (!guid) {
+    if (!gid) {
         res.status(403).json({"error":"No gid provided."})
         return
     }
 
-    const garden = db.prepare('SELECT * FROM Gardens WHERE uid = ? AND guid = ?')
+    const garden = db.prepare('SELECT * FROM Gardens WHERE uid = ? AND gid = ?')
 
-    garden.get([user.id, guid], (err, row) => {
+    garden.get([user.id, gid], (err, row) => {
         if (err) {
             res.status(500).json({"error":"Internal server error."})
+            return
+        }
+
+        if (row === undefined) {
+            res.status(404).json({"error":"No garden with that id is specified with the user."})
             return
         }
 
