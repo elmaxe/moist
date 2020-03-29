@@ -11,7 +11,7 @@ const Landing = () => {
             <div className="LandingBar">
                 <div className="LandingLogoText">
                     {/* TODO: LOGO */}
-                    gardenbook
+                    <a href="/">gardenbook</a>
                 </div>
                 <div className="LandingBarLogin">
                     <Login />

@@ -15,7 +15,7 @@
 }
 
 .LandingLogoText {
-    color: white;
+    /* color: white; */
     font-size: 5vh;
     font-weight: bold;
     width: 50%;
@@ -24,6 +24,11 @@
     display: flex;
     /* justify-content: center; */
     align-items: center;
+}
+
+.LandingLogoText a {
+    color: white;
+    text-decoration: none;
 }
 
 .LandingBarLogin {
