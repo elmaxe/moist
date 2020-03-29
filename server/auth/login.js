@@ -83,6 +83,13 @@ router.get('/isAuth', (req, res) => {
     } else {
         res.status(404).json({
             authenticated: false,
+            user: {
+                id: "",
+                email: "",
+                username: "",
+                regDate: "",
+                profilePicture: ""
+            }
         })
     }
 })
