@@ -36,7 +36,7 @@ class App extends React.Component {
       if (json.error) {
         setUser(false, true)
       } else {
-        setUser(json.authenticated, true, json.id, json.email, json.username, json.profilePicture, json.regDate)
+        setUser(json.authenticated, true, json.user.id, json.user.email, json.user.username, json.user.profilePicture, json.user.regDate)
       }
     })
   }
