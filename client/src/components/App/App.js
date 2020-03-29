@@ -10,7 +10,7 @@ import * as ROUTES from '../../routes';
 import Landing from '../Landing/Landing';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
-import Register from '../Register/Register';
+import Home from '../Home/Home';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import UnprotectedRoute from '../UnprotectedRoute/UnprotectedRoute';
@@ -57,14 +57,17 @@ class App extends React.Component {
               <Switch>
               <Route exact path={ROUTES.LANDING} >
                 {/* <ProtectedRoute component={Landing} /> */}
-                <Landing />
+                <UnprotectedRoute component={Landing} />
               </Route>
-              <Route exact path={ROUTES.LOGIN} >
+              <Route exact path={ROUTES.HOME} >
+                <ProtectedRoute component={Home} />
+              </Route>
+              {/* <Route exact path={ROUTES.LOGIN} >
                 <UnprotectedRoute component={Login} />
               </Route>
               <Route exact path={ROUTES.REGISTER} >
                 <UnprotectedRoute component={Register} />
-              </Route>
+              </Route> */}
               <Route component={NotFound} />
             </Switch>
             :

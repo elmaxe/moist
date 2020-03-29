@@ -11,7 +11,7 @@ const UnprotectedRoute = ({component: Component, ...rest}) => {
         <Route {...rest} render={props => (
             // rest.state.user.displayName ?
             rest.state.userData.authenticated ?
-                <Redirect to={ROUTES.LANDING} />
+                <Redirect to={ROUTES.HOME} />
             :
             <Component {...props} state={rest.state} actions={rest.actions} />
         )} />
