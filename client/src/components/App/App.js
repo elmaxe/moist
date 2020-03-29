@@ -56,7 +56,8 @@ class App extends React.Component {
             {hasFirstAuth ? 
               <Switch>
               <Route exact path={ROUTES.LANDING} >
-                <ProtectedRoute component={Landing} />
+                {/* <ProtectedRoute component={Landing} /> */}
+                <Landing />
               </Route>
               <Route exact path={ROUTES.LOGIN} >
                 <UnprotectedRoute component={Login} />

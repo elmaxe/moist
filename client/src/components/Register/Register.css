@@ -14,3 +14,31 @@
     text-align: center;
     padding: 3%;
 }
+
+.register_title {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.Register2 th {
+    padding-bottom: 5vh;
+    width: 100%;
+}
+
+.Register2 th > input {
+    width: 25vw;
+}
+
+.register_button_div {
+    width: 100%;
+    /* margin-top: 1vh; */
+}
+
+.Register2 button {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    display: block;
+    font-weight: bold;
+
+}
