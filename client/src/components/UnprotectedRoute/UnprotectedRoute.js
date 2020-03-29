@@ -6,9 +6,11 @@ import {connect} from 'react-redux'
 import * as Actions from '../../actions/user'
 
 const UnprotectedRoute = ({component: Component, ...rest}) => {
+    console.log(rest)
     return (
         <Route {...rest} render={props => (
-            rest.state.user.displayName ?
+            // rest.state.user.displayName ?
+            rest.state.userData.authenticated ?
                 <Redirect to={ROUTES.LANDING} />
             :
             <Component {...props} state={rest.state} actions={rest.actions} />

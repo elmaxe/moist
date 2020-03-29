@@ -3,14 +3,11 @@ import './Login.css';
 import * as ROUTES from '../../routes';
 import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { auth } from 'firebase';
-
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import setUser from '../../actions/user'
 
-import FirebaseContext, {withFirebase} from '../Firebase'
 
 const initialState = {
     email: '',
@@ -38,18 +35,25 @@ class Login extends React.Component {
         e.preventDefault();
         const {email, password} = this.state;
 
-        this.props.firebase.doSignInWithEmailAndPassword(email, password)
-        .then(authUser => {
-            if (authUser.user.emailVerified) {
-                this.setState({... initialState})
-                this.props.actions.setUser(authUser.user)
-            } else {
-                this.setState(() => ({error:{message:"Account not yet verified. Verify your account to sign in."}}))
-            }
-            
+        //TODO: SET STATE FETCHING
+        //CLEAR INPUT FIELDS
+
+        fetch(ROUTES.API_LOGIN, {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({email, password})
         })
-        .catch(error => {
-            this.setState({error})
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            if (json.error) {
+                this.setState({error: json.error})
+            } else {
+                this.props.actions.setUser(true, true, json.id, json.email, json.username, json.profilePicture, json.regDate)
+            }
         })
     }
 
@@ -63,7 +67,7 @@ class Login extends React.Component {
             <div className="Login">
                 <Form onSubmit={this.handleSubmit} className="LoginForm">
                     <h1>Log in</h1>
-                    {error && <Alert variant="danger">{error.message}</Alert>}
+                    {error && <Alert variant="danger">{error}</Alert>}
                     <Form.Group>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control 
@@ -108,7 +112,6 @@ class Login extends React.Component {
     }
 }
 
-const LoginPage = withFirebase(Login)
 
 const bindPropsToActionCreators  = (dispatch) => {
     return {
@@ -119,4 +122,4 @@ const bindPropsToActionCreators  = (dispatch) => {
 export default connect(
     state => ({state}),
     bindPropsToActionCreators
-)(LoginPage);
+)(Login);

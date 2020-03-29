@@ -8,7 +8,8 @@ import * as Actions from '../../actions/user'
 const ProtectedRoute = ({component: Component, ...rest}) => {
     return (
         <Route {...rest} render={props => (
-            rest.state.user.displayName ?
+            // rest.state.user.displayName ?
+            rest.state.userData.authenticated ?
             <Component {...props} state={rest.state} actions={rest.actions} />
             :
             <Redirect to={ROUTES.LOGIN} />

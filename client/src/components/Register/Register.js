@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import './Register.css';
 
 import * as ROUTES from '../../routes';
-import { FirebaseContext } from '../Firebase';
-import {connect} from 'react-redux';
-import { auth } from 'firebase';
 
 const initialState = {
     email: '',
@@ -15,14 +12,6 @@ const initialState = {
     passwordTwo: '',
     error: '',
     success: false,
-}
-
-const SignUpPage = () => {
-    return (
-        <FirebaseContext.Consumer>
-            {firebase => <Register firebase={firebase}/>}
-        </FirebaseContext.Consumer>
-    )
 }
 
 class Register extends Component {
@@ -44,30 +33,25 @@ class Register extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const {username, email, passwordOne} = this.state;
-
-        this.props.firebase
-        .doCreateUserWithEmailAndPassword(email, passwordOne)
-        .then(authUser => {
-            // console.log(authUser)
-            // console.log(this.props.firebase.auth)
-            this.props.firebase.auth.currentUser.updateProfile({
-                displayName: username
-            }).then(() => {
-                console.log("Success")
-                this.props.firebase.auth.currentUser.sendEmailVerification()
-                .then(() => {
-                    console.log("sent")
-                }).catch((err) => {
-                    console.log(err)
-                })
-            }).catch((err) => {
-                console.log(err)
-            })
-
-            this.setState(() => ({... initialState}), () => this.setState({success:true}));
+        console.log(ROUTES.API_REGISTER)
+        fetch("/api/auth/register", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({username, email, password: passwordOne})
         })
-        .catch(error => {
-            this.setState({error, success: false});
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            if (json.error) {
+                this.setState({error: json.error})
+            } else {
+                this.setState({...initialState}, () => {
+                    this.setState({success: true})
+                })
+            }
         })
     }
 
@@ -81,7 +65,7 @@ class Register extends Component {
             <div className="Register">
                 <Form className="RegisterForm" onSubmit={this.handleSubmit}>
                     <h1>Register</h1>
-                    {error && <Alert variant="danger">{error.message}</Alert>}
+                    {error && <Alert variant="danger">{error}</Alert>}
                     {success && <Alert variant="success">Registration successful!<br /><Link to={ROUTES.LOGIN}>Sign in</Link></Alert>}
                     <Form.Group>
                         <Form.Label>Email address</Form.Label>
@@ -147,4 +131,4 @@ class Register extends Component {
     }
 }
 
-export default SignUpPage;
+export default Register;

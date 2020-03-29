@@ -1,15 +1,25 @@
 import {SET_USER, CLEAR_USER} from '../actions/user.js'
 
-const initialState = {}
+const initialState = {
+    authenticated: false,
+    hasFirstAuth: false,
+    user: {
+        id: "",
+        email: "",
+        username: "",
+        profilePicture: "",
+        regDate: "",
+    }
+}
 
-const user = (state = initialState, action) => {
+const userData = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:
-            return action.user;
+            return action.userData;
         case CLEAR_USER:
-            return {};
+            return {...initialState};
         default: return state;
     }
 }
 
-export default user;
+export default userData;
