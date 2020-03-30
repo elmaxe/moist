@@ -23,7 +23,16 @@ const helmet = require('helmet')
 let RedisStore = require('connect-redis')(session)
 let redisClient = redis.createClient()
 
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'", 'axelelmarsson.se'],
+            scriptSrc: ["'self'", "'unsafe-inline'", 'axelelmarsson.se', 'maxcdn.bootstrapcdn.com'],
+            styleSrc: ["'self'", 'axelelmarsson.se', 'maxcdn.bootstrapcdn.com'],
+            imgSrc: ["'self'", 'axelelmarsson.se'],
+        }
+    }
+}))
 
 app.use(cors())
 app.use(bodyParser.urlencoded({
