@@ -24,7 +24,7 @@ class Logout extends React.Component {
     render() {
         return (
             <div style={{paddingTop:"50px"}} >
-                LOGOUT
+                
             </div>
         )
     }
