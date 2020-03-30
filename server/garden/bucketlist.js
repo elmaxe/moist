@@ -37,12 +37,13 @@ router.post('/get', validCookie, (req, res) => {
 
 router.post('/add', validCookie, (req, res) => {
     const user = req.session.user
-    const {data} = req.body
+    const {activity, accessibility, type, participants, price, link, key} = req.body
 
-    const add = db.prepare('INSERT INTO Activities (data, uid) VALUES (?, ?)')
+    const add = db.prepare('INSERT INTO Activities (uid, activity, accessibility, type, participants, price, link, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
 
-    add.run([data, user.id], (err) => {
+    add.run([user.id, activity, accessibility, type, participants, price, link, key], (err) => {
         if (err) {
+            console.log(err)
             res.status(500).json({"error":"Internal server error"})
             return
         }

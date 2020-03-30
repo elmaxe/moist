@@ -54,7 +54,7 @@ router.post('/', validCredentials, (req, res) => {
 
 router.get('/isAuth', (req, res) => {
     const user = req.session.user
-
+    console.log(user)
     const getUser = db.prepare('SELECT * FROM Users WHERE id = ?')
 
     if (user) {
@@ -66,6 +66,7 @@ router.get('/isAuth', (req, res) => {
 
             if (row === undefined) {
                 res.status(404).json({"error":"Invalid session."})
+                return
             }
 
             res.status(200).json({
