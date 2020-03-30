@@ -12,6 +12,7 @@ const initialState = {
     passwordTwo: '',
     error: '',
     success: false,
+    fetching: false,
 }
 
 class Register extends Component {
@@ -34,7 +35,9 @@ class Register extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const {username, email, passwordOne} = this.state;
-        console.log(ROUTES.API_REGISTER)
+
+        this.setState({fetching:true})
+        
         fetch("/api/auth/register", {
             method: "POST",
             credentials: "same-origin",
@@ -46,6 +49,8 @@ class Register extends Component {
         .then(res => res.json())
         .then(json => {
             console.log(json)
+            this.setState({fetching: false})
+
             if (json.error) {
                 this.setState({error: json.error})
             } else {
@@ -58,7 +63,7 @@ class Register extends Component {
 
     render() {
         
-        const {username, email, passwordOne, passwordTwo, error, success} = this.state;
+        const {username, email, passwordOne, passwordTwo, error, success, fetching} = this.state;
         
         const isInvalid = username === '' || email === '' || passwordOne === '' || passwordTwo === '' || passwordOne !== passwordTwo;
         
@@ -133,7 +138,7 @@ class Register extends Component {
                     </table>
                     <div className="register_button_div">
                         <button
-                            disabled={isInvalid}
+                            disabled={isInvalid || fetching}
                             onClick={this.handleSubmit}
                             >Create account
                         </button>
