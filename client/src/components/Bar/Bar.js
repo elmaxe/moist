@@ -16,7 +16,7 @@ class Bar extends React.Component {
         return (
             <div className="Bar">
                 <div className="BarItem">
-                    <Link to={ROUTES.HOME}>Gardens</Link>
+                    <Link to={ROUTES.HOME}>My bucketlist</Link>
                 </div>
                 <div className="BarItem">
                     <Link to={ROUTES.ACCOUNT}>
