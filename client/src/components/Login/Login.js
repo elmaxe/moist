@@ -71,6 +71,7 @@ class Login extends React.Component {
 
         return (
             <div className="Login2">
+                <form>
                 <table>
                     <tr>
                         <th>Email</th>
@@ -112,6 +113,7 @@ class Login extends React.Component {
                         </td>
                     </tr>
                 </table>
+                </form>
                 {error && <Alert variant="danger">{error}</Alert>}
             </div>
         )

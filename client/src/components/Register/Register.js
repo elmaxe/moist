@@ -72,6 +72,7 @@ class Register extends Component {
                     {error && <Alert variant="danger">{error}</Alert>}
                     {success && <Alert variant="primary">Registration successful! Sign in above.</Alert>}
                     <Alert variant="danger">Don't enter sensitive data in this form (or on this site) if there is no secure HTTPS connection. <a href="https://support.google.com/webmasters/answer/6073543" rel="noopener noreferrer" target="_blank">Learn more!</a></Alert>
+                    <form>
                     <table>
                         <tr>
                             <th>
@@ -137,6 +138,7 @@ class Register extends Component {
                             >Create account
                         </button>
                     </div>
+                    </form>
                     
                 </div>
             </div>
