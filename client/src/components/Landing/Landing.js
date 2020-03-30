@@ -11,7 +11,7 @@ const Landing = () => {
             <div className="LandingBar">
                 <div className="LandingLogoText">
                     {/* TODO: LOGO */}
-                    <a href="/">gardenbook</a>
+                    <a href="/">moist</a>
                 </div>
                 <div className="LandingBarLogin">
                     <Login />
@@ -20,7 +20,7 @@ const Landing = () => {
             <div className="LandingContent">
                 <div className="LandingContentLeft">
                     <div className="LandingContentLeftTitle">
-                        <h1>GardenBook</h1>
+                        <h1>Moist</h1>
                         Keep track of your gardens and plants.
                     </div>
                 </div>
