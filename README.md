@@ -1,22 +1,25 @@
 # bukket
-A project for the [DH2642](https://www.kth.se/student/kurser/kurs/DH2642) course using the [Trefle API](https://trefle.io/).
+A project for the [DH2642](https://www.kth.se/student/kurser/kurs/DH2642) course using the [Bored API](https://www.boredapi.com/).
 
 Created by Axel Elmarsson and Douglas Fischer.
+
+## Why is this repo called moist?
+We changed project plan in the middle of the assignment because the previous API we used sucked.
 
 ---
 # Description
 bukket is an interactive bucket list app . You get random suggestions of activities to add to your bucket list. You can organize your bucket list items: filter, sort, mark as done, etc. We get activity suggestions from the API. We store everything in our own database.
 
 # Done
-* Fully functional registration and login system based on `Sqlite3`
+* Fully functional registration and login system.
 * Basic bucket list functions
 * Api calls that generate random tasks
 
 # TODO
-* User interaction
+* User interaction: Filter bucketlist, mark as done, hide, add notes.
 * Option to add custom bucket list items
-* Ability to mark items as done
-* List filtering and sorting
+* Account settings: Set profile picture, see account settings, etc.
+* See other bucket lists: Search for friend's bucket lists
 
 # Project file structure
 
@@ -43,23 +46,21 @@ bukket is an interactive bucket list app . You get random suggestions of activit
 | Images/spinner.gif 							  | spinner.                     |
 | Images/profile1600x1600.png 				      | default profile picture.                     |
 
-
-
-
-
-
-
 ---
 # Installation
 * `Sqlite3` is used for the backend database
 * `Redis` is used for cookie storage together with `express-session`
 
 ## Prerequisites
+### Linux
 1. Install `Node.js` by running `sudo apt-get install nodejs`
 2. Install `sqlite3` by running `sudo apt-get install sqlite3`
 3. Install `redis` by running `sudo apt-get install redis-server`
    1. Check that `redis` is running: `sudo service redis-server status`
    2. If not, run: `redis-server`
+
+### Windows
+Why?
 
 ## Development
 1. Clone this repository
