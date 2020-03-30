@@ -1,0 +1,68 @@
+.Landing {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.LandingBar {
+    width: 100%;
+    background-color: rgb(97, 173, 96);
+    /* rgb(205, 253, 204); */
+    border-bottom: solid 1px #173A17;
+    /* border: solid; */
+    display: flex;
+    flex-flow: row;
+}
+
+.LandingLogoText {
+    /* color: white; */
+    font-size: 5vh;
+    font-weight: bold;
+    width: 50%;
+    padding-left: 10vw;
+
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.LandingLogoText a {
+    color: white;
+    text-decoration: none;
+}
+
+.LandingBarLogin {
+    /* width: 50%; */
+    float: right;
+    padding-left: 3vw;
+}
+
+.LandingContent {
+    display: flex;
+    flex-flow: row;
+    padding-left: 10vh;
+    padding-right: 10vh;
+
+    top: calc(150px + 2vh);
+    bottom: 0px;
+    position: absolute;
+    width: inherit;
+    overflow: auto;
+}
+
+.LandingContentLeft {
+    width: 50%;
+    margin: 2vw;
+    margin-left: 5vw;
+}
+
+.LandingContentRight {
+    width: 50%;
+    margin: 2vw;
+    margin-right: 5vw;
+}
+
+.LandingContentLeftTitle {
+    margin-top: 3vh;
+    margin-bottom: 5vh;
+}

@@ -27,3 +27,5 @@ yarn-error.log*
 /server/db.sqlite
 /client/.env
 /client/src/.env
+/server/images/*
+/client/build

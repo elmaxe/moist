@@ -20,6 +20,9 @@ const redis = require('redis')
 const uuid4 = require('uuid4');
 const helmet = require('helmet')
 
+let RedisStore = require('connect-redis')(session)
+let redisClient = redis.createClient()
+
 app.use(helmet())
 
 app.use(cors())
@@ -52,12 +55,12 @@ const cookieMaxAge = 60*60*2
 app.use(session({
     name: "session",
     //Non-memory-leaking store
-    // store: new RedisStore({
-    //     client: redisClient,
-    //     ttl: cookieMaxAge,
-    //     //Disabled resettig the max age in store upon checking the session
-    //     disableTouch: true
-    // }),
+    store: new RedisStore({
+        client: redisClient,
+        ttl: cookieMaxAge,
+        //Disabled resettig the max age in store upon checking the session
+        disableTouch: true
+    }),
     genid: () => {return uuid4()},
     secret: "1234",
     resave: false,
@@ -73,6 +76,8 @@ app.use(session({
 const login = require('./auth/login')
 const logout = require('./auth/logout')
 const register = require('./auth/register')
+const garden = require('./garden/garden')
+const upload = require('./upload/upload')
 
 app.listen(port, () => {
     console.info(`Listening on port ${port}!`);
@@ -81,12 +86,16 @@ app.listen(port, () => {
 app.use('/api/auth/login', login)
 app.use('/api/auth/logout', logout)
 app.use('/api/auth/register', register)
+app.use('/api/gardens', garden)
+app.use('/api/upload', upload)
 
-// app.use(express.static(path.join(__dirname, '../client/todoapp/build')))
+app.use('/images', express.static(path.join(__dirname, './images')))
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../client/todoapp/build', 'index.html'))
-// })
+app.use(express.static(path.join(__dirname, '../client/build')))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+})
 
 const httpServer = http.createServer(app)
 // const httpsServer = https.createServer({

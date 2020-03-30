@@ -14,3 +14,41 @@
     text-align: center;
     padding: 3%;
 }
+
+.register_title {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.Register2 th {
+    padding-bottom: 5vh;
+    width: 100%;
+}
+
+.Register2 th > input {
+    width: 25vw;
+    padding: 10px;
+}
+
+.register_button_div {
+    width: 100%;
+    /* margin-top: 1vh; */
+}
+
+.Register2 button {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    display: block;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(97, 173, 96);
+    border-radius: 10px;
+    border: solid 1px #173A17;
+}
+
+.Register2 button:disabled {
+    cursor: not-allowed;
+    background-color: rgb(150, 201, 159);
+    border: solid 1px rgb(100, 151, 109);
+}

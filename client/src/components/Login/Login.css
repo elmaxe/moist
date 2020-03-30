@@ -14,3 +14,55 @@
     text-align: center;
     padding: 3%;
 }
+
+.Login2 {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    padding-top: 1vh;
+    padding-right: 1vh;
+    padding-bottom: 1vh;
+}
+
+.Login2 th {
+    color: white;
+}
+
+.Login2 input {
+    padding-left: 3px;
+    border: solid 1px;
+    width: 15vw;
+    border-color: #173A17;
+}
+
+.Login2 button {
+    width: 110px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgb(70, 151, 69);
+    color: white;
+    border-radius: 3px;
+    border: solid 1px #173A17;
+}
+
+.Login2 button:hover {
+    background-color: rgb(50, 130, 49);
+}
+
+.Login2 button:disabled {
+    cursor: not-allowed;
+    background-color: rgb(150, 201, 159);
+    border: solid 1px rgb(100, 151, 109);
+}
+
+.Login2 a {
+    color: #173A17;
+}
+
+td, th {
+    padding-right: 1vw;
+}
+
+tr {
+    padding: 1%;
+}
