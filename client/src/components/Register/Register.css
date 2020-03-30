@@ -27,6 +27,7 @@
 
 .Register2 th > input {
     width: 25vw;
+    padding: 10px;
 }
 
 .register_button_div {
@@ -40,5 +41,14 @@
     margin: 0 auto;
     display: block;
     font-weight: bold;
+    color: white;
+    background-color: rgb(97, 173, 96);
+    border-radius: 10px;
+    border: solid 1px #173A17;
+}
 
+.Register2 button:disabled {
+    cursor: not-allowed;
+    background-color: rgb(150, 201, 159);
+    border: solid 1px rgb(100, 151, 109);
 }
