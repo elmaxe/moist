@@ -4,6 +4,7 @@ import * as ROUTES from '../../routes'
 import GenericProfile from '../../images/profile1600x1600.png'
 
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class Bar extends React.Component {
     constructor(props) {
@@ -11,11 +12,11 @@ class Bar extends React.Component {
     }
 
     render() {
-        const {user} = this.props.state
+        const {user} = this.props.state.userData
         return (
             <div className="Bar">
                 <div className="BarItem">
-                    <Link to={ROUTES.GARDENS}>Gardens</Link>
+                    <Link to={ROUTES.HOME}>Gardens</Link>
                 </div>
                 <div className="BarItem">
                     <Link to={ROUTES.ACCOUNT}>
@@ -31,6 +32,10 @@ class Bar extends React.Component {
             </div>
         )
     }
+}
+
+Bar.propTypes = {
+    state: PropTypes.object.isRequired
 }
 
 export default Bar
