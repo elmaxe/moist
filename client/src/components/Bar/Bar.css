@@ -1,0 +1,35 @@
+.Bar {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: center;
+    background-color: rgb(97, 173, 96);
+    width: 100vw;
+    
+    /* Stickyness */
+    top: 0;
+    position: fixed;
+    left: 0;
+}
+
+
+.BarItem {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.BarItem > a {
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.BarItem > a:hover {
+    text-decoration: none;
+    background-color: rgb(59, 155, 58);
+}
+
+.Logout {
+    
+}

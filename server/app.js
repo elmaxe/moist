@@ -23,7 +23,16 @@ const helmet = require('helmet')
 let RedisStore = require('connect-redis')(session)
 let redisClient = redis.createClient()
 
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'", 'axelelmarsson.se'],
+            scriptSrc: ["'self'", "'unsafe-inline'", 'axelelmarsson.se', 'maxcdn.bootstrapcdn.com'],
+            styleSrc: ["'self'", 'axelelmarsson.se', 'maxcdn.bootstrapcdn.com'],
+            imgSrc: ["'self'", 'axelelmarsson.se'],
+        }
+    }
+}))
 
 app.use(cors())
 app.use(bodyParser.urlencoded({
@@ -77,6 +86,7 @@ const login = require('./auth/login')
 const logout = require('./auth/logout')
 const register = require('./auth/register')
 const garden = require('./garden/garden')
+const bucketlist = require('./garden/bucketlist')
 const upload = require('./upload/upload')
 
 app.listen(port, () => {
@@ -86,7 +96,8 @@ app.listen(port, () => {
 app.use('/api/auth/login', login)
 app.use('/api/auth/logout', logout)
 app.use('/api/auth/register', register)
-app.use('/api/gardens', garden)
+// app.use('/api/gardens', garden)
+app.use('/api/activities', bucketlist)
 app.use('/api/upload', upload)
 
 app.use('/images', express.static(path.join(__dirname, './images')))

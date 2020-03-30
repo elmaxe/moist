@@ -18,8 +18,18 @@ const validUserData = (req, res, next) => {
         return
     }
 
+    if (username.length > 20) {
+        res.status(400).json({"error":"Username too long."})
+        return
+    }
+
     if (password.length < 5) {
         res.status(400).json({"error":"Password should be at least 5 characters."})
+        return
+    }
+
+    if (password.length > 60) {
+        res.status(400).json({"error":"Password too long."})
         return
     }
 

@@ -8,7 +8,8 @@ import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 import * as ROUTES from '../../routes';
 
 import Landing from '../Landing/Landing';
-import Login from '../Login/Login';
+import Account from '../Account/Account';
+import Logout from '../Logout/Logout';
 import NotFound from '../NotFound/NotFound';
 import Home from '../Home/Home';
 
@@ -62,12 +63,12 @@ class App extends React.Component {
               <Route exact path={ROUTES.HOME} >
                 <ProtectedRoute component={Home} />
               </Route>
-              {/* <Route exact path={ROUTES.LOGIN} >
-                <UnprotectedRoute component={Login} />
+              <Route exact path={ROUTES.ACCOUNT}>
+                <ProtectedRoute component={Account} />
               </Route>
-              <Route exact path={ROUTES.REGISTER} >
-                <UnprotectedRoute component={Register} />
-              </Route> */}
+              <Route exact path={ROUTES.LOGOUT}>
+                <ProtectedRoute component={Logout} />
+              </Route>
               <Route component={NotFound} />
             </Switch>
             :

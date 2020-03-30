@@ -12,6 +12,7 @@ const initialState = {
     passwordTwo: '',
     error: '',
     success: false,
+    fetching: false,
 }
 
 class Register extends Component {
@@ -34,7 +35,9 @@ class Register extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const {username, email, passwordOne} = this.state;
-        console.log(ROUTES.API_REGISTER)
+
+        this.setState({fetching:true})
+        
         fetch("/api/auth/register", {
             method: "POST",
             credentials: "same-origin",
@@ -46,6 +49,8 @@ class Register extends Component {
         .then(res => res.json())
         .then(json => {
             console.log(json)
+            this.setState({fetching: false})
+
             if (json.error) {
                 this.setState({error: json.error})
             } else {
@@ -58,7 +63,7 @@ class Register extends Component {
 
     render() {
         
-        const {username, email, passwordOne, passwordTwo, error, success} = this.state;
+        const {username, email, passwordOne, passwordTwo, error, success, fetching} = this.state;
         
         const isInvalid = username === '' || email === '' || passwordOne === '' || passwordTwo === '' || passwordOne !== passwordTwo;
         
@@ -72,6 +77,7 @@ class Register extends Component {
                     {error && <Alert variant="danger">{error}</Alert>}
                     {success && <Alert variant="primary">Registration successful! Sign in above.</Alert>}
                     <Alert variant="danger">Don't enter sensitive data in this form (or on this site) if there is no secure HTTPS connection. <a href="https://support.google.com/webmasters/answer/6073543" rel="noopener noreferrer" target="_blank">Learn more!</a></Alert>
+                    <form>
                     <table>
                         <tr>
                             <th>
@@ -132,11 +138,12 @@ class Register extends Component {
                     </table>
                     <div className="register_button_div">
                         <button
-                            disabled={isInvalid}
+                            disabled={isInvalid || fetching}
                             onClick={this.handleSubmit}
                             >Create account
                         </button>
                     </div>
+                    </form>
                     
                 </div>
             </div>
