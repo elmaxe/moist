@@ -5,7 +5,7 @@ const Home = (props) => {
     console.log(props)
     return (
         <div>
-            <Bar state={props.state.userData}/>
+            {/* <Bar state={props.state.userData}/> */}
             <div style={{paddingTop: "50px"}}>
                 HOME
             </div>

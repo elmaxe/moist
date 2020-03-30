@@ -2,7 +2,6 @@
 //------------
 export const LANDING = '/';
 export const HOME = '/home'
-export const GARDENS = '/gardens'
 export const ACCOUNT = '/account'
 export const LOGOUT = '/logout'
 //------------
@@ -12,6 +11,7 @@ export const LOGOUT = '/logout'
 export const API_IS_AUTH = '/api/auth/login/isAuth';
 export const API_LOGIN = '/api/auth/login';
 export const API_REGISTER = '/api/auth/register';
+export const API_LOGOUT = '/api/auth/logout';
 //------------
 
 
