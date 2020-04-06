@@ -8,7 +8,7 @@ const path = require('path');
 const express = require('express');
 // const db = require('./database');
 
-const port = 4000;
+const port = 8003;
 
 const app = express();
 const cors = require('cors')
@@ -89,9 +89,9 @@ const garden = require('./garden/garden')
 const bucketlist = require('./garden/bucketlist')
 const upload = require('./upload/upload')
 
-app.listen(port, () => {
-    console.info(`Listening on port ${port}!`);
-});
+//app.listen(port, () => {
+//    console.info(`Listening on port ${port}!`);
+//});
 
 app.use('/api/auth/login', login)
 app.use('/api/auth/logout', logout)
@@ -114,5 +114,5 @@ const httpServer = http.createServer(app)
 //     cert: fs.readFileSync('./cert.pem'),
 //     passphrase: "12345"
 // }, app)
-httpServer.listen(8080)
+httpServer.listen(port)
 // httpsServer.listen(8443)
