@@ -7,6 +7,10 @@
   -moz-osx-font-smoothing: grayscale;
 } */
 
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

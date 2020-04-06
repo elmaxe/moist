@@ -6,3 +6,78 @@
     align-items: center;
     justify-content: center;
 }
+
+.btn {
+    padding: 0.5vw;
+    background-color: rgb(44, 168, 44);
+    /* border: solid 1px rgb(36, 134, 36); */
+    border: solid 2px rgb(44, 168, 44);
+    color: white;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.green {
+    padding: 0.5vw;
+    background-color: rgb(44, 168, 44);
+    /* border: solid 1px rgb(36, 134, 36); */
+    border: solid 2px rgb(44, 168, 44);
+    color: white;
+    border-radius: 5px;
+}
+
+.green:hover {
+    color: white;
+    background-color: rgb(36, 134, 36);
+    border: solid 2px rgb(26, 104, 26);
+}
+
+.green:disabled {
+    cursor: not-allowed;
+    background-color: rgb(150, 212, 150);
+    border: solid 2px rgb(180, 242, 180);
+}
+
+.red {
+    padding: 0.5vw;
+    background-color: rgb(168, 44, 44);
+    /* border: solid 1px rgb(36, 134, 36); */
+    border: solid 2px rgb(168, 44, 44);
+    color: white;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.red:hover {
+    color: white;
+    background-color: rgb(138, 36, 36);
+    border: solid 2px rgb(118, 36, 36);
+}
+
+.red:disabled {
+    cursor: not-allowed;
+    background-color: rgb(212, 150, 150);
+    border: solid 2px rgb(242, 180, 180);
+}
+
+.blue {
+    padding: 0.5vw;
+    background-color: rgb(44, 87, 168);
+    /* border: solid 1px rgb(36, 134, 36); */
+    border: solid 2px rgb(44, 87, 168);
+    color: white;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.blue:hover {
+    color: white;
+    background-color: rgb(46, 54, 160);
+    border: solid 2px rgb(36, 44, 130);
+}
+
+.blue:disabled {
+    cursor: not-allowed;
+    background-color: rgb(150, 161, 212);
+    border: solid 2px rgb(180, 194, 242);
+}

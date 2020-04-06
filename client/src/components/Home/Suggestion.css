@@ -1,5 +1,5 @@
 .Suggestion {
-    border: solid 2px;
+    border: solid 4px gold;
     border-radius: 10px;
     margin: 2vh;
     display: flex;
@@ -10,6 +10,7 @@
 
     width: 50vw;
     height: 20vh;
+    text-align: center;
 }
 
 .Suggestion #title {
@@ -17,6 +18,20 @@
     font-weight: bold;
     /* padding-top: 1vh; */
     padding-bottom: 2vh;
+}
+
+.Suggestion #help {
+    position: absolute;
+    right: calc(25vw + 10px);
+    top: calc(130px + 5vh);
+    height: 20px;
+    opacity: 0.2;
+    transition: 0.2s;
+}
+
+.Suggestion #help:hover {
+    cursor: pointer;
+    opacity: 0.6;
 }
 
 .Suggestion #info {
@@ -28,6 +43,15 @@
     padding-right: 10px;
 }
 
+.Suggestion #icon:hover {
+    opacity: 0.5;
+    visibility: visible;
+}
+
 .Suggestion #icon > img {
     padding-right: 10px;
+}
+
+.Suggenstion #spinner {
+    transition: ease-in-out;
 }

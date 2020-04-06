@@ -4,19 +4,21 @@ import Accessibility from '../../images/accessibility.svg'
 import Participants from '../../images/participants.svg'
 import Price from '../../images/price.svg'
 import spinner from '../../images/spinner.gif'
+import questionmark from '../../images/questionmark.svg'
 
 const Suggestion = ({fetching, suggestion}) => {
 
     return (
         <div className="Suggestion">
+            <img title="Help" id="help" src={questionmark} hidden={!suggestion} />
             {fetching ? 
-                <img src={spinner} height="150px"/>
+                <img id="spinner" src={spinner} height="150px"/>
             :
                 suggestion ?
                     <>
                         <div id="title">{suggestion.activity}</div>
                         <div id="info">
-                            <span id="icon" title="Accessibility">
+                            <span id="icon" title="Accessibility">  
                                 <img src={Accessibility} height="30px" alt="Accessibility" />
                                 {suggestion.accessibility}
                             </span>

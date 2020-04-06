@@ -68,16 +68,16 @@ class Home extends React.Component {
             <div>
                 <div className="Home">
                     <div>
-                        <h1>My bucketlist</h1>
+                        <h1>My bukketlist</h1>
                     </div>
                     <div>
-                        <button onClick={this.getSuggestion} disabled={fetching} >Suggest an activity</button>
+                        <button className="btn blue" onClick={this.getSuggestion} disabled={fetching} >Suggest an activity</button>
                     </div>
                     <div>
                         <Suggestion fetching={fetching} suggestion={suggestion} />
                     </div>
                     <div>
-                        <button onClick={this.save} disabled={!suggestion || suggInList}>Save to bucketlist</button>
+                        <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList}>Save to bucketlist</button>
                     </div>
                     <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} />
                 </div>

@@ -4,7 +4,7 @@
     height: 50px;
     justify-content: center;
     /* background-color: rgb(97, 173, 96); */
-    background-color: #d1e000;
+    background-color: gold;
     width: 100vw;
     
     /* Stickyness */
@@ -28,7 +28,7 @@
 
 .BarItem > a:hover {
     text-decoration: none;
-    background-color: #b3c000;
+    background-color: rgb(209, 178, 0);
 }
 
 .Logout {
