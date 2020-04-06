@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './Home.css'
-import spinner from '../../images/spinner.gif'
+import '../../Buttons.css'
 import Bucketlist from '../Bucketlist/Bucketlist'
 import Suggestion from './Suggestion'
 
