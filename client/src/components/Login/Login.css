@@ -32,27 +32,33 @@
     padding-left: 3px;
     border: solid 1px;
     width: 15vw;
-    border-color: #173A17;
+    border-color: black;
 }
 
 .Login2 button {
     width: 110px;
     font-weight: bold;
     cursor: pointer;
-    background-color: rgb(70, 151, 69);
+    /* background-color: rgb(70, 151, 69); */
+    background-color: rgb(44, 168, 44);
     color: white;
     border-radius: 3px;
-    border: solid 1px #173A17;
+    border: solid 1px black;
+    transition: 0.2s;
 }
 
 .Login2 button:hover {
-    background-color: rgb(50, 130, 49);
+    /* background-color: rgb(50, 130, 49); */
+    background-color: rgb(36, 134, 36);
 }
 
 .Login2 button:disabled {
     cursor: not-allowed;
-    background-color: rgb(150, 201, 159);
-    border: solid 1px rgb(100, 151, 109);
+    /* background-color: rgb(150, 201, 159);
+    border: solid 1px rgb(100, 151, 109); */
+    background-color: rgb(150, 212, 150);
+    border: solid 1px black;
+
 }
 
 .Login2 a {
