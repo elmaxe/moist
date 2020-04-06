@@ -27,7 +27,7 @@ Bucketlist.propTypes = {
 const BucketlistView = ({bucketlist, onRemove}) => {
     return (
         <div>
-            {bucketlist.map((x,i) => <div key={i}>{x.activity}<button className="btn red" onClick={() => onRemove(i, x)}>x</button></div>)}
+            {bucketlist.map((x,i) => <div style={{textAlign: "center"}}key={i}>{x.activity}<button className="btn red" onClick={() => onRemove(i, x)}>x</button></div>)}
         </div>
     )
 }
