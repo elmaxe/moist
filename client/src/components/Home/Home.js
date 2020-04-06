@@ -10,7 +10,6 @@ class Home extends React.Component {
         this.state = {
             suggestion: null,
             fetching: false,
-            bucketlist: [],
         }
 
         this.save = this.save.bind(this)
@@ -60,7 +59,9 @@ class Home extends React.Component {
 
 
     render() {
-        const {suggestion, bucketlist, fetching} = this.state
+        const {suggestion, fetching} = this.state
+
+        const suggInList = this.props.state.bucketlist.map(x => x.activity).includes(suggestion === null ? "" : suggestion.activity)
 
         return (
             <div>
@@ -76,7 +77,7 @@ class Home extends React.Component {
                         {suggestion ? suggestion.activity : null}
                     </div>
                     <div>
-                        <button onClick={this.save} disabled={!suggestion}>Save to bucketlist</button>
+                        <button onClick={this.save} disabled={!suggestion || suggInList}>Save to bucketlist</button>
                     </div>
                     <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} />
                 </div>
