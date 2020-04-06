@@ -3,7 +3,8 @@
     align-items: center;
     height: 50px;
     justify-content: center;
-    background-color: rgb(97, 173, 96);
+    /* background-color: rgb(97, 173, 96); */
+    background-color: #d1e000;
     width: 100vw;
     
     /* Stickyness */
@@ -19,7 +20,7 @@
 }
 
 .BarItem > a {
-    color: white;
+    color: rgb(0, 0, 0);
     font-weight: bold;
     padding: 10px;
     border-radius: 5px;
@@ -27,7 +28,7 @@
 
 .BarItem > a:hover {
     text-decoration: none;
-    background-color: rgb(59, 155, 58);
+    background-color: #b3c000;
 }
 
 .Logout {
