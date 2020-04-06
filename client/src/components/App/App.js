@@ -72,8 +72,7 @@ class App extends React.Component {
               <Route component={NotFound} />
             </Switch>
             :
-            //TODO: Spinner?
-            "reee"}
+            null}
           </div>
         </BrowserRouter>
 
