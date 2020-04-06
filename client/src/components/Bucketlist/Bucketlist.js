@@ -4,11 +4,9 @@ import PropTypes from 'prop-types'
 class Bucketlist extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
     }
 
     removeFromList(index, activity) {
-        console.log(activity)
         this.props.actions.removeActivity(index, activity.aid)
     }
 
@@ -18,7 +16,6 @@ class Bucketlist extends React.Component {
             <>
             <BucketlistView bucketlist={bucketlist} onRemove={this.removeFromList.bind(this)} />
             </>
-            
         )
     }
 }

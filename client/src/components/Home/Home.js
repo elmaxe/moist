@@ -3,6 +3,7 @@ import React from 'react'
 import './Home.css'
 import spinner from '../../images/spinner.gif'
 import Bucketlist from '../Bucketlist/Bucketlist'
+import Suggestion from './Suggestion'
 
 class Home extends React.Component {
     constructor(props) {
@@ -73,8 +74,7 @@ class Home extends React.Component {
                         <button onClick={this.getSuggestion} disabled={fetching} >Suggest an activity</button>
                     </div>
                     <div>
-                        <img src={spinner} hidden={!fetching}/>
-                        {suggestion ? suggestion.activity : null}
+                        <Suggestion fetching={fetching} suggestion={suggestion} />
                     </div>
                     <div>
                         <button onClick={this.save} disabled={!suggestion || suggInList}>Save to bucketlist</button>
