@@ -8,7 +8,7 @@ const path = require('path');
 const express = require('express');
 // const db = require('./database');
 
-const port = 8003;
+const port = 8002;
 
 const app = express();
 const cors = require('cors')
