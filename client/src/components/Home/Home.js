@@ -2,6 +2,7 @@ import React from 'react'
 
 import './Home.css'
 import spinner from '../../images/spinner.gif'
+import Bucketlist from '../Bucketlist/Bucketlist'
 
 class Home extends React.Component {
     constructor(props) {
@@ -46,32 +47,15 @@ class Home extends React.Component {
         })
         .then(res => res.json())
         .then(json => {
-            this.setState({bucketlist: json.rows})
+            console.log(json)
+            this.props.actions.setBucketlist(json.rows)
+            // this.setState({bucketlist: json.rows})
         })
     }
     
     upload(data) {
         console.log(data)
-        fetch('/api/activities/add', {
-            method: "POST",
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                activity: data.activity,
-                accessibility: data.accessibility,
-                type: data.type,
-                participants: data.participants,
-                price: data.price,
-                link: data.link,
-                key: data.key
-            })
-        })
-        .then(res => res.json())
-        .then(json => {
-            this.get()
-        })
+        this.props.actions.addActivity(data)
     }
 
 
@@ -88,15 +72,13 @@ class Home extends React.Component {
                         <button onClick={this.getSuggestion} disabled={fetching} >Suggest an activity</button>
                     </div>
                     <div>
+                        <img src={spinner} hidden={!fetching}/>
                         {suggestion ? suggestion.activity : null}
                     </div>
                     <div>
-                        <button onClick={this.save}>Save to bucketlist</button>
+                        <button onClick={this.save} disabled={!suggestion}>Save to bucketlist</button>
                     </div>
-                    <div>
-                        {bucketlist.map(x => <div>{x.activity}</div>)}
-                    </div>
-                    <img src={spinner} hidden={!fetching}/>
+                    <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} />
                 </div>
             </div>
         )
