@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './Bucketlist.css'
+
 class Bucketlist extends React.Component {
     constructor(props) {
         super(props)
@@ -26,7 +28,7 @@ Bucketlist.propTypes = {
 
 const BucketlistView = ({bucketlist, onRemove}) => {
     return (
-        <div>
+        <div className="Bucketlist">
             {bucketlist.map((x,i) => <div style={{textAlign: "center"}}key={i}>{x.activity}<button className="btn red" onClick={() => onRemove(i, x)}>x</button></div>)}
         </div>
     )

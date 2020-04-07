@@ -1,0 +1,8 @@
+.Bucketlist {
+    /* overflow: auto; */
+    margin-bottom: 5vh;
+    width: 50vw;
+    border: solid 4px gold;
+    border-radius: 10px;
+    padding: 3vh;
+}
