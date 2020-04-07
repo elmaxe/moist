@@ -22,6 +22,9 @@ const Landing = () => {
                     <div className="LandingContentLeftTitle">
                         <h1>Bukket</h1>
                         Create bucketlists in these Corona times.
+                        <br />
+                        <br />
+                        Insert metatext here
                     </div>
                 </div>
                 <div className="LandingContentRight">

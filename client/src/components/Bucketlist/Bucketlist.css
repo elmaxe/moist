@@ -1,5 +1,6 @@
 .Bucketlist {
     /* overflow: auto; */
+    margin: 2vh;
     margin-bottom: 5vh;
     width: 50vw;
     border: solid 4px gold;

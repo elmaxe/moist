@@ -29,7 +29,7 @@ class Home extends React.Component {
     }
 
     getSuggestion() {
-        this.setState({fetching: true, suggestion: null})
+        this.setState({fetching: true})
         fetch('https://www.boredapi.com/api/activity', {
             method: "GET"
         })
@@ -68,16 +68,17 @@ class Home extends React.Component {
             <div>
                 <div className="Home">
                     <div>
-                        <h1>My bukketlist</h1>
+                        <h1>Manage bukketlist</h1>
                     </div>
-                    <div>
-                        <button className="btn blue" onClick={this.getSuggestion} disabled={fetching} >Suggest an activity</button>
+                    <div className="SuggestionButtons">
+                        <button className="btn blue" onClick={this.getSuggestion} disabled={fetching} >Suggest a{suggestion ? " new" : "n"} activity</button>
+                        <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList}>Save to bucketlist</button>
                     </div>
                     <div>
                         <Suggestion fetching={fetching} suggestion={suggestion} />
                     </div>
                     <div>
-                        <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList}>Save to bucketlist</button>
+                        <h1>My bukketlist</h1>
                     </div>
                     <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} />
                 </div>
