@@ -4,5 +4,31 @@
     width: 50vw;
     border: solid 4px gold;
     border-radius: 10px;
-    padding: 3vh;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.BucketlistItem {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-color: white;
+    transition: 0.3s;
+
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.BucketlistItem:hover {
+    background-color: #c8c8c8;
+}
+
+.BucketlistItemButtons {
+    position: unset;
+    float: right;
+    z-index: 1;
+}
+
+.BucketlistItemButtons > button {
+    margin-left: 5px;
+    padding: 0px;
 }
