@@ -114,5 +114,5 @@ const httpServer = http.createServer(app)
 //     cert: fs.readFileSync('./cert.pem'),
 //     passphrase: "12345"
 // }, app)
-httpServer.listen(port)
+httpServer.listen(port, () => (console.log(`Listening on port ${port}`)))
 // httpsServer.listen(8443)
