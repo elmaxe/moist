@@ -42,11 +42,13 @@ BucketlistView.propTypes = {
 const BucketlistItem = ({index, activity, onRemove, onDone}) => {
     return (
         <div className="BucketlistItem">
-            {activity.activity}
-            <div className="BucketlistItemButtons">
+            <span className="BucketlistItemTitle">
+                {activity.activity}
+            </span>
+            <span className="BucketlistItemButtons">
                 <button className="btn green" >Mark as done</button>
                 <button className="btn red" onClick={() => onRemove(index, activity)}>Remove</button>
-            </div>
+            </span>
         </div>
     )
 }
