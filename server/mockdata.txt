@@ -1,0 +1,13 @@
+INSERT INTO Users (username, email, password) VALUES ("enok", "enok@kth.se", "re");
+
+INSERT INTO Users (username, email, password) VALUES ("alma", "alma@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("bertil", "bertil@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("caesar", "caesar@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("david", "david@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("emil", "emil@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("filip", "filip@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("gunnar", "gunnar@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("hubertus", "hubertus@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("ivar", "ivar@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("johan", "johan@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("kancer", "kancer@kth.se", "re");
