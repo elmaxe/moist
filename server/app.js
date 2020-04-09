@@ -24,14 +24,15 @@ let RedisStore = require('connect-redis')(session)
 let redisClient = redis.createClient()
 
 app.use(helmet({
-    // contentSecurityPolicy: {
-    //     directives: {
-    //         defaultSrc: ["'self'", 'axelelmarsson.se', 'boredapi.com'],
-    //         scriptSrc: ["'self'", "'unsafe-inline'", 'axelelmarsson.se', 'maxcdn.bootstrapcdn.com'],
-    //         styleSrc: ["'self'", 'axelelmarsson.se', 'maxcdn.bootstrapcdn.com'],
-    //         imgSrc: ["'self'", 'axelelmarsson.se'],
-    //     }
-    // }
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'", 'boredapi.com'],
+            scriptSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com'],
+            styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
+            imgSrc: ["'self'"],
+            fontSrc: ['fonts.googleapis.com', 'fonts.gstatic.com']
+        }
+    }
 }))
 
 app.use(cors())
@@ -40,20 +41,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// const getDate = () => {
-//     let date = new Date()
-//     let year = date.getUTCFullYear()
-//     let month = date.getUTCMonth()+1 < 10 ? "0"+(date.getUTCMonth()+1) : date.getUTCMonth()+1
-//     let day = date.getUTCDate() < 10 ? "0"+date.getUTCDate() : date.getUTCDate()
-//     date = year + "-" + month + "-" + day
-//     return date
-// }
-
 //Console logging
 app.use(morgan('dev'));
-// app.use(morgan('common', {
-//     stream: fs.createWriteStream('./logs/' + getDate() + '.log', {flags: 'a'})
-// }))
 
 app.use(express.urlencoded({
     extended: true,
@@ -89,10 +78,6 @@ const garden = require('./garden/garden')
 const bucketlist = require('./garden/bucketlist')
 const upload = require('./upload/upload')
 
-//app.listen(port, () => {
-//    console.info(`Listening on port ${port}!`);
-//});
-
 app.use('/api/auth/login', login)
 app.use('/api/auth/logout', logout)
 app.use('/api/auth/register', register)
@@ -109,10 +94,4 @@ app.get('*', (req, res) => {
 })
 
 const httpServer = http.createServer(app)
-// const httpsServer = https.createServer({
-//     key: fs.readFileSync('./key.pem'),
-//     cert: fs.readFileSync('./cert.pem'),
-//     passphrase: "12345"
-// }, app)
 httpServer.listen(port, () => (console.log(`Listening on port ${port}`)))
-// httpsServer.listen(8443)
