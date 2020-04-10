@@ -5,16 +5,6 @@ import '../../Buttons.css'
 import Bucketlist from '../Bucketlist/Bucketlist'
 import Suggestion from './Suggestion'
 
-const initSuggestion = {
-    activity: "",
-    accessibility: "",
-    type: "",
-    participants: "",
-    price: "",
-    link: "",
-    key: "",
-}
-
 class Home extends React.Component {
     constructor(props) {
         super(props)
@@ -66,7 +56,6 @@ class Home extends React.Component {
     }
     
     upload(data) {
-        console.log(data)
         this.props.actions.addActivity(data)
     }
 

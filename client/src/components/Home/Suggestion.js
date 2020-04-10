@@ -45,7 +45,8 @@ class Suggestion extends React.Component {
             price,
             link: "",
             isOwn: true,
-            createdBy: this.props.state.userData.user.id,
+            createdByID: this.props.state.userData.user.id,
+            createdByUsername: this.props.state.userData.user.username,
             saveGlobally 
         })
         this.setState({...initState})
