@@ -74,6 +74,7 @@ class Home extends React.Component {
                         <button className="btn blue" onClick={this.getSuggestion} disabled={fetching} >Suggest a{suggestion ? " new" : "n"} activity</button>
                         <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList}>Save to bucketlist</button>
                     </div>
+						<button className="btn red" onClick={this.toggleAddOwn}>Add own activity</button>
                     <div>
                         <Suggestion fetching={fetching} suggestion={suggestion} />
                     </div>
