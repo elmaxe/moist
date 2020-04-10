@@ -18,6 +18,8 @@ import UnprotectedRoute from '../UnprotectedRoute/UnprotectedRoute';
 import setUser from '../../actions/user'
 import {bindActionCreators} from 'redux'
 
+import spinner from '../../images/spinner.gif'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -53,7 +55,6 @@ class App extends React.Component {
         
         <BrowserRouter>
           <div className="App fill-window">
-            {/* TODO: PUT NAVBAR HERE */}
             {hasFirstAuth ? 
               <Switch>
               <Route exact path={ROUTES.LANDING} >

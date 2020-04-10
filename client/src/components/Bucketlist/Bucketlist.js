@@ -29,7 +29,7 @@ Bucketlist.propTypes = {
 const BucketlistView = ({bucketlist, onRemove}) => {
     return (
         <div className="Bucketlist">
-            {bucketlist.map((x,i) => <div style={{textAlign: "center"}}key={i}>{x.activity}<button className="btn red" onClick={() => onRemove(i, x)}>x</button></div>)}
+            {bucketlist.map((x,i) => <div  key={i}><BucketlistItem index={i} activity={x} onRemove={onRemove}/></div>)}
         </div>
     )
 }
@@ -37,6 +37,20 @@ const BucketlistView = ({bucketlist, onRemove}) => {
 BucketlistView.propTypes = {
     bucketlist: PropTypes.array.isRequired,
     onRemove: PropTypes.func.isRequired
+}
+
+const BucketlistItem = ({index, activity, onRemove, onDone}) => {
+    return (
+        <div className="BucketlistItem">
+            <span className="BucketlistItemTitle">
+                {activity.activity}
+            </span>
+            <span className="BucketlistItemButtons">
+                <button className="btn green" >Mark as done</button>
+                <button className="btn red" onClick={() => onRemove(index, activity)}>Remove</button>
+            </span>
+        </div>
+    )
 }
 
 export default Bucketlist

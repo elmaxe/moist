@@ -42,13 +42,18 @@
     display: block;
     font-weight: bold;
     color: white;
-    background-color: rgb(97, 173, 96);
+    background-color: rgb(44, 168, 44);
     border-radius: 10px;
     border: solid 1px #173A17;
+    transition: 0.2s;
+}
+
+.Register2 button:hover {
+    background-color: rgb(36, 134, 36);
 }
 
 .Register2 button:disabled {
     cursor: not-allowed;
-    background-color: rgb(150, 201, 159);
-    border: solid 1px rgb(100, 151, 109);
+    background-color: rgb(150, 212, 150);
+    border: solid 1px black;
 }
