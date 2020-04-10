@@ -1,0 +1,33 @@
+.SearchInput {
+    border-radius: 3px;
+    border: solid 1px black;
+    padding: 3px 5px 3px 5px;
+    margin: 0 0 0 10px;
+    transition: 0.3s;
+}
+
+.SearchInput::placeholder {
+    color: black;
+}
+
+.SearchInput:focus::placeholder{
+    color: rgb(150, 150, 150);
+}
+
+
+.SearchButton {
+    border-radius: 5px;
+    border: solid 1px black;
+    padding: 3px;
+    background-color: rgb(255, 229, 81);
+    font-weight: bold;
+    color: black;
+}
+
+.SearchButton:hover {
+    background-color: rgb(209, 188, 68);
+}
+
+.SearchButton:disabled {
+    cursor: not-allowed;
+}

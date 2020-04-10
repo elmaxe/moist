@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import logo from '../../images/bukketlogo.png'
+import Search from './Search'
 
 class Bar extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class Bar extends React.Component {
 
     render() {
         const {user} = this.props.state.userData
+        const props = this.props
         return (
             <div className="Bar">
                 <div className="BarItemLogo">
@@ -22,9 +24,10 @@ class Bar extends React.Component {
                         <img src={logo} className="logo" />
                     </Link>
                 </div>
+                <Search {...props} />
                 <div className="BarItem">
                     <Link to={ROUTES.ACCOUNT}>
-                    <img src={user.profilePicture? user.profilePicture : GenericProfile} style={{height:"30px", width:"30px",objectFit:"contain", borderRadius: "50%"}} />
+                    <img src={user.profilePicture? user.profilePicture : GenericProfile} style={{height:"30px", width:"30px",objectFit:"cover", borderRadius: "50%"}} />
                     <span style={{paddingLeft: "5px"}}>
                     {user.username}
                     </span>
