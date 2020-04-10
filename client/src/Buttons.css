@@ -46,6 +46,12 @@
     border: solid 2px rgb(118, 36, 36);
 }
 
+.red:focus {
+    color: white;
+    background-color: rgb(138, 36, 36);
+    border: solid 2px rgb(118, 36, 36);
+}
+
 .red:disabled {
     cursor: not-allowed;
     background-color: rgb(212, 150, 150);

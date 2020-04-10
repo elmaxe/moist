@@ -6,38 +6,98 @@ import Price from '../../images/price.svg'
 import spinner from '../../images/spinner.gif'
 import questionmark from '../../images/questionmark.svg'
 
-const Suggestion = ({fetching, suggestion}) => {
+const initState = {
+    title: "",
+    accessibility: "",
+    participants: "",
+    price: "",
+    link: "",
+    saveGlobally: false
+}
+
+class Suggestion extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {...initState}
+        console.log(props)
+    }
+
+    onChangeOwn(e) {
+        if (e.target.name === "saveGlobally") {
+            this.setState({
+                [e.target.name]: e.target.checked
+            })
+        } else {
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
+    }
+
+    onSaveOwn() {
+        const {title, accessibility, participants, price, saveGlobally} = this.state
+
+        this.props.setSuggestion({
+            activity: title,
+            accessibility,
+            participants,
+            price,
+            link: "",
+            isOwn: true,
+            createdBy: this.props.state.userData.user.id,
+            saveGlobally 
+        })
+        this.setState({...initState})
+    }
+
+    render() {
+        const {fetching, suggestion , addOwn, onSaveOwn} = this.props
+
+        return (
+            <SuggestionView fetching={fetching} suggestion={suggestion} addOwn={addOwn} ownState={this.state} onChangeOwn={this.onChangeOwn.bind(this)} onSaveOwn={this.onSaveOwn.bind(this)} />
+        )
+    }
+}
+
+const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, onSaveOwn}) => {
+    const emptyData = ownState.title === "" || ownState.accessibility === "" || ownState.participants === "" || ownState.price === ""
+    const invalidData = isNaN(parseFloat(ownState.accessibility)) || isNaN(parseInt(ownState.participants)) || isNaN(parseFloat(ownState.price)) || parseFloat(ownState.accessibility) < 0 || parseFloat(ownState.accessibility) > 1 || parseFloat(ownState.price) < 0 || parseFloat(ownState.price) > 1 || !(parseFloat(ownState.participants) > 0)
 
     return (
         <div className="Suggestion">
-            <img title="Help" id="help" src={questionmark} hidden={!suggestion} />
-            {fetching ? 
-                <img id="spinner" src={spinner} height="150px"/>
-            :
-                suggestion ?
+
+                <img title="Help" id="help" src={questionmark} hidden={!suggestion} />
+                {fetching ? 
+                    <img id="spinner" src={spinner} height="150px"/>
+                    :
+                    suggestion ?
                     <>
-                        <div id="title">{suggestion.activity}</div>
-                        <div id="info">
-                            <span id="icon" title="Accessibility">  
-                                <img src={Accessibility} height="30px" alt="Accessibility" />
-                                {suggestion.accessibility}
-                            </span>
-                            <span id="icon" title="Participants">
-                                <img src={Participants} height="30px" alt="Participants" />
-                                {suggestion.participants}
-                            </span>
-                            <span id="icon" title="Price">
-                                <img src={Price} height="30px" alt="Price" />
-                                {suggestion.price}
-                            </span>
-                        </div>
-                        <div id="link">
-                            {suggestion.link ? <a href={suggestion.link} rel="noopener noreferrer" target="_blank">Link</a> : null}
-                        </div>
-                    </>
-                :
+                            <div id="title">{addOwn ? <input placeholder="Activity" autoComplete="off" name="title" value={ownState.title} onChange={onChangeOwn} type="text" /> : suggestion.activity}</div>
+                            <div id="info">
+                                <span id="icon" title="Accessibility">  
+                                    <img src={Accessibility} height="30px" alt="Accessibility" />
+                                    {addOwn ? <input placeholder="0-1" autoComplete="off" name="accessibility" value={ownState.accessibility} onChange={onChangeOwn} type="text" /> : suggestion.accessibility}
+                                </span>
+                                <span id="icon" title="Participants">
+                                    <img src={Participants} height="30px" alt="Participants" />
+                                    {addOwn ? <input placeholder="1-&#8734;" autoComplete="off" name="participants" value={ownState.participants} onChange={onChangeOwn} type="number" /> : suggestion.participants}
+                                </span>
+                                <span id="icon" title="Price">
+                                    <img src={Price} height="30px" alt="Price" />
+                                    {addOwn ? <input placeholder="0-1" autoComplete="off" name="price" value={ownState.price} onChange={onChangeOwn} type="text" /> : suggestion.price}
+                                </span>
+                            </div>
+                            <div id="link">
+                                {suggestion.link && !addOwn ? <a href={suggestion.link} title={suggestion.link} rel="noopener noreferrer" target="_blank">Link</a> : null}
+                            </div>
+                            {/* {addOwn ? <input placeholder="http://example.com" autoComplete="off" name="link" value={ownState.link} onChange={onChangeOwn} type="text" /> : null} */}
+                            {addOwn ? <button className="btn green" onClick={onSaveOwn} disabled={emptyData || invalidData} >Save</button> : null}
+                            {addOwn ? <span><input onChange={onChangeOwn} value={ownState.saveGlobally} name="saveGlobally" type="checkbox" />Add as suggestions for other users</span> : null}
+                        </>
+                    :
                     <b>Click the button above to randomize an activity</b>
-            }
+                }
         </div>
     )
 }

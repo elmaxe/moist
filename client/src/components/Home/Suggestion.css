@@ -20,6 +20,12 @@
     padding-bottom: 2vh;
 }
 
+.Suggestion #title > input {
+    font-size: 3vh;
+    font-weight: bold;
+    border: solid 1px gray;
+}
+
 .Suggestion #help {
     position: absolute;
     right: calc(25vw + 10px);
@@ -50,6 +56,10 @@
 
 .Suggestion #icon > img {
     padding-right: 10px;
+}
+
+.Suggestion #icon > input {
+    width: 45px;
 }
 
 .Suggenstion #spinner {
