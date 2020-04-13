@@ -97,9 +97,9 @@ const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, on
                                 {suggestion.saveGlobally && !addOwn ? "*Will add as a suggestion for other users" : null}
                             </div>
                             <div id="createdby">
-                                {suggestion.username ?
+                                {suggestion.createdBy ?
                                     <div>
-                                            Created by user <Link to={'/u/' + suggestion.username}>{suggestion.username}</Link>
+                                            Created by user <Link to={'/u/' + suggestion.createdBy.username}>{suggestion.createdBy.username}</Link>
                                             <br />
                                             <Link to={{pathname: '/report', state: {suggestion, reporter: user, time: Date.now()}}}>Report</Link>
                                     </div>
