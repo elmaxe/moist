@@ -20,6 +20,23 @@ import {bindActionCreators} from 'redux'
 
 import spinner from '../../images/spinner.gif'
 
+export function fetchIsAuth(setUser) {
+  // return dispatch => {
+      fetch(ROUTES.API_IS_AUTH, {
+        method: "GET",
+        credentials: "same-origin"
+      })
+      .then(res => res.json())
+      .then(json => {
+        if (json.error) {
+          setUser(false, true)
+        } else {
+          setUser(json.authenticated, true, json.user.id, json.user.email, json.user.username, json.user.profilePicture, json.user.regDate)
+        }
+      })
+  // }
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -29,19 +46,21 @@ class App extends React.Component {
 
   componentDidMount() {
     const {setUser} = this.props.actions
+    fetchIsAuth(setUser)
+    // const {setUser} = this.props.actions
 
-    fetch(ROUTES.API_IS_AUTH, {
-      method: "GET",
-      credentials: "same-origin"
-    })
-    .then(res => res.json())
-    .then(json => {
-      if (json.error) {
-        setUser(false, true)
-      } else {
-        setUser(json.authenticated, true, json.user.id, json.user.email, json.user.username, json.user.profilePicture, json.user.regDate)
-      }
-    })
+    // fetch(ROUTES.API_IS_AUTH, {
+    //   method: "GET",
+    //   credentials: "same-origin"
+    // })
+    // .then(res => res.json())
+    // .then(json => {
+    //   if (json.error) {
+    //     setUser(false, true)
+    //   } else {
+    //     setUser(json.authenticated, true, json.user.id, json.user.email, json.user.username, json.user.profilePicture, json.user.regDate)
+    //   }
+    // })
   }
 
   componentWillUnmount() {

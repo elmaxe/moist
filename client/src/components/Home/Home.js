@@ -48,6 +48,7 @@ class Home extends React.Component {
         .then(json => {
             console.log(json)
             if (json.error) {
+                //TODO: fetchIsAuth()
                 this.setState({fetching: false, suggestion: {activity: json.error}})
             } else {
                 this.setState({fetching: false, suggestion: json.row})
