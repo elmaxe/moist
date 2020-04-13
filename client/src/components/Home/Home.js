@@ -82,9 +82,9 @@ class Home extends React.Component {
                     </div>
                     <div className="SuggestionButtons">
                         <button className="btn blue" onClick={this.getSuggestion} disabled={fetching || addOwn} >Suggest a{suggestion ? " new" : "n"} activity</button>
-                        <button className="btn red" onClick={this.toggleAddOwn} disabled={!suggestion}>Add own activity</button>
+                        <button className="btn red" onClick={this.toggleAddOwn} disabled={!suggestion}>{!addOwn ? "Add own activity" : "Cancel"}</button>
                     </div>
-                        <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList}>Save to bucketlist</button>
+                        <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList || addOwn}>Save to bucketlist</button>
                     <div>
                         <Suggestion state={this.props.state} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
                     </div>

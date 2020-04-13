@@ -9,7 +9,7 @@
     align-items: center;
 
     width: 50vw;
-    height: 20vh;
+    height: 30vh;
     text-align: center;
 }
 
@@ -24,6 +24,7 @@
     font-size: 3vh;
     font-weight: bold;
     border: solid 1px gray;
+    text-align: center;
 }
 
 .Suggestion #help {
@@ -64,4 +65,9 @@
 
 .Suggenstion #spinner {
     transition: ease-in-out;
+}
+
+.Suggestion #warningtext {
+    color: red;
+    font-size: 12px;
 }

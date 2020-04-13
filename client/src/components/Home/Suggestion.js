@@ -49,11 +49,11 @@ class Suggestion extends React.Component {
             createdByUsername: this.props.state.userData.user.username,
             saveGlobally 
         })
-        this.setState({...initState})
+        // this.setState({...initState})
     }
 
     render() {
-        const {fetching, suggestion , addOwn, onSaveOwn} = this.props
+        const {fetching, suggestion , addOwn} = this.props
 
         return (
             <SuggestionView fetching={fetching} suggestion={suggestion} addOwn={addOwn} ownState={this.state} onChangeOwn={this.onChangeOwn.bind(this)} onSaveOwn={this.onSaveOwn.bind(this)} />
@@ -92,10 +92,15 @@ const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, on
                             <div id="link">
                                 {suggestion.link && !addOwn ? <a href={suggestion.link} title={suggestion.link} rel="noopener noreferrer" target="_blank">Link</a> : null}
                             </div>
+                            <div id="warningtext">
+                                {suggestion.saveGlobally && !addOwn ? "*Will add as a suggestion for other users" : null}
+                            </div>
                             {/* {addOwn ? <input placeholder="http://example.com" autoComplete="off" name="link" value={ownState.link} onChange={onChangeOwn} type="text" /> : null} */}
-                            {addOwn ? <button className="btn green" onClick={onSaveOwn} disabled={emptyData || invalidData} >Save</button> : null}
-                            {addOwn ? <span><input onChange={onChangeOwn} value={ownState.saveGlobally} name="saveGlobally" type="checkbox" />Add as suggestions for other users</span> : null}
-                        </>
+                            <div>
+                            {addOwn ? <><button className="btn green" onClick={onSaveOwn} disabled={emptyData || invalidData} >Save</button><span><input onChange={onChangeOwn} checked={ownState.saveGlobally} name="saveGlobally" type="checkbox" />Add as suggestions for other users</span></> : null}
+                            </div>
+                            {/* {addOwn ?  : null} */}
+                    </>
                     :
                     <b>Click the button above to randomize an activity</b>
                 }
