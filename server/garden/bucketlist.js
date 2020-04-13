@@ -39,8 +39,6 @@ router.post('/get', validCookie, (req, res) => {
 router.post('/add', validCookie, (req, res) => {
     const user = req.session.user
     const {activity, accessibility, type, participants, price, link, key, saveGlobally} = req.body
-    console.log(req.body)
-    console.log(req.session.user)
     const add = db.prepare('INSERT INTO Activities (uid, activity, accessibility, type, participants, price, link, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
 
     add.run([user.id, activity, accessibility, type, participants, price, link, key], (err) => {
@@ -49,9 +47,9 @@ router.post('/add', validCookie, (req, res) => {
             res.status(500).json({"error":"Internal server error"})
             return
         }
-//TODO VARFÖR
-        if (saveGlobally) {
-            const createNew = db.prepare('INSERT INTO UserCreatedActivities (uid, username, activity, accessibility, type, participants, price, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?')
+
+        if (saveGlobally === true) {
+            const createNew = db.prepare('INSERT INTO UserCreatedActivities (uid, username, activity, accessibility, type, participants, price, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
             createNew.run([user.id, user.username, activity, accessibility, "type", participants, price, uuid4()], function(err2) {
                 if (err2) {
                     console.log(err2)
@@ -62,8 +60,9 @@ router.post('/add', validCookie, (req, res) => {
                 res.status(201).json({"status":"REEEE."})
                 return
             })
+        } else {
+            res.status(201).json({"status":"Added activity."})
         }
-        res.status(201).json({"status":"Added activity."})
     })
 })
 
