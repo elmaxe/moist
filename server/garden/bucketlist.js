@@ -118,7 +118,7 @@ router.get('/randomize', validCookie, (req, res) => {
     db.serialize(() => {
         let customAmount = 10
         db.all('SELECT * FROM UserCreatedActivities', (err, rows) => {
-            customAmount = 99
+            customAmount = rows.length
             
             const rand = Math.floor(Math.random() * 101)
             let chance = Math.floor(customActivityChance(customAmount))
