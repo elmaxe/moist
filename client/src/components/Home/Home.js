@@ -47,7 +47,11 @@ class Home extends React.Component {
         .then(res => res.json())
         .then(json => {
             console.log(json)
-            this.setState({fetching: false, suggestion: json.row})
+            if (json.error) {
+                this.setState({fetching: false, suggestion: {activity: json.error}})
+            } else {
+                this.setState({fetching: false, suggestion: json.row})
+            }
         })
     }
 

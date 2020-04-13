@@ -128,11 +128,7 @@ router.get('/randomize', validCookie, (req, res) => {
         const rand = Math.floor(Math.random() * 101)
         let chance = Math.floor(customActivityChance(customAmount))
 
-        console.log("RAND: " + rand)
-        console.log(rand)
-        console.log("CHANCE: " + chance)
         if (rand <= chance) {
-            console.log("USER CREATED")
             getCustomCreated.all((err, rows) => {
                 if (err) {
                     res.status(500).json({"error":"Internal server error"})
@@ -141,13 +137,16 @@ router.get('/randomize', validCookie, (req, res) => {
                 res.status(200).json({row: rows[Math.floor(Math.random() * rows.length)]})
             })
         } else {
-            console.log("API CREATED")
             fetch('https://www.boredapi.com/api/activity', {
                 method: "GET"
             })
             .then(res => res.json())
+            .catch(error => {
+                console.log(error)
+                res.status(500).json({"error":"Error... API is down??"})
+            })
             .then(json => {
-                console.log(json)
+                // console.log(json)
                 res.status(200).json({row: json})
             })
         }
