@@ -105,4 +105,54 @@ router.post('/update', validCookie, (req, res) => {
     })
 })
 
+//Takes in a number >= 0 (amount of user created activities in the database) and returns a number [0-60)
+const customActivityChance = (amount) => {
+    if (amount === undefined) return 30
+    return -(60/((amount/50)+1)) + 60
+}
+
+const fetch = require('node-fetch');
+
+router.get('/randomize', validCookie, (req, res) => {
+
+    const getCustomCreated = db.prepare('SELECT * FROM UserCreatedActivities')
+    let customAmount = 30
+
+    db.serialize(() => {
+        getCustomCreated.all((err, rows) => {
+            if (!err) {
+                customAmount = rows.length
+            }
+        })
+
+        const rand = Math.floor(Math.random() * 101)
+        let chance = Math.floor(customActivityChance(customAmount))
+
+        console.log("RAND: " + rand)
+        console.log(rand)
+        console.log("CHANCE: " + chance)
+        if (rand <= chance) {
+            console.log("USER CREATED")
+            getCustomCreated.all((err, rows) => {
+                if (err) {
+                    res.status(500).json({"error":"Internal server error"})
+                    return
+                }
+                res.status(200).json({row: rows[Math.floor(Math.random() * rows.length)]})
+            })
+        } else {
+            console.log("API CREATED")
+            fetch('https://www.boredapi.com/api/activity', {
+                method: "GET"
+            })
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+                res.status(200).json({row: json})
+            })
+        }
+    })
+
+})
+
 module.exports = router
