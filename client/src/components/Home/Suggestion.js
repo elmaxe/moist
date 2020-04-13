@@ -74,7 +74,7 @@ const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, on
                     :
                     suggestion ?
                     <>
-                            <div id="title">{addOwn ? <input placeholder="Activity" autoComplete="off" name="title" value={ownState.title} onChange={onChangeOwn} type="text" /> : suggestion.activity}</div>
+                            <div id="title">{addOwn ? <input placeholder="Activity" autoFocus autoComplete="off" name="title" value={ownState.title} onChange={onChangeOwn} type="text" /> : suggestion.activity}</div>
                             <div id="info">
                                 <span id="icon" title="Accessibility">  
                                     <img src={Accessibility} height="30px" alt="Accessibility" />
