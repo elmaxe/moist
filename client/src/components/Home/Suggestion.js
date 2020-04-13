@@ -105,7 +105,7 @@ const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, on
                                     </div>
                                 : null}
                             </div>
-                            <div>
+                            <div id="saveOwn">
                             {addOwn ? <><button className="btn green" onClick={onSaveOwn} disabled={emptyData || invalidData} >Save</button><span><input onChange={onChangeOwn} checked={ownState.saveGlobally} name="saveGlobally" type="checkbox" />Add as suggestions for other users</span></> : null}
                             </div>
                     </>

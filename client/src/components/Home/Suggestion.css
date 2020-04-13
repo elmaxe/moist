@@ -76,3 +76,11 @@
     color: gray;
     font-size: 12px;
 }
+
+.Suggestion #saveOwn > span {
+    margin-left: 15px;
+}
+
+.Suggestion #saveOwn > span >input {
+    margin-right: 5px;
+}
