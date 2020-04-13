@@ -49,8 +49,8 @@ router.post('/add', validCookie, (req, res) => {
         }
 
         if (saveGlobally === true) {
-            const createNew = db.prepare('INSERT INTO UserCreatedActivities (uid, username, activity, accessibility, type, participants, price, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
-            createNew.run([user.id, user.username, activity, accessibility, "type", participants, price, uuid4()], function(err2) {
+            const createNew = db.prepare('INSERT INTO UserCreatedActivities (uid, username, activity, accessibility, type, participants, price, key, creationDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+            createNew.run([user.id, user.username, activity, accessibility, "", participants, price, uuid4(), Date.now()], function(err2) {
                 if (err2) {
                     console.log(err2)
                     
@@ -115,16 +115,16 @@ const fetch = require('node-fetch');
 
 router.get('/randomize', validCookie, (req, res) => {
     
-    
     db.serialize(() => {
         let customAmount = 10
         db.all('SELECT * FROM UserCreatedActivities', (err, rows) => {
-            customAmount = rows.length
+            customAmount = 99
             
             const rand = Math.floor(Math.random() * 101)
             let chance = Math.floor(customActivityChance(customAmount))
     
             if (rand <= chance) {
+                const getCustomCreated = db.prepare('SELECT * FROM UserCreatedActivities')
                 getCustomCreated.all((err, rows) => {
                     if (err) {
                         res.status(500).json({"error":"Internal server error"})
@@ -133,11 +133,29 @@ router.get('/randomize', validCookie, (req, res) => {
                     console.log(rows)
                     const body = rows[Math.floor(Math.random() * rows.length)]
                     console.log(body)
-                    res.status(200).json({row: body})
+                    res.status(200).json({row: {
+                        ucaid: body.ucaid,
+                        activity: body.activity,
+                        accessibility: body.accessibility,
+                        type: body.type,
+                        participants: body.participants,
+                        price: body.price,
+                        link: body.link,
+                        key: body.key,
+                        createdBy: {
+                            username: body.username,
+                            uid: body.uid,
+                            date: body.creationDate
+                        }
+                    }})
                 })
             } else {
+                console.log(req.headers['x-forwarded-for'] || req.connection.remoteAddress)
                 fetch('https://www.boredapi.com/api/activity', {
-                    method: "GET"
+                    method: "GET",
+                    headers: {
+                        "x-forwarded-for": req.headers['x-forwarded-for'] || req.connection.remoteAddress
+                    }
                 })
                 .then(res => res.json())
                 .catch(error => {
