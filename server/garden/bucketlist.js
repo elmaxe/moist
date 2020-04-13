@@ -114,42 +114,42 @@ const customActivityChance = (amount) => {
 const fetch = require('node-fetch');
 
 router.get('/randomize', validCookie, (req, res) => {
-
-    const getCustomCreated = db.prepare('SELECT * FROM UserCreatedActivities')
-    let customAmount = 30
-
+    
+    
     db.serialize(() => {
-        getCustomCreated.all((err, rows) => {
-            if (!err) {
-                customAmount = rows.length
+        let customAmount = 10
+        db.all('SELECT * FROM UserCreatedActivities', (err, rows) => {
+            customAmount = rows.length
+            
+            const rand = Math.floor(Math.random() * 101)
+            let chance = Math.floor(customActivityChance(customAmount))
+    
+            if (rand <= chance) {
+                getCustomCreated.all((err, rows) => {
+                    if (err) {
+                        res.status(500).json({"error":"Internal server error"})
+                        return
+                    }
+                    console.log(rows)
+                    const body = rows[Math.floor(Math.random() * rows.length)]
+                    console.log(body)
+                    res.status(200).json({row: body})
+                })
+            } else {
+                fetch('https://www.boredapi.com/api/activity', {
+                    method: "GET"
+                })
+                .then(res => res.json())
+                .catch(error => {
+                    console.log(error)
+                    res.status(500).json({"error":"Error... API is down??"})
+                })
+                .then(json => {
+                    // console.log(json)
+                    res.status(200).json({row: json})
+                })
             }
         })
-
-        const rand = Math.floor(Math.random() * 101)
-        let chance = Math.floor(customActivityChance(customAmount))
-
-        if (rand <= chance) {
-            getCustomCreated.all((err, rows) => {
-                if (err) {
-                    res.status(500).json({"error":"Internal server error"})
-                    return
-                }
-                res.status(200).json({row: rows[Math.floor(Math.random() * rows.length)]})
-            })
-        } else {
-            fetch('https://www.boredapi.com/api/activity', {
-                method: "GET"
-            })
-            .then(res => res.json())
-            .catch(error => {
-                console.log(error)
-                res.status(500).json({"error":"Error... API is down??"})
-            })
-            .then(json => {
-                // console.log(json)
-                res.status(200).json({row: json})
-            })
-        }
     })
 
 })
