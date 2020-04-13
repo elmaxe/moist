@@ -71,3 +71,8 @@
     color: red;
     font-size: 12px;
 }
+
+.Suggestion #createdby {
+    color: gray;
+    font-size: 12px;
+}

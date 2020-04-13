@@ -5,6 +5,7 @@ import Participants from '../../images/participants.svg'
 import Price from '../../images/price.svg'
 import spinner from '../../images/spinner.gif'
 import questionmark from '../../images/questionmark.svg'
+import { Link } from 'react-router-dom'
 
 const initState = {
     title: "",
@@ -56,12 +57,12 @@ class Suggestion extends React.Component {
         const {fetching, suggestion , addOwn} = this.props
 
         return (
-            <SuggestionView fetching={fetching} suggestion={suggestion} addOwn={addOwn} ownState={this.state} onChangeOwn={this.onChangeOwn.bind(this)} onSaveOwn={this.onSaveOwn.bind(this)} />
+            <SuggestionView fetching={fetching} suggestion={suggestion} addOwn={addOwn} ownState={this.state} onChangeOwn={this.onChangeOwn.bind(this)} onSaveOwn={this.onSaveOwn.bind(this)} user={this.props.state.userData.user} />
         )
     }
 }
 
-const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, onSaveOwn}) => {
+const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, onSaveOwn, user}) => {
     const emptyData = ownState.title === "" || ownState.accessibility === "" || ownState.participants === "" || ownState.price === ""
     const invalidData = isNaN(parseFloat(ownState.accessibility)) || isNaN(parseInt(ownState.participants)) || isNaN(parseFloat(ownState.price)) || parseFloat(ownState.accessibility) < 0 || parseFloat(ownState.accessibility) > 1 || parseFloat(ownState.price) < 0 || parseFloat(ownState.price) > 1 || !(parseFloat(ownState.participants) > 0)
 
@@ -95,11 +96,18 @@ const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, on
                             <div id="warningtext">
                                 {suggestion.saveGlobally && !addOwn ? "*Will add as a suggestion for other users" : null}
                             </div>
-                            {/* {addOwn ? <input placeholder="http://example.com" autoComplete="off" name="link" value={ownState.link} onChange={onChangeOwn} type="text" /> : null} */}
+                            <div id="createdby">
+                                {suggestion.username ?
+                                    <div>
+                                            Created by user <Link to={'/u/' + suggestion.username}>{suggestion.username}</Link>
+                                            <br />
+                                            <Link to={{pathname: '/report', state: {suggestion, reporter: user, time: Date.now()}}}>Report</Link>
+                                    </div>
+                                : null}
+                            </div>
                             <div>
                             {addOwn ? <><button className="btn green" onClick={onSaveOwn} disabled={emptyData || invalidData} >Save</button><span><input onChange={onChangeOwn} checked={ownState.saveGlobally} name="saveGlobally" type="checkbox" />Add as suggestions for other users</span></> : null}
                             </div>
-                            {/* {addOwn ?  : null} */}
                     </>
                     :
                     <b>Click the button above to randomize an activity</b>

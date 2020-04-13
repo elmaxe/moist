@@ -32,13 +32,22 @@ class Home extends React.Component {
 
     getSuggestion() {
         this.setState({fetching: true})
-        fetch('https://www.boredapi.com/api/activity', {
-            method: "GET"
+        // fetch('https://www.boredapi.com/api/activity', {
+        //     method: "GET"
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     console.log(json)
+        //     this.setState({fetching: false, suggestion: json})
+        // })
+        fetch('/api/activities/randomize', {
+            method: "GET",
+            credentials: "same-origin"
         })
         .then(res => res.json())
         .then(json => {
             console.log(json)
-            this.setState({fetching: false, suggestion: json})
+            this.setState({fetching: false, suggestion: json.row})
         })
     }
 
