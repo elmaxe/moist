@@ -11,3 +11,4 @@ INSERT INTO Users (username, email, password) VALUES ("hubertus", "hubertus@kth.
 INSERT INTO Users (username, email, password) VALUES ("ivar", "ivar@kth.se", "re");
 INSERT INTO Users (username, email, password) VALUES ("johan", "johan@kth.se", "re");
 INSERT INTO Users (username, email, password) VALUES ("kancer", "kancer@kth.se", "re");
+INSERT INTO Users (username, email, password) VALUES ("Ettlångtnamnjavadkul", "kancer@kth.se", "re");
