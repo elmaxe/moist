@@ -20,9 +20,15 @@ class Bar extends React.Component {
         return (
             <div className="Bar">
                 <div className="BarItemLogo">
-                    <Link to={ROUTES.HOME}>
-                        <img src={logo} className="logo" />
-                    </Link>
+                    {props.history.location.pathname !== "/home" ?
+                        <Link to={ROUTES.HOME}>
+                            <img src={logo} className="logo" />
+                        </Link>
+                    :
+                        <a href={ROUTES.HOME}>
+                            <img src={logo} className="logo" />
+                        </a>
+                    }
                 </div>
                 <Search {...props} />
                 <div className="BarItem">
