@@ -88,6 +88,7 @@ app.use('/api/upload', upload)
 app.use('/api/search', search)
 
 app.use('/images', express.static(path.join(__dirname, './images')))
+app.use('/u/images', express.static(path.join(__dirname, './images')))
 
 app.use(express.static(path.join(__dirname, '../client/build')))
 

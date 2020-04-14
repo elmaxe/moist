@@ -20,6 +20,7 @@ import {bindActionCreators} from 'redux'
 
 import spinner from '../../images/spinner.gif'
 import SearchPage from '../Search/SearchPage';
+import UserPage from '../UserPage/User'
 
 class App extends React.Component {
   constructor(props) {
@@ -65,9 +66,9 @@ class App extends React.Component {
               <Route exact path={ROUTES.HOME} >
                 <ProtectedRoute component={Home} />
               </Route>
-              <Route exact path={ROUTES.ACCOUNT}>
-                <ProtectedRoute component={Account} />
-              </Route>
+              {/* <Route exact path={ROUTES.ACCOUNT}>
+                <ProtectedRoute component={UserPage} />
+              </Route> */}
               <Route exact path={ROUTES.LOGOUT}>
                 <ProtectedRoute component={Logout} />
               </Route>
@@ -75,7 +76,7 @@ class App extends React.Component {
                 <ProtectedRoute component={SearchPage} />
               </Route>
               <Route exact path={ROUTES.USER}>
-                User page
+                <ProtectedRoute component={UserPage} />
               </Route>
               <Route component={NotFound} />
             </Switch>

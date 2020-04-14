@@ -26,8 +26,8 @@ class Bar extends React.Component {
                 </div>
                 <Search {...props} />
                 <div className="BarItem">
-                    <Link to={ROUTES.ACCOUNT}>
-                    <img src={user.profilePicture? user.profilePicture : GenericProfile} style={{height:"30px", width:"30px",objectFit:"cover", borderRadius: "50%"}} />
+                    <Link to={`/u/${user.username}`}>
+                    <img src={user.profilePicture? user.profilePicture : GenericProfile} style={{height:"30px", width:"30px",objectFit:"cover", borderRadius: "10%"}} />
                     <span style={{paddingLeft: "5px"}}>
                     {user.username}
                     </span>

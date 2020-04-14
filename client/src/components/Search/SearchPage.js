@@ -74,7 +74,7 @@ const SearchPageView = ({fetching, results, query}) => {
                             <h4>Users</h4>
                         </div>
                         <div>
-                            {results.map(x => <SearchResult key={x.id} username={x.username} profilePicture={x.profilePicture} />)}
+                            {results.map(x => <SearchResult key={x.id} username={x.username} profilePicture={x.profilePicture} userData={x}/>)}
                         </div>
                     </div>
             }
@@ -82,20 +82,20 @@ const SearchPageView = ({fetching, results, query}) => {
     )
 }
 
-const SearchResult = ({username, profilePicture}) => {
+const SearchResult = ({username, profilePicture, userData}) => {
     const link = `/u/${username}`
     return (
         <div className="SearchResult">
             <span>
                 <Link to={link}>
-                    <img style={{height:"60px", width:"60px",objectFit:"cover", borderRadius: "50%"}} src={profilePicture ? profilePicture : GenericProfile}/>
+                    <img style={{height:"60px", width:"60px",objectFit:"cover", borderRadius: "10%"}} src={profilePicture ? profilePicture : GenericProfile}/>
                 </Link>
             </span>
             <div className="SearchResultText">
                 <Link to={link}>
                     {username}
                 </Link>
-                <button>Test</button>
+                {/* <button>Test</button> */}
             </div>
         </div>
     )
@@ -105,7 +105,7 @@ const NoResults = ({query}) => {
     return (
         <div className="NoResultsFound">
             <div>We found no results for:</div>
-            <span><b>{query}</b></span>
+            <span><b>"{query}"</b></span>
             <div>Try another search term.</div>
         </div>
     )

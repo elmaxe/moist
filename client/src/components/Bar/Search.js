@@ -51,7 +51,7 @@ const SearchView = ({onSearch, onChange, value}) => {
                 <button
                     className="SearchButton"
                     onClick={onSearch}
-                    disabled={value === ""}
+                    // disabled={value === ""}
                     >Search
                 </button>
             </form>
