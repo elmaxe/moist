@@ -34,3 +34,18 @@
 .Logout {
     
 }
+
+.BarItemLogo {
+    
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.logo:hover {
+    opacity: 0.7;
+}

@@ -6,6 +6,9 @@ import GenericProfile from '../../images/profile1600x1600.png'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+import logo from '../../images/bukketlogo.png'
+import Search from './Search'
+
 class Bar extends React.Component {
     constructor(props) {
         super(props)
@@ -13,14 +16,18 @@ class Bar extends React.Component {
 
     render() {
         const {user} = this.props.state.userData
+        const props = this.props
         return (
             <div className="Bar">
-                <div className="BarItem">
-                    <Link to={ROUTES.HOME}>My bukketlist</Link>
+                <div className="BarItemLogo">
+                    <Link to={ROUTES.HOME}>
+                        <img src={logo} className="logo" />
+                    </Link>
                 </div>
+                <Search {...props} />
                 <div className="BarItem">
-                    <Link to={ROUTES.ACCOUNT}>
-                    <img src={user.profilePicture? user.profilePicture : GenericProfile} style={{height:"30px", width:"30px",objectFit:"contain", borderRadius: "50%"}} />
+                    <Link to={`/u/${user.username}`}>
+                    <img src={user.profilePicture? user.profilePicture : GenericProfile} style={{height:"30px", width:"30px",objectFit:"cover", borderRadius: "10%"}} />
                     <span style={{paddingLeft: "5px"}}>
                     {user.username}
                     </span>

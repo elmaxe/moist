@@ -13,7 +13,7 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
         <Route {...rest} render={props => (
             // rest.state.user.displayName ?
             rest.state.userData.authenticated ?
-            <div><Bar state={rest.state}/><Component {...props} state={rest.state} actions={rest.actions} /></div>
+            <div><Bar {...props} state={rest.state}/><Component {...props} state={rest.state} actions={rest.actions} /></div>
             :
             <Redirect to={ROUTES.LANDING} />
         )} />

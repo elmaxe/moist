@@ -78,6 +78,7 @@ const register = require('./auth/register')
 const garden = require('./garden/garden')
 const bucketlist = require('./garden/bucketlist')
 const upload = require('./upload/upload')
+const search = require('./search')
 
 app.use('/api/auth/login', login)
 app.use('/api/auth/logout', logout)
@@ -85,8 +86,10 @@ app.use('/api/auth/register', register)
 // app.use('/api/gardens', garden)
 app.use('/api/activities', bucketlist)
 app.use('/api/upload', upload)
+app.use('/api/search', search)
 
 app.use('/images', express.static(path.join(__dirname, './images')))
+app.use('/u/images', express.static(path.join(__dirname, './images')))
 
 app.use(express.static(path.join(__dirname, '../client/build')))
 

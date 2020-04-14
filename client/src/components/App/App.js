@@ -19,6 +19,8 @@ import setUser from '../../actions/user'
 import {bindActionCreators} from 'redux'
 
 import spinner from '../../images/spinner.gif'
+import SearchPage from '../Search/SearchPage';
+import UserPage from '../UserPage/User'
 
 export function fetchIsAuth(setUser) {
   // return dispatch => {
@@ -83,11 +85,17 @@ class App extends React.Component {
               <Route exact path={ROUTES.HOME} >
                 <ProtectedRoute component={Home} />
               </Route>
-              <Route exact path={ROUTES.ACCOUNT}>
-                <ProtectedRoute component={Account} />
-              </Route>
+              {/* <Route exact path={ROUTES.ACCOUNT}>
+                <ProtectedRoute component={UserPage} />
+              </Route> */}
               <Route exact path={ROUTES.LOGOUT}>
                 <ProtectedRoute component={Logout} />
+              </Route>
+              <Route exact path={ROUTES.SEARCH}>
+                <ProtectedRoute component={SearchPage} />
+              </Route>
+              <Route exact path={ROUTES.USER}>
+                <ProtectedRoute component={UserPage} />
               </Route>
               <Route component={NotFound} />
             </Switch>
