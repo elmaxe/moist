@@ -37,8 +37,8 @@ const validUserData = (req, res, next) => {
 }
 
 router.post('/', validUserData, (req, res) => {
-    const {email, username, password} = req.body
-
+    const {username, password} = req.body
+	const email = req.body.email.toLowerCase()
     const checkExists = db.prepare('SELECT * FROM Users WHERE email = ?')
     const insertUser = db.prepare('INSERT INTO Users (email, username, password, regDate) VALUES (?, ?, ?, ?)')
 
