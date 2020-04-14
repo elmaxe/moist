@@ -16,7 +16,8 @@ const validCredentials = (req, res, next) => {
 
 router.post('/', validCredentials, (req, res) => {
     console.log(req.body);
-    const {email, password} = req.body;
+    const {password} = req.body;
+	const email = req.body.email.toLowerCase()
     
     const getUser = db.prepare('SELECT * FROM USERS WHERE email = ?')
     
