@@ -19,7 +19,13 @@ function addActivity(data) {
                 participants: data.participants,
                 price: data.price,
                 link: data.link,
-                key: data.key
+                //TODO: GENERATE KEY FOR user created activities
+                key: data.key,
+                createdBy: {
+                    uid: data.createdByID,
+                    username: data.createdByUsername
+                },
+                saveGlobally: data.saveGlobally
             })
         })
         .then(res => res.json())

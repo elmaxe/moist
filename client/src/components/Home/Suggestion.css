@@ -9,7 +9,7 @@
     align-items: center;
 
     width: 50vw;
-    height: 20vh;
+    height: 30vh;
     text-align: center;
 }
 
@@ -18,6 +18,13 @@
     font-weight: bold;
     /* padding-top: 1vh; */
     padding-bottom: 2vh;
+}
+
+.Suggestion #title > input {
+    font-size: 3vh;
+    font-weight: bold;
+    border: solid 1px gray;
+    text-align: center;
 }
 
 .Suggestion #help {
@@ -52,6 +59,28 @@
     padding-right: 10px;
 }
 
+.Suggestion #icon > input {
+    width: 45px;
+}
+
 .Suggenstion #spinner {
     transition: ease-in-out;
+}
+
+.Suggestion #warningtext {
+    color: red;
+    font-size: 12px;
+}
+
+.Suggestion #createdby {
+    color: gray;
+    font-size: 12px;
+}
+
+.Suggestion #saveOwn > span {
+    margin-left: 15px;
+}
+
+.Suggestion #saveOwn > span >input {
+    margin-right: 5px;
 }

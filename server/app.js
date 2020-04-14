@@ -26,7 +26,8 @@ let redisClient = redis.createClient()
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            defaultSrc: ["'self'", 'boredapi.com'],
+            // defaultSrc: ["'self'", 'boredapi.com'],
+            defaultSrc: ["'self'"],
             scriptSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com'],
             styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
             imgSrc: ["'self'"],
