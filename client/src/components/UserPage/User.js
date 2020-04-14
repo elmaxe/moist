@@ -29,8 +29,12 @@ class UserPage extends React.Component {
         this.doUserFetch()
     }
 
-    componentDidUpdate() {
-        console.log("update")
+    //if user is on a different users page and clicks their name in the bar, the state shall update.
+    //The refresh state is sent from the Link in Bar
+    componentWillReceiveProps() {
+        if (this.props.history.location.state.refresh) {
+            this.doUserFetch()
+        }
     }
 
     doUserFetch() {
