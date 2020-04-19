@@ -81,6 +81,7 @@ class Login extends React.Component {
                     <tr>
                         <td>
                             <input
+                                autoFocus
                                 type="text"
                                 name="email"
                                 value={email}
