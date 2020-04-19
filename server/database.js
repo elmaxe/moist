@@ -11,15 +11,16 @@ const userTable = 'CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTO
 // const gardenTable = 'CREATE TABLE IF NOT EXISTS Gardens (gid INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, name TEXT NOT NULL, description TEXT, image TEXT, creationDate TEXT NOT NULL, location TEXT, FOREIGN KEY(uid) REFERENCES Users(id) ON DELETE CASCADE)'
 // const plantTable = 'CREATE TABLE IF NOT EXISTS Plants (pid INTEGER PRIMARY KEY AUTOINCREMENT, gid INTEGER NOT NULL, name TEXT NOT NULL, image TEXT, birth TEXT, death TEXT, FOREIGN KEY(gid) REFERENCES Gardens(gid) ON DELETE CASCADE)'
 
-const activitiesTable = 'CREATE TABLE IF NOT EXISTS Activities (aid INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, activity TEXT, accessibility TEXT, type TEXT, participants TEXT, price TEXT, link TEXT, key TEXT)'
+const activitiesTable = 'CREATE TABLE IF NOT EXISTS Activities (aid INTEGER PRIMARY KEY AUTOINCREMENT, bid INTEGER NOT NULL, activity TEXT, accessibility TEXT, type TEXT, participants TEXT, price TEXT, link TEXT, key TEXT)'
 
 const userCreatedActivities = 'CREATE TABLE IF NOT EXISTS UserCreatedActivities (ucaid INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, username TEXT NOT NULL, activity TEXT NOT NULL, accessibility TEXT, type TEXT, participants TEXT, price TEXT, link TEXT, key TEXT NOT NULL, creationDate TEXT NOT NULL)'
 
-const bukketlist = 'CREATE TABLE IF NOT EXISTS Bukketlists (bid INTEGER PRIMARY KEY, uid INTEGER NOT NULL, private TEXT NOT NULL, name TEXT NOT NULL, description TEXT, creationDate TEXT NOT NULL)'
+const bukketlist = 'CREATE TABLE IF NOT EXISTS Bukketlists (bid INTEGER PRIMARY KEY, uid INTEGER NOT NULL, private BOOLEAN NOT NULL, name TEXT NOT NULL, description TEXT, creationDate TEXT NOT NULL)'
 
 db.serialize(() => {
     // db.run('DROP TABLE IF EXISTS Users');
     // db.run('DROP TABLE IF EXISTS Activities');
+    // db.run('DROP TABLE IF EXISTS Bukketlists');
     // db.run('DROP TABLE IF EXISTS Gardens');
     // db.run('DROP TABLE IF EXISTS Plants');
     db.run(userTable);

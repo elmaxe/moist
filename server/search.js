@@ -22,9 +22,19 @@ router.post('/', validCookie, (req, res) => {
             res.status(500).json({"error":"Internal server error."})
             return
         }
-        
+
+        const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
+        INNER JOIN Users ON Users.id = Bukketlists.uid \
+        WHERE (Users.username = ? AND Bukketlists.private = true) \
+        OR (Users.username LIKE "%" || ? || "%" AND Bukketlists.private = false)')
+    
         userResult = rows.splice(0, 10)
-        res.status(200).json({users: userResult})
+        console.log(req.session.user.username)
+        bukketlists.all([req.session.user.username, query], (err, rows) => {
+            // res.json({bukketlists: rows})
+            res.status(200).json({users: userResult, bukketlists: rows.splice(0,15)})
+        })
+        
     })
 })
 
@@ -43,6 +53,31 @@ router.get('/user/:user', (req, res) => {
         } else {
             res.status(200).json({user: row})
         }
+    })
+})
+
+router.get('/bukketlists', (req, res) => {    
+    const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
+                                    INNER JOIN Users ON Users.id = Bukketlists.uid \
+                                    WHERE NOT Bukketlists.private = true')
+
+    bukketlists.all((err, rows) => {
+        if (err) {
+            res.status(500).json({"error":"Internal server error."})
+            return
+        }
+        res.json({bukketlists: rows})
+    })
+})
+
+router.get('/bukketlist/:username', (req, res) => {
+    const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
+    INNER JOIN Users ON Users.id = Bukketlists.uid \
+    WHERE NOT Bukketlists.private = true \
+    AND Users.username = ?')
+
+    bukketlists.all([req.params.username], (err, rows) => {
+        res.json({bukketlists: rows})
     })
 })
 
