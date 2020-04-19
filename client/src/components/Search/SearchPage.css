@@ -16,6 +16,24 @@
     width: 100%;
 }
 
+.SearchResultText #username {
+    color: rgb(90, 90, 90);
+    font-size: 12px;
+}
+
+.SearchResultText #description {
+    font-size: 14px;
+}
+
+.SearchResultText #availability {
+    margin-left: 10px;
+    padding: 1px;
+    font-size: 12px;
+    border: solid 1px rgb(200, 200, 200);
+    color: rgb(100, 100, 100);
+    background-color: white;
+}
+
 .SearchResult:hover {
     background-color: rgb(230, 230, 230);
 }

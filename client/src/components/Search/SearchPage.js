@@ -14,7 +14,8 @@ class SearchPage extends React.Component {
         this.state = {
             query: props.history.location.state ? props.history.location.state.query : "",
             fetching: true,
-            results: []
+            userResults: [],
+            bukketlistResults: []
         }
 
         this.doSearchQuery = this.doSearchQuery.bind(this)
@@ -34,7 +35,7 @@ class SearchPage extends React.Component {
 
     doSearchQuery() {
         const query = this.state.query
-        this.setState({fetching: true, results: []})
+        this.setState({fetching: true, userResults: [], bukketlistResults: []})
         fetch('/api/search', {
             method: "POST",
             credentials: "same-origin",
@@ -45,27 +46,27 @@ class SearchPage extends React.Component {
         })
         .then(res => res.json())
         .then(json => {
-            this.setState({results: json.users, fetching: false})
+            this.setState({userResults: json.users, bukketlistResults: json.bukketlists,fetching: false})
         })
     }
 
     render() {
-        const {fetching, results, query} = this.state
+        const {fetching, userResults, bukketlistResults, query} = this.state
         return (
             <>
-            <SearchPageView fetching={fetching} results={results} query={query}/>
+            <SearchPageView fetching={fetching} userResults={userResults} bukketlistResults={bukketlistResults} query={query}/>
             </>
         )
     }
 }
 
-const SearchPageView = ({fetching, results, query}) => {
+const SearchPageView = ({fetching, userResults, bukketlistResults, query}) => {
     return (
         <div style={{paddingTop: "50px"}}>
             {fetching ?
                 <img src={spinner} />
                 :
-                results.length === 0 ?
+                userResults.length === 0 ?
                     // "No users found"
                     <NoResults query={query}/>
                     : 
@@ -74,7 +75,13 @@ const SearchPageView = ({fetching, results, query}) => {
                             <h4>Users</h4>
                         </div>
                         <div>
-                            {results.map(x => <SearchResult key={x.id} username={x.username} profilePicture={x.profilePicture} userData={x}/>)}
+                            {userResults.map(x => <SearchResult key={x.id} username={x.username} profilePicture={x.profilePicture} userData={x}/>)}
+                        </div>
+                        <div>
+                            <h4>Bukketlists</h4>
+                        </div>
+                        <div>
+                        {bukketlistResults.map(x => <SearchResult key={x.bid} username={x.username} bukketlist={{name: x.name, description: x.description, private: x.private}} />)}
                         </div>
                     </div>
             }
@@ -82,20 +89,40 @@ const SearchPageView = ({fetching, results, query}) => {
     )
 }
 
-const SearchResult = ({username, profilePicture, userData}) => {
+const SearchResult = ({username, profilePicture, bukketlist}) => {
     const link = `/u/${username}`
     return (
         <div className="SearchResult">
-            <span>
-                <Link to={link}>
-                    <img style={{height:"60px", width:"60px",objectFit:"cover", borderRadius: "10%"}} src={profilePicture ? profilePicture : GenericProfile}/>
-                </Link>
-            </span>
+            {!bukketlist ? 
+                <span>
+                    <Link to={link}>
+                        <img style={{height:"60px", width:"60px",objectFit:"cover", borderRadius: "10%"}} src={profilePicture ? profilePicture : GenericProfile}/>
+                    </Link>
+                </span>
+            :
+                null
+            }
             <div className="SearchResultText">
-                <Link to={link}>
-                    {username}
-                </Link>
-                {/* <button>Test</button> */}
+                    {bukketlist ?
+                        <div>
+                            <Link to={link}>
+                                {bukketlist.name}
+                            </Link>
+                            <span id="availability">
+                                {bukketlist.private === 0 ? "Public" : "Private"}
+                            </span>
+                            <div id="description">
+                                {bukketlist.description}
+                            </div>
+                            <div id="username">
+                                {username}
+                            </div>
+                        </div>
+                    :
+                        <Link to={link}>
+                        {username}
+                        </Link>
+                    }
             </div>
         </div>
     )
