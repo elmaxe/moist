@@ -15,6 +15,8 @@ const activitiesTable = 'CREATE TABLE IF NOT EXISTS Activities (aid INTEGER PRIM
 
 const userCreatedActivities = 'CREATE TABLE IF NOT EXISTS UserCreatedActivities (ucaid INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, username TEXT NOT NULL, activity TEXT NOT NULL, accessibility TEXT, type TEXT, participants TEXT, price TEXT, link TEXT, key TEXT NOT NULL, creationDate TEXT NOT NULL)'
 
+const bukketlist = 'CREATE TABLE IF NOT EXISTS Bukketlists (bid INTEGER PRIMARY KEY, uid INTEGER NOT NULL, private TEXT NOT NULL, name TEXT NOT NULL, description TEXT, creationDate TEXT NOT NULL)'
+
 db.serialize(() => {
     // db.run('DROP TABLE IF EXISTS Users');
     // db.run('DROP TABLE IF EXISTS Activities');
@@ -23,6 +25,7 @@ db.serialize(() => {
     db.run(userTable);
     db.run(activitiesTable)
     db.run(userCreatedActivities)
+    db.run(bukketlist)
     // db.run(gardenTable)
     // db.run(plantTable)
 });
