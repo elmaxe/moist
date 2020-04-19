@@ -40,20 +40,39 @@
 }
 
 .profilecontent #editprofile {
-    margin: 0;
+    margin: 0 0 10px 0;
     width: 100%;
+    padding: 5px;
 }
 
 .profilecontent #description {
     padding: 10px 0 0 0;
     word-break: break-word;
     font-size: 15px;
+    white-space: pre-wrap;
+    /* border: solid 1px black; */
 }
 
 .profilePic {
     border-radius: 10%;
     border: solid 4px gold;
     margin: 10px 0 10px 0;
+}
+
+.update-profile-pic-box {
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#uploadprofilepic {
+    width: 100%;
+}
+
+#uploadprofilepicbtn {
+    padding: 5px;
+    width: 100%;
+    margin: 10px 0 0 0;
 }
 
 .content {
@@ -70,4 +89,17 @@
 
 .content #submittedactivities {
     height: 30vh;
+}
+
+textarea {
+    resize: none;
+    height: 250px;
+    width: 100%;
+    border: solid 1px white;
+}
+
+#editdescbtn {
+    padding: 5px;
+    margin: 0 2.5% 10px 2.5%;
+    width: 45%;
 }

@@ -26,6 +26,11 @@
     padding-left: 10px;
 }
 
+#userdesc {
+    font-size: 13px;
+    padding-left: 10px;
+}
+
 .SearchResultText #username {
     color: rgb(90, 90, 90);
     font-size: 12px;

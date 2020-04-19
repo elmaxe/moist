@@ -75,7 +75,7 @@ const SearchPageView = ({fetching, userResults, bukketlistResults, query}) => {
                             <h4>Users</h4>
                         </div>
                         <div>
-                            {userResults.map(x => <SearchResult key={x.id} username={x.username} profilePicture={x.profilePicture} userData={x}/>)}
+                            {userResults.map(x => <SearchResult key={x.id} description={x.description} username={x.username} profilePicture={x.profilePicture} userData={x}/>)}
                         </div>
                         <div>
                             <h4>Bukketlists</h4>
@@ -89,7 +89,7 @@ const SearchPageView = ({fetching, userResults, bukketlistResults, query}) => {
     )
 }
 
-const SearchResult = ({username, profilePicture, bukketlist}) => {
+const SearchResult = ({username, description, profilePicture, bukketlist}) => {
     const link = `/u/${username}`
     return (
         <div className="SearchResult">
@@ -119,9 +119,14 @@ const SearchResult = ({username, profilePicture, bukketlist}) => {
                             </div>
                         </div>
                     :
-                        <Link to={link} id="userlink">
-                        {username}
-                        </Link>
+                        <div>
+                            <Link to={link} id="userlink">
+                                {username}
+                            </Link>
+                            <div id="userdesc">
+                            {description}
+                            </div>
+                        </div>
                     }
             </div>
         </div>

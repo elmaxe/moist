@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './User.css'
 
 import {Redirect} from 'react-router-dom'
-import genericprofile from '../../images/profile1600x1600.png'
+
+import LeftBar from './LeftBar'
 
 const initUser = {
     username: null,
     profilePicture: null,
     id: null,
-    regDate: null
+    regDate: null,
+    description: null
 }
 
 class UserPage extends React.Component {
@@ -18,10 +20,14 @@ class UserPage extends React.Component {
         this.state = {
             fetching: true,
             error: null,
-            user: {...initUser}
+            user: {...initUser},
+            submitted: [],
+            bucketlists: []
         }
 
         this.doUserFetch = this.doUserFetch.bind(this)
+        this.doSubmittedActivitiesFetch = this.doSubmittedActivitiesFetch.bind(this)
+        this.doBukketlistFetch = this.doBukketlistFetch.bind(this)
         this.date = this.date.bind(this)
     }
 
@@ -55,7 +61,49 @@ class UserPage extends React.Component {
             } else {
                 this.setState({user: json.user})
             }
+
+            this.doBukketlistFetch()
+            this.doSubmittedActivitiesFetch()
         })
+    }
+
+    doSubmittedActivitiesFetch() {
+        const {history} = this.props
+
+        const user = history.location.pathname.split("u/")[1]
+
+        fetch(`/api/activities/submitted/${user}`, {
+            method: "GET",
+            credentials: "same-origin"
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.error) {
+
+            } else {
+                this.setState({submitted: json.rows})
+            }
+        })
+    }
+
+    doBukketlistFetch() {
+        const {history} = this.props
+
+        const user = history.location.pathname.split("u/")[1]
+
+        fetch(`/api/search/bukketlist/${user}`, {
+            method: "GET",
+            credentials: "same-origin"
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.error) {
+
+            } else {
+                this.setState({bucketlists: json.bukketlists})
+            }
+        })
+
     }
 
     date() {
@@ -68,8 +116,8 @@ class UserPage extends React.Component {
     }
 
     render() {
-        const {fetching, error, user} = this.state
-        console.log(this.props)
+        const {fetching, error, user, submitted, bucketlists} = this.state
+        console.log(this.state)
         return (
             <div className="userview">
             {fetching ?
@@ -78,7 +126,18 @@ class UserPage extends React.Component {
                 (error ? 
                     <Redirect to="/error" />
                 :
-                    <UserView id={user.id} username={user.username} profilePicture={user.profilePicture} regDate={this.date()} description={user.description} loggedInUser={this.props.state.userData.user} />)
+                    <UserView
+                        id={user.id}
+                        username={user.username}
+                        profilePicture={user.profilePicture}
+                        regDate={this.date()}
+                        description={user.description}
+                        loggedInUser={this.props.state.userData.user}
+                        submitted={submitted}
+                        bukketlists={bucketlists}
+                        {...this.props}
+                    />
+                )
             }
             </div>
         )
@@ -87,34 +146,21 @@ class UserPage extends React.Component {
 
 export default UserPage
 
-const UserView = ({username, profilePicture, id, description, regDate, loggedInUser}) => {
-    const picture = profilePicture ? profilePicture : genericprofile
+const UserView = ({username, profilePicture, id, description, regDate, loggedInUser, submitted, bukketlists, ...rest}) => {
+    console.log(rest)
     return (
         <div>
             <div className="header">
-                <div className="profile">
-                    <img src={picture} className="profilePic" alt={`${username}'s profile picture.`} title={username} style={{width: "250px", height: "250px", objectFit: "cover"}}/>
-                    <div className="profilecontent">
-                        <div id="head">
-                            <h1>{username}</h1>
-                            <h4>Member since {regDate}</h4>
-                            {loggedInUser.id === id ? 
-                                <button id="editprofile">Edit profile</button>
-                            :
-                                null
-                            }
-                        </div>
-                        <div id="description">
-                            Placeholder description.
-                        </div>
-                    </div>
-                </div>
+                <LeftBar history={rest.history} username={username} profilePicture={profilePicture} id={id} description={description === null ? "" : description} regDate={regDate} loggedInUser={loggedInUser} />
                 <div className="content">
                     <div id="bukketlists">
-                        Bukketlists
+                        <div><h3>Bukketlists</h3></div>
+                        {bukketlists.map(x => <div key={x.bid}>{x.name}</div>)}
+                        {/* {bukketlists} */}
                     </div>
                     <div id="submittedactivities">
-                        Submitted activities
+                        <div><h3>Submitted activities</h3></div>
+                        {submitted.map(x => x.username)}
                     </div>
                 </div>
             </div>

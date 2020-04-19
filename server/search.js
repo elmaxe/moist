@@ -13,7 +13,7 @@ router.post('/', validCookie, (req, res) => {
         return
     }
 
-    const users = db.prepare('SELECT DISTINCT username, email, profilePicture, id FROM Users WHERE username LIKE "%" || ? || "%"')
+    const users = db.prepare('SELECT DISTINCT username, email, profilePicture, id, description FROM Users WHERE username LIKE "%" || ? || "%"')
 
     var userResult
 
@@ -41,7 +41,7 @@ router.post('/', validCookie, (req, res) => {
 router.get('/user/:user', (req, res) => {
     const query = req.params.user
 
-    const user = db.prepare('SELECT username, profilePicture, id, regDate FROM Users WHERE username = ?')
+    const user = db.prepare('SELECT username, profilePicture, id, regDate, description FROM Users WHERE username = ?')
 
     user.get([query], (err, row) => {
         if (err) {
@@ -70,13 +70,13 @@ router.get('/bukketlists', (req, res) => {
     })
 })
 
-router.get('/bukketlist/:username', (req, res) => {
+router.get('/bukketlist/:username', validCookie, (req, res) => {
     const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
     INNER JOIN Users ON Users.id = Bukketlists.uid \
-    WHERE NOT Bukketlists.private = true \
-    AND Users.username = ?')
+    WHERE (Users.username = ? AND Users.username = ? AND Bukketlists.private = true) \
+    OR (Users.username = ? AND Bukketlists.private = false)')
 
-    bukketlists.all([req.params.username], (err, rows) => {
+    bukketlists.all([req.session.user.username, req.params.username, req.params.username], (err, rows) => {
         res.json({bukketlists: rows})
     })
 })

@@ -14,23 +14,7 @@
     color: rgb(150, 150, 150);
 }
 
-
-.SearchButton {
-    border-radius: 5px;
-    border: solid 1px black;
+#search-button {
     padding: 3px;
-    background-color: rgb(48, 74, 160);
     font-weight: bold;
-    color: white;
-    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-}
-
-.SearchButton:hover {
-    background-color: rgb(35, 55, 122);
-}
-
-.SearchButton:disabled {
-    cursor: not-allowed;
-    color: white;
-    background-color: rgb(157, 169, 214);
 }
