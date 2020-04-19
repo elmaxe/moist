@@ -119,7 +119,7 @@ const SearchResult = ({username, profilePicture, bukketlist}) => {
                             </div>
                         </div>
                     :
-                        <Link to={link}>
+                        <Link to={link} id="userlink">
                         {username}
                         </Link>
                     }
