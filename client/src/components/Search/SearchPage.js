@@ -112,7 +112,7 @@ const SearchResult = ({username, profilePicture, bukketlist}) => {
                                 {bukketlist.private === 0 ? "Public" : "Private"}
                             </span>
                             <div id="description">
-                                {bukketlist.description}
+                                {bukketlist.description ? bukketlist.description : "No description"}
                             </div>
                             <div id="username">
                                 {username}
