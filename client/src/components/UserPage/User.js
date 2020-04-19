@@ -78,7 +78,7 @@ class UserPage extends React.Component {
                 (error ? 
                     <Redirect to="/error" />
                 :
-                    <UserView username={user.username} profilePicture={user.profilePicture} regDate={this.date()} description={user.description} loggedInUser={this.props.state.userData.user} />)
+                    <UserView id={user.id} username={user.username} profilePicture={user.profilePicture} regDate={this.date()} description={user.description} loggedInUser={this.props.state.userData.user} />)
             }
             </div>
         )
@@ -98,7 +98,7 @@ const UserView = ({username, profilePicture, id, description, regDate, loggedInU
                         <div id="head">
                             <h1>{username}</h1>
                             <h4>Member since {regDate}</h4>
-                            {loggedInUser.username === username ? 
+                            {loggedInUser.id === id ? 
                                 <button id="editprofile">Edit profile</button>
                             :
                                 null
