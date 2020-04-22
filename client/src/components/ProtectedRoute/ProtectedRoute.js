@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
 import setUser from '../../actions/user'
 import addActivity, {removeActivity, setBucketlist} from '../../actions/bucketlist'
+import setAndShowAlert, {hideAlert} from '../../actions/alert'
 
 import Bar from '../Bar/Bar'
 
@@ -22,7 +23,7 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
 
 const mapActionsToProps = dispatch => {
     return {
-        actions: bindActionCreators({setUser, addActivity, removeActivity, setBucketlist}, dispatch)
+        actions: bindActionCreators({setUser, addActivity, removeActivity, setBucketlist, setAndShowAlert, hideAlert}, dispatch)
     }
 }
 

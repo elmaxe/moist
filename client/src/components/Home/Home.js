@@ -5,6 +5,7 @@ import '../../Buttons.css'
 import Bucketlist from '../Bucketlist/Bucketlist'
 import Suggestion from './Suggestion'
 import Sidebar from './Sidebar'
+import Alert from '../Alert/Alert'
 
 class Home extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Home extends React.Component {
             fetching: false,
             addOwn: false,
         }
-
+        console.log(props.state)
         this.save = this.save.bind(this)
         this.getSuggestion = this.getSuggestion.bind(this)
         this.get = this.get.bind(this)
@@ -108,7 +109,12 @@ class Home extends React.Component {
                     </div>
                     <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} />
                 </div>
-                <Sidebar />
+                <Sidebar setAndShowAlert={this.props.actions.setAndShowAlert}/>
+                {this.props.state.alertReducer.show ?
+                    <Alert title={this.props.state.alertReducer.title} text={this.props.state.alertReducer.text} buttons={this.props.state.alertReducer.buttons} show={this.props.state.alertReducer.show} hideAlert={this.props.actions.hideAlert}/>
+                :
+                    null
+                }
             </div>
         )
     }

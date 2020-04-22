@@ -24,12 +24,15 @@ class Sidebar extends React.Component {
                 bukketlists={[{id: 0, text: "Reee"}, {id: 1, text: "Reee2eeeeeeeeeeeeeeeeeeeeeeees"}, {id: 2, text: "Reee3"}, {id: 3, text: "Reee4"}, {id: 4, text: "Reee4"}, {id: 5, text: "Reee4"}, {id: 6, text: "Reee4"}]}
                 selected={this.state.selected}
                 onClick={this.clickItem.bind(this)}
+                setAndShowAlert={this.props.setAndShowAlert}
             ></SidebarView>
         )
     }
 }
 
-const SidebarView = ({bukketlists, selected, onClick}) => {
+//TODO: SKICKA MED ACTIONS NED TILL VIEWEN NEDAN
+
+const SidebarView = ({bukketlists, selected, onClick, setAndShowAlert}) => {
 return (
         <div className="sidebar">
             <div><h4>My bukketlists</h4></div>
@@ -48,7 +51,7 @@ return (
                     id={list.id}
                     selected={selected}
                     onClick={onClick}
-                    onDeleteClick={() => {alert("Are you sure?")}}
+                    onDeleteClick={() => setAndShowAlert("Delete Bukketlist", "Are you sure you want to delete this bukketlist? This can't be undone", [<button>Yes</button>, <button>No</button>])}
                     ></SidebarItem>
                     )}
             </div>
