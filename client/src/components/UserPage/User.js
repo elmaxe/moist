@@ -4,6 +4,7 @@ import './User.css'
 import {Redirect} from 'react-router-dom'
 
 import LeftBar from './LeftBar'
+import SearchResultBukketlist from '../Search/Views/SearchResultBukketlist'
 
 const initUser = {
     username: null,
@@ -47,6 +48,7 @@ class UserPage extends React.Component {
         const {history} = this.props
 
         const user = history.location.pathname.split("u/")[1]
+        this.setState({fetching: true})
         
         fetch(`/api/search/user/${user}`, {
             method: "GET",
