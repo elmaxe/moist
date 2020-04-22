@@ -1,0 +1,17 @@
+.SearchPageView {
+    width: 35vw;
+    /* border: solid 1px; */
+    padding: 10px 0 10px 0;
+    overflow: auto;
+    max-height: calc(100vh - 50px);
+}
+
+.SearchPageView >div> h4 {
+    padding: 15px 0 10px 0;
+}
+
+.NoResultsFound {
+    border: solid 1px;
+    width: 35vw;
+    word-break: break-word;
+}
