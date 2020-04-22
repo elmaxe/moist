@@ -1,0 +1,51 @@
+.SidebarItem {
+    background-color: gold;
+    color: black;
+    font-weight: bold;
+
+    border: solid 2px rgb(44, 87, 168);
+    border-radius: 5px;
+    padding: 10px;
+
+    margin: 2px 0 2px 0;
+
+    cursor: pointer;
+    transition: 0.2s;
+
+}
+
+.SidebarItem:hover {
+    background-color: rgb(209, 178, 0);
+}
+
+.selected {
+    background-color: rgb(44, 87, 168);
+    color: gold;
+}
+
+.selected:hover {
+    background-color: rgb(46, 54, 160);
+}
+
+#title {
+    position: absolute;
+}
+
+#delete {
+    /* float: right; */
+    position: relative;
+    bottom: 0.3vh;
+    left: calc(100% - 20px);
+    /* left: 85%; */
+    z-index: 100;
+}
+
+#deleteimg:hover {
+    opacity: 1;
+}
+
+#deleteimg {
+    width: 20px;
+    /* display: flex; */
+    opacity: 0.5;
+}

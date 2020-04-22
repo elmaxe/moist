@@ -1,0 +1,12 @@
+.sidebar {
+    width: 20vw;
+    height: calc(100vh - 50px);
+    position: absolute;
+    top: 50px;
+    right: 0;
+    /* border: solid 1px black; */
+    overflow: auto;
+    overflow-x: hidden;
+
+    padding: 10px;
+}

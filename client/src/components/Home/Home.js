@@ -4,6 +4,7 @@ import './Home.css'
 import '../../Buttons.css'
 import Bucketlist from '../Bucketlist/Bucketlist'
 import Suggestion from './Suggestion'
+import Sidebar from './Sidebar'
 
 class Home extends React.Component {
     constructor(props) {
@@ -57,16 +58,16 @@ class Home extends React.Component {
     }
 
     get() {
-        fetch('/api/activities/get', {
-            method: "GET",
-            credentials: "same-origin"
-        })
-        .then(res => res.json())
-        .then(json => {
-            console.log(json)
-            this.props.actions.setBucketlist(json.rows)
-            // this.setState({bucketlist: json.rows})
-        })
+        // fetch('/api/activities/get', {
+        //     method: "GET",
+        //     credentials: "same-origin"
+        // })
+        // .then(res => res.json())
+        // .then(json => {
+        //     console.log(json)
+        //     this.props.actions.setBucketlist(json.rows)
+        //     // this.setState({bucketlist: json.rows})
+        // })
     }
     
     upload(data) {
@@ -107,6 +108,7 @@ class Home extends React.Component {
                     </div>
                     <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} />
                 </div>
+                <Sidebar />
             </div>
         )
     }
