@@ -101,7 +101,7 @@ const LeftBarView = ({username, profilePicture, id, description, inputDescriptio
                     { isOwnProfile? 
                         edit ?
                             <>
-                                <button id="editdescbtn" className="btn green" disabled={fetchDesc || inputDescription === description} onClick={() => onSave()}>Save</button>
+                                <button id="editdescbtn" className="btn green" disabled={fetchDesc || inputDescription === description || inputDescription.length > 250} onClick={() => onSave()}>Save</button>
                                 <button id="editdescbtn" className="btn red" disabled={fetchDesc} onClick={() => onCancel()}>Cancel</button>
                             </>
                         :
@@ -109,6 +109,7 @@ const LeftBarView = ({username, profilePicture, id, description, inputDescriptio
                     :
                         null
                     }
+                    {edit ? `${inputDescription.length}/250`: null}
                     {edit ? <textarea name="inputDescription" autoFocus autoComplete="off" type="textbox" placeholder="Description" value={inputDescription} onChange={e => onChange(e)} /> : (description === '' ? "No description" : description)}
                 </div>
             </div>
