@@ -91,7 +91,7 @@
     height: 30vh;
 }
 
-textarea {
+#textareauserdesc {
     resize: none;
     height: 250px;
     width: 100%;

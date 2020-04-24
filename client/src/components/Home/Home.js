@@ -93,8 +93,9 @@ class Home extends React.Component {
             setAndShowAlert: this.props.actions.setAndShowAlert,
             hideAlert: this.props.actions.hideAlert,
             fetchBukketlists: this.props.actions.fetchBukketlists,
+            createBukketlist: this.props.actions.createBukketlist,
             removeBukketlist: this.props.actions.removeBukketlist,
-            setBukketlist: this.props.actions.setBucketlist
+            setBukketlist: this.props.actions.setBucketlist,
         }
 
         const currentBukketlist = this.props.state.bucketlists.map(item => item.bukketlist).filter(x => x.bid === this.props.state.bucketlist)[0]
@@ -119,7 +120,7 @@ class Home extends React.Component {
                     </div>
                     {/* <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} /> */}
                 </div>
-                <Sidebar actions={sidebarActions} state={{bucketlists: this.props.state.bucketlists}}/>
+                <Sidebar actions={sidebarActions} state={{bucketlists: this.props.state.bucketlists, bucketlist: this.props.state.bucketlist}}/>
                 {this.props.state.alertReducer.show ?
                     <Alert title={this.props.state.alertReducer.title} text={this.props.state.alertReducer.text} buttons={this.props.state.alertReducer.buttons} show={this.props.state.alertReducer.show} hideAlert={this.props.actions.hideAlert}/>
                 :

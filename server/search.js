@@ -23,14 +23,22 @@ router.post('/', validCookie, (req, res) => {
             return
         }
 
+        // const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
+        // INNER JOIN Users ON Users.id = Bukketlists.uid \
+        // WHERE (Users.username = ? AND Users.username LIKE "%" || ? || "%" AND Bukketlists.private = true) \
+        // OR (Users.username LIKE "%" || ? || "%" AND Bukketlists.private = false)')
+
         const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
         INNER JOIN Users ON Users.id = Bukketlists.uid \
-        WHERE (Users.username = ? AND Users.username LIKE "%" || ? || "%" AND Bukketlists.private = true) \
-        OR (Users.username LIKE "%" || ? || "%" AND Bukketlists.private = false)')
+        WHERE (Bukketlists.name LIKE "%" || ? || "%" AND Bukketlists.private = false) \
+        OR (Bukketlists.name LIKE "%" || ? || "%" AND Bukketlists.private = true AND Users.id = ?) \
+        OR (Users.username LIKE "%" || ? || "%" AND Bukketlists.private = false) \
+        OR (Users.username LIKE "%" || ? || "%" AND Bukketlists.private = true AND Users.id = ?)')
     
         userResult = rows.splice(0, 10)
         console.log(req.session.user.username)
-        bukketlists.all([req.session.user.username, query, query], (err, rows) => {
+        // bukketlists.all([req.session.user.username, query, query], (err, rows) => {
+        bukketlists.all([query, query, req.session.user.id, query, query, req.session.user.id], (err, rows) => {
             // res.json({bukketlists: rows})
             res.status(200).json({users: userResult, bukketlists: rows.splice(0,15)})
         })

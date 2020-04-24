@@ -9,13 +9,13 @@ import NoResults from './NoResults'
 
 import './SearchPage.css'
 
-const SearchPageView = ({fetching, userResults, bukketlistResults, query}) => {
+const SearchPageView = ({fetching, userResults = "", bukketlistResults = "", query}) => {
     return (
         <div style={{paddingTop: "50px"}}>
             {fetching ?
                 <img src={spinner} />
             :
-                userResults.length === 0 ?
+                userResults.length === 0 && bukketlistResults.length === 0 ?
                     // "No users found"
                     <NoResults query={query} />
                 : 

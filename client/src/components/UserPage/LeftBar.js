@@ -110,7 +110,7 @@ const LeftBarView = ({username, profilePicture, id, description, inputDescriptio
                         null
                     }
                     {edit ? <span style={inputDescription.length > 250 ? {color: "red"} : null}>{inputDescription.length}/250</span>: null}
-                    {edit ? <textarea name="inputDescription" style={inputDescription === description || inputDescription.length > 250 ? {border: "solid 1px red"} : null} autoFocus autoComplete="off" type="textbox" placeholder="Description" value={inputDescription} onChange={e => onChange(e)} /> : (description === '' ? "No description" : description)}
+                    {edit ? <textarea id="textareauserdesc" name="inputDescription" style={inputDescription === description || inputDescription.length > 250 ? {border: "solid 1px red"} : null} autoFocus autoComplete="off" type="textbox" placeholder="Description" value={inputDescription} onChange={e => onChange(e)} /> : (description === '' ? "No description" : description)}
                 </div>
             </div>
         </div>

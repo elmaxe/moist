@@ -1,6 +1,6 @@
 import {ADD_ACTIVITY, REMOVE_ACTIVITY, SET_BUCKETLIST, FETCH_BUKKETLISTS} from '../actions/bucketlist'
 
-const initState = []
+const initState = 0
 
 const bucketlist = (state = initState, action) => {
     switch (action.type) {

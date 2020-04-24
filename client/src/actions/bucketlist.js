@@ -122,4 +122,26 @@ export function removeBukketlist(bid) {
     }
 }
 
+export function createBukketlist(name, description, isPrivate) {
+    return dispatch => {
+        fetch('/api/bukketlist/create', {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({name, description, private: isPrivate})
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.error) {
+                fetchIsAuth(dispatch)
+            } else {
+                getBukketlists(dispatch)
+                dispatch({type: "HIDE_ALERT"})
+            }
+        })
+    }
+}
+
 export default addActivity
