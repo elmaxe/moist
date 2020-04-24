@@ -1,4 +1,4 @@
-import {ADD_ACTIVITY, REMOVE_ACTIVITY, SET_BUCKETLIST} from '../actions/bucketlist'
+import {ADD_ACTIVITY, REMOVE_ACTIVITY, SET_BUCKETLIST, FETCH_BUKKETLISTS} from '../actions/bucketlist'
 
 const initState = []
 
@@ -12,7 +12,7 @@ const bucketlist = (state = initState, action) => {
             newArray.splice(action.index, 1)
             return newArray
         case SET_BUCKETLIST:
-            return action.bucketlist
+            return action.id
         default: return state
     }
 }

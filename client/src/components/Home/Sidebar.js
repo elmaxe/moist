@@ -13,26 +13,56 @@ class Sidebar extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.props.actions.fetchBukketlists()
+    }
+
     clickItem(id) {
-        if (this.state.id !== id)
-        this.setState({selected: id})
+        if (this.state.selected !== id) {
+            this.setState({selected: id})
+            this.props.actions.setBukketlist(id)
+        }
+    }
+
+    clickDelete(bukketlist) {
+        const {name, bid} = bukketlist
+        const {actions} = this.props
+        console.log(bukketlist)
+        const buttons = [
+            <button
+                className="btn red"
+                style={{margin: "0 10px 0 10px", padding: "3px"}}
+                onClick={() => {
+                    actions.removeBukketlist(bid)
+                }}
+            >Yes</button>,
+            <button
+                className="btn green"
+                style={{margin: "0 10px 0 10px", padding: "3px"}}
+                onClick={() => {
+                    actions.hideAlert()
+                }}
+            >No</button>,
+        ]
+
+        actions.setAndShowAlert("Delete Bukketlist", <span>Are you sure you want to delete "<b>{name}</b>"? This can't be undone</span>, buttons)
     }
 
     render() {
         return( 
             <SidebarView
-                bukketlists={[{id: 0, text: "Reee"}, {id: 1, text: "Reee2eeeeeeeeeeeeeeeeeeeeeeees"}, {id: 2, text: "Reee3"}, {id: 3, text: "Reee4"}, {id: 4, text: "Reee4"}, {id: 5, text: "Reee4"}, {id: 6, text: "Reee4"}]}
+            // [{id: 0, text: "Reee"}, {id: 1, text: "Reee2eeeeeeeeeeeeeeeeeeeeeeees"}, {id: 2, text: "Reee3"}, {id: 3, text: "Reee4"}, {id: 4, text: "Reee4"}, {id: 5, text: "Reee4"}, {id: 6, text: "Reee4"}]
+                bukketlists={this.props.state.bucketlists}
                 selected={this.state.selected}
                 onClick={this.clickItem.bind(this)}
-                setAndShowAlert={this.props.setAndShowAlert}
+                onDeleteClick={this.clickDelete.bind(this)}
+                // actions={this.props.actions.setAndShowAlert}
             ></SidebarView>
         )
     }
 }
 
-//TODO: SKICKA MED ACTIONS NED TILL VIEWEN NEDAN
-
-const SidebarView = ({bukketlists, selected, onClick, setAndShowAlert}) => {
+const SidebarView = ({bukketlists, selected, onClick, onDeleteClick}) => {
 return (
         <div className="sidebar">
             <div><h4>My bukketlists</h4></div>
@@ -47,11 +77,12 @@ return (
                 ></SidebarItem>
                 {bukketlists.map(list => 
                     <SidebarItem
-                    text={list.text}
-                    id={list.id}
+                    key={list.bukketlist.bid}
+                    text={list.bukketlist.name}
+                    id={list.bukketlist.bid}
                     selected={selected}
                     onClick={onClick}
-                    onDeleteClick={() => setAndShowAlert("Delete Bukketlist", "Are you sure you want to delete this bukketlist? This can't be undone", [<button>Yes</button>, <button>No</button>])}
+                    onDeleteClick={() => onDeleteClick(list.bukketlist)}
                     ></SidebarItem>
                     )}
             </div>

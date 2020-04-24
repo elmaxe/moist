@@ -32,7 +32,7 @@ const Alert = ({title, text, buttons = [<button className="btn green">RE</button
                     {text}
                 </div>
                 <div id="buttons">
-                    {buttons.map(button => <span>{button}</span>)}
+                    {buttons.map((button, i) => <span key={i}>{button}</span>)}
                 </div>
             </div>
         </div>

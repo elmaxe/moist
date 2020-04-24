@@ -88,28 +88,38 @@ class Home extends React.Component {
     render() {
         const {suggestion, fetching, addOwn} = this.state
 
-        const suggInList = this.props.state.bucketlist.map(x => x.activity).includes(suggestion === null ? "" : suggestion.activity)
+        // const suggInList = this.props.state.bucketlist.map(x => x.activity).includes(suggestion === null ? "" : suggestion.activity)
+        const sidebarActions = {
+            setAndShowAlert: this.props.actions.setAndShowAlert,
+            hideAlert: this.props.actions.hideAlert,
+            fetchBukketlists: this.props.actions.fetchBukketlists,
+            removeBukketlist: this.props.actions.removeBukketlist,
+            setBukketlist: this.props.actions.setBucketlist
+        }
 
+        const currentBukketlist = this.props.state.bucketlists.map(item => item.bukketlist).filter(x => x.bid === this.props.state.bucketlist)[0]
+        // console.log(this.props.state.bucketlists.map(item => item.bukketlist).filter(x => x.bid === this.props.state.bucketlist)[0].name)
         return (
             <div>
                 <div className="Home">
                     <div>
                         <h1>Manage bukketlist</h1>
                     </div>
-                    <div className="SuggestionButtons">
+                    {/* <div className="SuggestionButtons">
                         <button className="btn blue" onClick={this.getSuggestion} disabled={fetching || addOwn} >Suggest a{suggestion ? " new" : "n"} activity</button>
                         <button className="btn red" onClick={this.toggleAddOwn} disabled={!suggestion}>{!addOwn ? "Add own activity" : "Cancel"}</button>
                     </div>
                         <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList || addOwn}>Save to bucketlist</button>
                     <div>
                         <Suggestion state={this.props.state} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
-                    </div>
+                    </div> */}
                     <div>
-                        <h1>My bukketlist</h1>
+                        {/* <h1>My bukketlist</h1> */}
+                        <h1>{currentBukketlist ? currentBukketlist.name : "My bukketlist"}</h1>
                     </div>
-                    <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} />
+                    {/* <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} /> */}
                 </div>
-                <Sidebar setAndShowAlert={this.props.actions.setAndShowAlert}/>
+                <Sidebar actions={sidebarActions} state={{bucketlists: this.props.state.bucketlists}}/>
                 {this.props.state.alertReducer.show ?
                     <Alert title={this.props.state.alertReducer.title} text={this.props.state.alertReducer.text} buttons={this.props.state.alertReducer.buttons} show={this.props.state.alertReducer.show} hideAlert={this.props.actions.hideAlert}/>
                 :
