@@ -11,7 +11,7 @@ const SearchResultBukketlist = ({title, isPrivate, description, username, link})
                     <Link to={link}>
                         {title}
                     </Link>
-                    <span id="availability">
+                    <span id="availability" title={isPrivate === 0 ? "Can be seen by anyone" : "Can only be seen by you"}>
                         {isPrivate === 0 ? "Public" : "Private"}
                     </span>
                 </div>
