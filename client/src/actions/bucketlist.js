@@ -5,7 +5,8 @@ export const SET_BUCKETLIST = "SET_BUCKETLIST"
 
 export const FETCH_BUKKETLISTS = "FETCH_BUKKETLISTS"
 
-function addActivity(data) {
+function addActivity(data, bid) {
+    console.log(bid)
     return dispatch => {
         fetch('/api/activities/add', {
             method: "POST",
@@ -20,13 +21,13 @@ function addActivity(data) {
                 participants: data.participants,
                 price: data.price,
                 link: data.link,
-                //TODO: GENERATE KEY FOR user created activities
                 key: data.key,
                 createdBy: {
                     uid: data.createdByID,
                     username: data.createdByUsername
                 },
-                saveGlobally: data.saveGlobally
+                saveGlobally: data.saveGlobally,
+                bid
             })
         })
         .then(res => res.json())
@@ -72,9 +73,9 @@ export function removeActivity(index, aid) {
     }
 }
 
-export function setBucketlist(id) {
+export function setBucketlist(bukketlist) {
     return dispatch => {
-        dispatch({type: SET_BUCKETLIST, id})
+        dispatch({type: SET_BUCKETLIST, bukketlist})
     }
 }
 

@@ -6,6 +6,7 @@ import './Bucketlist.css'
 class Bucketlist extends React.Component {
     constructor(props) {
         super(props)
+        console.log(props)
     }
 
     removeFromList(index, activity) {
@@ -16,7 +17,7 @@ class Bucketlist extends React.Component {
         const {bucketlist} = this.props
         return (
             <>
-            <BucketlistView bucketlist={bucketlist} onRemove={this.removeFromList.bind(this)} />
+            <BucketlistView bucketlist={bucketlist.activities} onRemove={this.removeFromList.bind(this)} />
             </>
         )
     }
@@ -26,7 +27,7 @@ Bucketlist.propTypes = {
     bucketlist: PropTypes.array.isRequired
 }
 
-const BucketlistView = ({bucketlist, onRemove}) => {
+const BucketlistView = ({bucketlist = [], onRemove}) => {
     return (
         <div className="Bucketlist">
             {bucketlist.map((x,i) => <div  key={i}><BucketlistItem index={i} activity={x} onRemove={onRemove}/></div>)}

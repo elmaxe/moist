@@ -20,11 +20,13 @@ class Sidebar extends React.Component {
         this.props.actions.fetchBukketlists()
     }
 
-    clickItem(id) {
-        if (this.props.state.bucketlist !== id) {
-            this.setState({selected: id})
-            this.props.actions.setBukketlist(id)
-        }
+    clickItem(bukketlist) {
+        console.log(bukketlist)
+        console.log(this.props.state)
+        // if (this.props.state.bucketlist.bucketlist && this.props.state.bucketlist.bukketlist.bid !== bukketlist.bukketlist.bid) {
+            // this.setState({selected: id})
+            this.props.actions.setBukketlist(bukketlist)
+        // }
     }
 
     clickDelete(bukketlist) {
@@ -129,7 +131,7 @@ class Sidebar extends React.Component {
             <SidebarView
             // [{id: 0, text: "Reee"}, {id: 1, text: "Reee2eeeeeeeeeeeeeeeeeeeeeeees"}, {id: 2, text: "Reee3"}, {id: 3, text: "Reee4"}, {id: 4, text: "Reee4"}, {id: 5, text: "Reee4"}, {id: 6, text: "Reee4"}]
                 bukketlists={this.props.state.bucketlists}
-                selected={this.props.state.bucketlist}
+                selected={this.props.state.bucketlist.bukketlist ? this.props.state.bucketlist.bukketlist.bid : -1}
                 onClick={this.clickItem.bind(this)}
                 onDeleteClick={this.clickDelete.bind(this)}
                 createNewClick={this.clickCreateNew.bind(this)}
@@ -160,6 +162,7 @@ return (
                     selected={selected}
                     onClick={onClick}
                     onDeleteClick={() => onDeleteClick(list.bukketlist)}
+                    bukketlist={list}
                     ></SidebarItem>
                 )}
             </div>
@@ -167,11 +170,11 @@ return (
     )
 }
 
-const SidebarItem = ({text, id, selected, onClick, onDeleteClick, noDeleteIcon = false}) => {
+const SidebarItem = ({text, id, selected, onClick, onDeleteClick, noDeleteIcon = false, bukketlist}) => {
     const itemStyle = selected === id ? " selected" : ""
 
     return (
-        <div className={"SidebarItem" + itemStyle} onClick={() => onClick(id)} >
+        <div className={"SidebarItem" + itemStyle} onClick={() => onClick(bukketlist)} >
             <span id="title">{text.substring(0, 24)}</span>
             {noDeleteIcon ?
                 <span id="delete" onClick={onDeleteClick}>

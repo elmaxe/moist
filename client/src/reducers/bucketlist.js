@@ -1,6 +1,6 @@
 import {ADD_ACTIVITY, REMOVE_ACTIVITY, SET_BUCKETLIST, FETCH_BUKKETLISTS} from '../actions/bucketlist'
 
-const initState = 0
+const initState = {}
 
 const bucketlist = (state = initState, action) => {
     switch (action.type) {
@@ -12,7 +12,7 @@ const bucketlist = (state = initState, action) => {
             newArray.splice(action.index, 1)
             return newArray
         case SET_BUCKETLIST:
-            return action.id
+            return action.bukketlist
         default: return state
     }
 }

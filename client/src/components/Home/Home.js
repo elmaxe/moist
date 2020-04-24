@@ -72,7 +72,7 @@ class Home extends React.Component {
     }
     
     upload(data) {
-        this.props.actions.addActivity(data)
+        this.props.actions.addActivity(data, this.props.state.bucketlist.bukketlist.bid)
     }
 
     toggleAddOwn() {
@@ -88,7 +88,7 @@ class Home extends React.Component {
     render() {
         const {suggestion, fetching, addOwn} = this.state
 
-        // const suggInList = this.props.state.bucketlist.map(x => x.activity).includes(suggestion === null ? "" : suggestion.activity)
+        const suggInList = this.props.state.bucketlists.map(x => x.activities.activity).includes(suggestion === null ? "" : suggestion.activity)
         const sidebarActions = {
             setAndShowAlert: this.props.actions.setAndShowAlert,
             hideAlert: this.props.actions.hideAlert,
@@ -100,25 +100,25 @@ class Home extends React.Component {
 
         const currentBukketlist = this.props.state.bucketlists.map(item => item.bukketlist).filter(x => x.bid === this.props.state.bucketlist)[0]
         // console.log(this.props.state.bucketlists.map(item => item.bukketlist).filter(x => x.bid === this.props.state.bucketlist)[0].name)
+        console.log(this.props.state.bucketlist)
         return (
             <div>
                 <div className="Home">
                     <div>
-                        <h1>Manage bukketlist</h1>
+                        <h1>Add activities</h1>
                     </div>
-                    {/* <div className="SuggestionButtons">
+                    <div className="SuggestionButtons">
                         <button className="btn blue" onClick={this.getSuggestion} disabled={fetching || addOwn} >Suggest a{suggestion ? " new" : "n"} activity</button>
                         <button className="btn red" onClick={this.toggleAddOwn} disabled={!suggestion}>{!addOwn ? "Add own activity" : "Cancel"}</button>
                     </div>
-                        <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList || addOwn}>Save to bucketlist</button>
+                        <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList || addOwn || this.props.state.bucketlist.bukketlist === undefined}>Save to bucketlist</button>
                     <div>
                         <Suggestion state={this.props.state} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
-                    </div> */}
-                    <div>
-                        {/* <h1>My bukketlist</h1> */}
-                        <h1>{currentBukketlist ? currentBukketlist.name : "My bukketlist"}</h1>
                     </div>
-                    {/* <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} /> */}
+                    <div>
+                        <h1>{this.props.state.bucketlist.bukketlist ? this.props.state.bucketlist.bukketlist.name : "Select a bukketlist"}</h1>
+                    </div>
+                    <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} />
                 </div>
                 <Sidebar actions={sidebarActions} state={{bucketlists: this.props.state.bucketlists, bucketlist: this.props.state.bucketlist}}/>
                 {this.props.state.alertReducer.show ?
