@@ -38,10 +38,10 @@ router.post('/get', validCookie, (req, res) => {
 
 router.post('/add', validCookie, (req, res) => {
     const user = req.session.user
-    const {activity, accessibility, type, participants, price, link, key, saveGlobally} = req.body
-    const add = db.prepare('INSERT INTO Activities (uid, activity, accessibility, type, participants, price, link, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
-
-    add.run([user.id, activity, accessibility, type, participants, price, link, key], (err) => {
+    const {bid, activity, accessibility, type, participants, price, link, key, saveGlobally} = req.body
+    const add = db.prepare('INSERT INTO Activities (bid, activity, accessibility, type, participants, price, link, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+    //TODO: KOLLA ATT BID TILLHÖR DIG SJÄLV, SÅ MAN INTE KAN LÄGGA TILL I ANDRAS LISTOR (GÅR EJ ATT GÖRA FRÅN WEBBLÄSARE, BARA VIA KOMMANDS)
+    add.run([bid, activity, accessibility, type, participants, price, link, key], (err) => {
         if (err) {
             console.log(err)
             res.status(500).json({"error":"Internal server error"})
