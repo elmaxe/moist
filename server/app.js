@@ -30,7 +30,7 @@ app.use(helmet({
             defaultSrc: ["'self'"],
             scriptSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com'],
             styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
-            imgSrc: ["'self'"],
+            imgSrc: ["'self'", 'data:'],
             fontSrc: ['fonts.googleapis.com', 'fonts.gstatic.com']
         }
     }
