@@ -94,7 +94,7 @@ const getBukketlists = (dispatch) => {
     .then(json => {
         console.log(json)
         if (json.error) {
-            dispatch(FETCH_BUKKETLISTS, [])
+            dispatch({type: FETCH_BUKKETLISTS, bucketlists: []})
         } else {
             dispatch({type: FETCH_BUKKETLISTS, bukketlists: json.bukketlists})
         }
