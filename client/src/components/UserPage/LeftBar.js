@@ -9,7 +9,7 @@ class LeftBar extends React.Component {
             fetchDesc: false,
             description: this.props.description,
             inputDescription: this.props.description,
-            file: null
+            file: []
         }
     }
 
@@ -88,7 +88,7 @@ const LeftBarView = ({username, profilePicture, id, description, inputDescriptio
             <img src={picture} className="profilePic" alt={`${username}'s profile picture.`} title={username} style={{width: "250px", height: "250px", objectFit: "cover"}}/>
             {edit ? 
                 <div className="update-profile-pic-box">
-                    <input name="file" id="uploadprofilepic" disabled="true" type="file" onChange={e => onChange(e)} value={file} />
+                    <input name="file" id="uploadprofilepic" disabled={true} type="file" onChange={e => onChange(e)} value={file} />
                     <button id="uploadprofilepicbtn" disabled={!file || true} className="btn green">Upload</button>
                 </div>
             : null}
