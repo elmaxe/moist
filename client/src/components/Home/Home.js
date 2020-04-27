@@ -11,7 +11,15 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            suggestion: null,
+            suggestion: {
+                activity: "",
+                accessibility: "",
+                key: "",
+                link: "",
+                participants: "",
+                price: "",
+                type: ""
+            },
             fetching: false,
             addOwn: false,
         }
@@ -88,7 +96,8 @@ class Home extends React.Component {
     render() {
         const {suggestion, fetching, addOwn} = this.state
 
-        const suggInList = this.props.state.bucketlists.map(x => x.activities.activity).includes(suggestion === null ? "" : suggestion.activity)
+        const suggInList = this.props.state.bucketlist.activities.map(x => {return x.activity === suggestion.activity}).includes(true)
+        
         const sidebarActions = {
             setAndShowAlert: this.props.actions.setAndShowAlert,
             hideAlert: this.props.actions.hideAlert,
@@ -113,7 +122,7 @@ class Home extends React.Component {
                         <button className="btn red" onClick={this.toggleAddOwn} disabled={!suggestion}>{!addOwn ? "Add own activity" : "Cancel"}</button>
                     </div>
                         <span>
-                        <button className="btn green" onClick={this.save} disabled={!suggestion || suggInList || addOwn || this.props.state.bucketlist.bukketlist === undefined}>Save to bucketlist</button>
+                        <button className="btn green" onClick={this.save} disabled={suggestion.activity === "" || suggInList || addOwn || this.props.state.bucketlist.bukketlist === undefined}>Save to bucketlist</button>
                         {this.props.state.bucketlist.bukketlist === undefined && suggestion && "No bukketlist selected"}
                         </span>
                     <div>

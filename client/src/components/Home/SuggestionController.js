@@ -54,7 +54,7 @@ class Suggestion extends React.Component {
         return (
             // <SuggestionView fetching={fetching} suggestion={suggestion} addOwn={addOwn} ownState={this.state} onChangeOwn={this.onChangeOwn.bind(this)} onSaveOwn={this.onSaveOwn.bind(this)} user={this.props.state.userData.user} />
             <>
-                {!addOwn && <SuggestedActivity fetching={fetching} suggestion={suggestion} user={this.props.state.userData.user} />}
+                {!addOwn && <SuggestedActivity fetching={fetching} suggestion={suggestion.activity === "" ? null : suggestion} user={this.props.state.userData.user} />}
                 {addOwn && <SuggestionAddOwn addOwnState={this.state} onChange={this.onChangeOwn.bind(this)} onSave={this.onSaveOwn.bind(this)}/>}
             </>
         )
