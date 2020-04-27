@@ -33,7 +33,7 @@ class Bucketlist extends React.Component {
 }
 
 Bucketlist.propTypes = {
-    bucketlist: PropTypes.array.isRequired
+    bucketlist: PropTypes.object.isRequired
 }
 
 const BucketlistView = ({bucketlist = [], onRemove}) => {
@@ -45,7 +45,7 @@ const BucketlistView = ({bucketlist = [], onRemove}) => {
 }
 
 BucketlistView.propTypes = {
-    bucketlist: PropTypes.array.isRequired,
+    bucketlist: PropTypes.array,
     onRemove: PropTypes.func.isRequired
 }
 
