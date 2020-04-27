@@ -7,17 +7,26 @@ class Bucketlist extends React.Component {
     constructor(props) {
         super(props)
         console.log(props)
+
+        this.state = {
+            bucketlist: this.props.bucketlist
+        }
     }
 
     removeFromList(index, activity) {
-        this.props.actions.removeActivity(index, activity.aid)
+        this.props.actions.removeActivity(index, activity.bid, activity.activity)
     }
 
+    // componentWillReceiveProps() {
+    //     this.setState({bucketlist: this.props.bucketlist})
+    // }
+
     render() {
-        const {bucketlist} = this.props
+        // const {bucketlist} = this.props
+        console.log("RERENDER")
         return (
             <>
-            <BucketlistView bucketlist={bucketlist.activities} onRemove={this.removeFromList.bind(this)} />
+            <BucketlistView bucketlist={this.props.bucketlist.activities} onRemove={this.removeFromList.bind(this)} />
             </>
         )
     }

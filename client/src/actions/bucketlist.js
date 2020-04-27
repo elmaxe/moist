@@ -2,11 +2,12 @@ import {fetchIsAuth} from './user'
 export const ADD_ACTIVITY = "ADD_ACTIVITY"
 export const REMOVE_ACTIVITY = "REMOVE_ACTIVITY"
 export const SET_BUCKETLIST = "SET_BUCKETLIST"
+export const CLEAR_BUCKETLIST = "CLEAR_BUCKETLIST"
 
 export const FETCH_BUKKETLISTS = "FETCH_BUKKETLISTS"
 
-function addActivity(data, bid) {
-    console.log(bid)
+function addActivity(activity, bid) {
+    console.log(activity)
     return dispatch => {
         fetch('/api/activities/add', {
             method: "POST",
@@ -15,18 +16,18 @@ function addActivity(data, bid) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                activity: data.activity,
-                accessibility: data.accessibility,
-                type: data.type,
-                participants: data.participants,
-                price: data.price,
-                link: data.link,
-                key: data.key,
+                activity: activity.activity,
+                accessibility: activity.accessibility,
+                type: activity.type,
+                participants: activity.participants,
+                price: activity.price,
+                link: activity.link,
+                key: activity.key,
                 createdBy: {
-                    uid: data.createdByID,
-                    username: data.createdByUsername
+                    uid: activity.createdByID,
+                    username: activity.createdByUsername
                 },
-                saveGlobally: data.saveGlobally,
+                saveGlobally: activity.saveGlobally,
                 bid
             })
         })
@@ -37,21 +38,26 @@ function addActivity(data, bid) {
                 //TODO: SHOW ERROR
             } else {
                 //this.get()
-                dispatch({type: ADD_ACTIVITY, activity: {
-                    activity: data.activity,
-                    accessibility: data.accessibility,
-                    type: data.type,
-                    participants: data.participants,
-                    price: data.price,
-                    link: data.link,
-                    key: data.key
+                //TODO: aid
+                dispatch({type: ADD_ACTIVITY, bid, activity: {
+                    aid: undefined,
+                    bid,
+                    activity: activity.activity,
+                    accessibility: activity.accessibility,
+                    type: activity.type,
+                    participants: activity.participants,
+                    price: activity.price,
+                    link: activity.link,
+                    key: activity.key
                 }})
+                // dispatch({type: FETCH_BUKKETLISTS, bukketlists: json.bukketlists})
+                // getBukketlists(dispatch)
             }
         })
     }
 }
 
-export function removeActivity(index, aid) {
+export function removeActivity(index, bid, activity) {
     return dispatch => {
         fetch('/api/activities/remove', {
             method: "POST",
@@ -59,7 +65,7 @@ export function removeActivity(index, aid) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({aid})
+            body: JSON.stringify({bid, activity})
         })
         .then(res => res.json())
         .then(json => {
@@ -67,15 +73,22 @@ export function removeActivity(index, aid) {
             if (json.error) {
 
             } else {
-                dispatch({type: REMOVE_ACTIVITY, index})
+                dispatch({type: REMOVE_ACTIVITY, bid, index})
             }
         })
+        // dispatch({type: REMOVE_ACTIVITY, bid, index})
     }
 }
 
 export function setBucketlist(bukketlist) {
     return dispatch => {
         dispatch({type: SET_BUCKETLIST, bukketlist})
+    }
+}
+
+export function clearBucketlist() {
+    return dispatch => {
+        dispatch({type: CLEAR_BUCKETLIST})
     }
 }
 

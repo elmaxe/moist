@@ -67,11 +67,11 @@ router.post('/add', validCookie, (req, res) => {
 })
 
 router.post('/remove', validCookie, (req, res) => {
-    const user = req.session.user
-    const {data, aid} = req.body
+    // const user = req.session.user
+    const {bid, activity} = req.body
 
-    const remove = db.prepare('DELETE FROM Activities WHERE uid = ? AND aid = ?')
-    remove.run([user.id, aid], function(err) {
+    const remove = db.prepare('DELETE FROM Activities WHERE bid = ? AND activity = ?')
+    remove.run([bid, activity], function(err) {
         if (err) {
             res.status(500).json({"error":"Internal server error"})
             return

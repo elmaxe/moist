@@ -36,6 +36,7 @@ class Sidebar extends React.Component {
                 style={{margin: "0 10px 0 10px", padding: "3px"}}
                 onClick={() => {
                     actions.removeBukketlist(bid)
+                    actions.clearBucketlist()
                 }}
             >Yes</button>,
             <button

@@ -96,6 +96,7 @@ class Home extends React.Component {
             createBukketlist: this.props.actions.createBukketlist,
             removeBukketlist: this.props.actions.removeBukketlist,
             setBukketlist: this.props.actions.setBucketlist,
+            clearBucketlist: this.props.actions.clearBucketlist
         }
 
         const currentBukketlist = this.props.state.bucketlists.map(item => item.bukketlist).filter(x => x.bid === this.props.state.bucketlist)[0]
