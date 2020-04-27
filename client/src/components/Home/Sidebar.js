@@ -1,8 +1,5 @@
 import React from 'react'
-import './Sidebar.css'
-import './SidebarItem.css'
-
-import DeleteImage from '../../images/criss-cross.svg'
+import SidebarView from './Views/Sidebar/SidebarView'
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -139,54 +136,6 @@ class Sidebar extends React.Component {
             ></SidebarView>
         )
     }
-}
-
-const SidebarView = ({bukketlists, selected, onClick, onDeleteClick, createNewClick}) => {
-return (
-        <div className="sidebar">
-            <div><h4>My bukketlists</h4></div>
-            <div>
-                <SidebarItem
-                    className="create-bukketlist"
-                    text="Create new Bukketlist..."
-                    id={-1}
-                    selected={-1}
-                    onClick={() => createNewClick()}
-                    noDeleteIcon
-                ></SidebarItem>
-                {bukketlists.map(list => 
-                    <SidebarItem
-                    key={list.bukketlist.bid}
-                    text={list.bukketlist.name}
-                    id={list.bukketlist.bid}
-                    selected={selected}
-                    onClick={onClick}
-                    onDeleteClick={() => onDeleteClick(list.bukketlist)}
-                    bukketlist={list}
-                    ></SidebarItem>
-                )}
-            </div>
-        </div>
-    )
-}
-
-const SidebarItem = ({text, id, selected, onClick, onDeleteClick, noDeleteIcon = false, bukketlist}) => {
-    const itemStyle = selected === id ? " selected" : ""
-
-    return (
-        <div className={"SidebarItem" + itemStyle} onClick={() => onClick(bukketlist)} >
-            <span id="itemtitle">{text.substring(0, 24)}</span>
-            {noDeleteIcon ?
-                <span id="delete" onClick={onDeleteClick}>
-                <img id="deleteimg" src="" />
-            </span>
-            : 
-                <span id="delete" onClick={onDeleteClick}>
-                    <img id="deleteimg" src={DeleteImage}  />
-                </span>
-            }
-        </div>
-    )
 }
 
 export default Sidebar

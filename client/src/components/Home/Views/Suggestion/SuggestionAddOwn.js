@@ -1,11 +1,8 @@
 import React from 'react'
 
-import spinner from '../../images/spinner.gif'
-import Accessibility from '../../images/accessibility.svg'
-import Participants from '../../images/participants.svg'
-import Price from '../../images/price.svg'
-import questionmark from '../../images/questionmark.svg'
-import { Link } from 'react-router-dom'
+import Accessibility from '../../../../images/accessibility.svg'
+import Participants from '../../../../images/participants.svg'
+import Price from '../../../../images/price.svg'
 import './SuggestionAddOwn.css'
 
 const SuggestionAddOwn = ({addOwnState, onChange, onSave}) => {

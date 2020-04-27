@@ -3,7 +3,7 @@ import React from 'react'
 import './Home.css'
 import '../../Buttons.css'
 import Bucketlist from '../Bucketlist/Bucketlist'
-import Suggestion from './Suggestion'
+import SuggestionController from './SuggestionController'
 import Sidebar from './Sidebar'
 import Alert from '../Alert/Alert'
 
@@ -116,7 +116,7 @@ class Home extends React.Component {
                         {this.props.state.bucketlist.bukketlist === undefined && suggestion && "No bukketlist selected"}
                         </span>
                     <div>
-                        <Suggestion state={this.props.state} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
+                        <SuggestionController state={this.props.state} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
                     </div>
                     <div>
                         <h1>{this.props.state.bucketlist.bukketlist ? this.props.state.bucketlist.bukketlist.name : "Select a bukketlist"}</h1>
