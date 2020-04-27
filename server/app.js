@@ -90,6 +90,7 @@ app.use('/api/upload', upload)
 app.use('/api/search', search)
 app.use('/api/auth/user', user)
 
+app.use('/bukket', express.static(path.join(__dirname, './bukket')))
 app.use('/images', express.static(path.join(__dirname, './images')))
 app.use('/u/images', express.static(path.join(__dirname, './images')))
 
