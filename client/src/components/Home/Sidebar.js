@@ -175,7 +175,7 @@ const SidebarItem = ({text, id, selected, onClick, onDeleteClick, noDeleteIcon =
 
     return (
         <div className={"SidebarItem" + itemStyle} onClick={() => onClick(bukketlist)} >
-            <span id="title">{text.substring(0, 24)}</span>
+            <span id="itemtitle">{text.substring(0, 24)}</span>
             {noDeleteIcon ?
                 <span id="delete" onClick={onDeleteClick}>
                 <img id="deleteimg" src="" />

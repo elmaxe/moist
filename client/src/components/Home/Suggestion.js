@@ -1,11 +1,14 @@
 import React from 'react'
-import './Suggestion.css'
+// import './Suggestion.css'
 import Accessibility from '../../images/accessibility.svg'
 import Participants from '../../images/participants.svg'
 import Price from '../../images/price.svg'
 import spinner from '../../images/spinner.gif'
 import questionmark from '../../images/questionmark.svg'
 import { Link } from 'react-router-dom'
+
+import SuggestedActivity from './SuggestedActivity'
+import SuggestionAddOwn from './SuggestionAddOwn'
 
 const initState = {
     title: "",
@@ -67,52 +70,56 @@ const SuggestionView = ({fetching, suggestion, addOwn, ownState, onChangeOwn, on
     const invalidData = isNaN(parseFloat(ownState.accessibility)) || isNaN(parseInt(ownState.participants)) || isNaN(parseFloat(ownState.price)) || parseFloat(ownState.accessibility) < 0 || parseFloat(ownState.accessibility) > 1 || parseFloat(ownState.price) < 0 || parseFloat(ownState.price) > 1 || !(parseFloat(ownState.participants) > 0)
 
     return (
-        <div className="Suggestion">
+        <>
+            {!addOwn && <SuggestedActivity fetching={fetching} suggestion={suggestion} user={user} />}
+            {addOwn && <SuggestionAddOwn addOwnState={ownState} onChange={onChangeOwn} onSave={onSaveOwn}/>}
+        </>
+        // <div className="Suggestion">
 
-                <img title="Help" id="help" src={questionmark} hidden={!suggestion} />
-                {fetching ? 
-                    <img id="spinner" src={spinner} height="150px"/>
-                    :
-                    suggestion ?
-                    <>
-                            <div id="title">{addOwn ? <input placeholder="Activity" autoFocus autoComplete="off" name="title" value={ownState.title} onChange={onChangeOwn} type="text" /> : suggestion.activity}</div>
-                            <div id="info">
-                                <span id="icon" title="Accessibility">  
-                                    <img src={Accessibility} height="30px" alt="Accessibility" />
-                                    {addOwn ? <input placeholder="0-1" autoComplete="off" name="accessibility" value={ownState.accessibility} onChange={onChangeOwn} type="text" /> : suggestion.accessibility}
-                                </span>
-                                <span id="icon" title="Participants">
-                                    <img src={Participants} height="30px" alt="Participants" />
-                                    {addOwn ? <input placeholder="1-&#8734;" autoComplete="off" name="participants" value={ownState.participants} onChange={onChangeOwn} type="number" /> : suggestion.participants}
-                                </span>
-                                <span id="icon" title="Price">
-                                    <img src={Price} height="30px" alt="Price" />
-                                    {addOwn ? <input placeholder="0-1" autoComplete="off" name="price" value={ownState.price} onChange={onChangeOwn} type="text" /> : suggestion.price}
-                                </span>
-                            </div>
-                            <div id="link">
-                                {suggestion.link && !addOwn ? <a href={suggestion.link} title={suggestion.link} rel="noopener noreferrer" target="_blank">Link</a> : null}
-                            </div>
-                            <div id="warningtext">
-                                {suggestion.saveGlobally && !addOwn ? "*Will add as a suggestion for other users" : null}
-                            </div>
-                            <div id="createdby">
-                                {suggestion.createdBy ?
-                                    <div>
-                                            Created by user <Link to={'/u/' + suggestion.createdBy.username}>{suggestion.createdBy.username}</Link>
-                                            <br />
-                                            <Link to={{pathname: '/report', state: {suggestion, reporter: user, time: Date.now()}}}>Report</Link>
-                                    </div>
-                                : null}
-                            </div>
-                            <div id="saveOwn">
-                            {addOwn ? <><button className="btn green" onClick={onSaveOwn} disabled={emptyData || invalidData} >Save</button><span><input onChange={onChangeOwn} checked={ownState.saveGlobally} name="saveGlobally" type="checkbox" />Add as suggestions for other users</span></> : null}
-                            </div>
-                    </>
-                    :
-                    <b>Click the button above to randomize an activity</b>
-                }
-        </div>
+        //         {/* <img title="Help" id="help" src={questionmark} hidden={!suggestion} /> */}
+        //         {fetching ? 
+        //             <img id="spinner" src={spinner} height="150px"/>
+        //             :
+        //             suggestion ?
+        //             <>
+        //                     <div id="title">{addOwn ? <input placeholder="Activity" autoFocus autoComplete="off" name="title" value={ownState.title} onChange={onChangeOwn} type="text" /> : suggestion.activity}</div>
+        //                     <div id="info">
+        //                         <span id="icon" title="Accessibility">  
+        //                             <img src={Accessibility} height="30px" alt="Accessibility" />
+        //                             {addOwn ? <input placeholder="0-1" autoComplete="off" name="accessibility" value={ownState.accessibility} onChange={onChangeOwn} type="text" /> : suggestion.accessibility}
+        //                         </span>
+        //                         <span id="icon" title="Participants">
+        //                             <img src={Participants} height="30px" alt="Participants" />
+        //                             {addOwn ? <input placeholder="1-&#8734;" autoComplete="off" name="participants" value={ownState.participants} onChange={onChangeOwn} type="number" /> : suggestion.participants}
+        //                         </span>
+        //                         <span id="icon" title="Price">
+        //                             <img src={Price} height="30px" alt="Price" />
+        //                             {addOwn ? <input placeholder="0-1" autoComplete="off" name="price" value={ownState.price} onChange={onChangeOwn} type="text" /> : suggestion.price}
+        //                         </span>
+        //                     </div>
+        //                     <div id="link">
+        //                         {suggestion.link && !addOwn ? <a href={suggestion.link} title={suggestion.link} rel="noopener noreferrer" target="_blank">Link</a> : null}
+        //                     </div>
+        //                     <div id="warningtext">
+        //                         {suggestion.saveGlobally && !addOwn ? "*Will add as a suggestion for other users" : null}
+        //                     </div>
+        //                     <div id="createdby">
+        //                         {suggestion.createdBy ?
+        //                             <div>
+        //                                     Created by user <Link to={'/u/' + suggestion.createdBy.username}>{suggestion.createdBy.username}</Link>
+        //                                     <br />
+        //                                     <Link to={{pathname: '/report', state: {suggestion, reporter: user, time: Date.now()}}}>Report</Link>
+        //                             </div>
+        //                         : null}
+        //                     </div>
+        //                     <div id="saveOwn">
+        //                     {addOwn ? <><button className="btn green" onClick={onSaveOwn} disabled={emptyData || invalidData} >Save</button><span><input onChange={onChangeOwn} checked={ownState.saveGlobally} name="saveGlobally" type="checkbox" />Add as suggestions for other users</span></> : null}
+        //                     </div>
+        //             </>
+        //             :
+        //             <b>Click the button above to randomize an activity</b>
+        //         }
+        // </div>
     )
 }
 

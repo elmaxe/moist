@@ -1,0 +1,62 @@
+.SuggestedActivity {
+    border: solid 4px gold;
+    border-radius: 10px;
+    margin: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    width: 50vw;
+    height: 30vh;
+    text-align: center;
+}
+
+.SuggestedActivity #help {
+    height: 20px;
+    position: relative;
+    top: calc(-50% + 7.5vh);
+    left: calc(50% - 20px);
+    opacity: 0.2;
+}
+
+.SuggestedActivity #help:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s ease-in-out;
+}
+
+.SuggestedActivity #title {
+    font-size: 3vh;
+    font-weight: bold;
+    padding-bottom: 2vh;
+}
+
+.SuggestedActivity #info {
+    padding-bottom: 2vh;
+}
+
+.SuggestedActivity #icon {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.SuggestedActivity #icon >img:hover {
+    opacity: 0.5;
+    visibility: visible;
+}
+
+.SuggestedActivity #icon > img {
+    padding-right: 10px;
+}
+
+.SuggestedActivity #warningtext {
+    color: red;
+    font-size: 12px;
+}
+
+.SuggestedActivity #createdby {
+    color: gray;
+    font-size: 12px;
+}
