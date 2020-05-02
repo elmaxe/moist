@@ -9,7 +9,7 @@ import * as ROUTES from '../routes';
 
 import Landing from './Landing/Views/Landing';
 import Logout from './Logout/Logout';
-import NotFound from './NotFound/NotFound';
+import NotFound from './NotFound/Views/NotFound';
 import Home from './Home/Home';
 
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';

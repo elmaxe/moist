@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as ROUTES from '../../routes';
+import * as ROUTES from '../../../routes';
 import { Link } from 'react-router-dom';
 
 import './NotFound.css'
