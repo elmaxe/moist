@@ -19,7 +19,7 @@ const initialState = {
 class Login extends React.Component {
     constructor(props) {
         super(props);
-
+        console.log(props)
         this.state = initialState;
 
         this.handleChange = this.handleChange.bind(this);
@@ -57,8 +57,12 @@ class Login extends React.Component {
             if (json.error) {
                 this.setState({error: json.error})
             } else {
-                this.props.actions.setUser(true, true, json.id, json.email, json.username, json.profilePicture, json.regDate)
-                this.setState({...initialState})
+                this.setState({...initialState},
+                    //Otherwise we get "can't perform state change on unmounted component" since when we set the user it will unmount the component.
+                    //Callback to do it after the state is set
+                () => {
+                    this.props.actions.setUser(true, true, json.id, json.email, json.username, json.profilePicture, json.regDate)
+                })
             }
         })
     }
@@ -83,14 +87,4 @@ class Login extends React.Component {
     }
 }
 
-
-const bindPropsToActionCreators  = (dispatch) => {
-    return {
-        actions: bindActionCreators({setUser}, dispatch)
-    }
-}
-
-export default connect(
-    state => ({state}),
-    bindPropsToActionCreators
-)(Login);
+export default Login

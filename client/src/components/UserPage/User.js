@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import './User.css'
+import UserView from './Views/UserView'
+import './Views/User.css'
 
 import {Redirect} from 'react-router-dom'
-
-import LeftBar from './LeftBar'
-import SearchResultBukketlist from '../Search/Views/SearchResultBukketlist'
 
 const initUser = {
     username: null,
@@ -119,7 +117,7 @@ class UserPage extends React.Component {
 
     render() {
         const {fetching, error, user, submitted, bucketlists} = this.state
-        console.log(this.state)
+
         return (
             <div className="userview">
             {fetching ?
@@ -147,25 +145,3 @@ class UserPage extends React.Component {
 }
 
 export default UserPage
-
-const UserView = ({username, profilePicture, id, description, regDate, loggedInUser, submitted, bukketlists, ...rest}) => {
-    return (
-        <div>
-            <div className="header">
-                <LeftBar history={rest.history} username={username} profilePicture={profilePicture} id={id} description={description === null ? "" : description} regDate={regDate} loggedInUser={loggedInUser} />
-                <div className="content">
-                    <div id="bukketlists">
-                        <div><h3>Bukketlists</h3></div>
-                        {bukketlists.map(x => <div key={x.bid}>{x.name}</div>)}
-                        {/* {bukketlists} */}
-                    </div>
-                    <div id="submittedactivities">
-                        <div><h3>Submitted activities</h3></div>
-                        {submitted.map(x => <div key={x.ucaid}>{x.activity}</div>)}
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    )
-}

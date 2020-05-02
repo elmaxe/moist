@@ -78,17 +78,18 @@
 .content {
     padding: 0 0 0 10px;
     margin: 15px 0 0 15px;
-    /* border-left: solid 1px rgb(210, 210, 210); */
-    /* border: solid; */
     width: 100%;
 }
 
 .content #bukketlists {
-    height: 30vh;
+    height: 37vh;
+    overflow-y: auto;
+    margin: 0 0 20px 0;
 }
 
 .content #submittedactivities {
-    height: 30vh;
+    height: 37vh;
+    overflow-y: auto;
 }
 
 #textareauserdesc {
@@ -101,7 +102,8 @@
 }
 
 h3 {
-    border-bottom: solid 1px rgb(200, 200, 200);
+    border-top: solid 1px rgb(200, 200, 200);
+    padding-top: 10px;
 }
 
 #editdescbtn {

@@ -7,32 +7,28 @@ const uuid4 = require('uuid4');
 const {validCookie} = require('../auth/validCookie')
 
 
-router.get('/get', validCookie, (req, res) => {
+//TODO: validCookie
+router.get('/get/:bid', (req, res) => {
     const user = req.session.user
-    const get = db.prepare('SELECT * FROM Activities WHERE uid = ?')
-
-    get.all([user.id], (err, rows) => {
+    const {bid} = req.params
+    const activities = db.prepare('SELECT Activities.activity, Activities.aid, Activities.bid, Bukketlists.private, Bukketlists.private, Users.id FROM Activities \
+                                    INNER JOIN Users ON Users.id = Bukketlists.uid \
+                                    INNER JOIN Bukketlists ON Bukketlists.bid = Activities.bid \
+                                    WHERE Bukketlists.bid = ?\
+                                    AND (Bukketlists.private = false OR Bukketlists.private = true AND Users.id = ?)')
+    activities.all([bid, user.id], (err, rows) => {
         if (err) {
-            res.status(500).json({"error":"Internal server error"})
+            res.status(500).json({"error":"Internal server error."})
             return
         }
+
+        rows = rows.map(x => {
+            x.uid = x.id
+            delete x["id"]
+            return x
+        })
 
         res.status(200).json({rows})
-    })
-})
-
-router.post('/get', validCookie, (req, res) => {
-    const user = req.session.user
-    const {aid} = req.body
-    const get = db.prepare('SELECT * FROM Activities WHERE uid = ? AND aid = ?')
-
-    get.get([user.id, aid], (err, row) => {
-        if (err) {
-            res.status(500).json({"error":"Internal server error"})
-            return
-        }
-
-        res.status(200).json({row})
     })
 })
 
@@ -81,26 +77,6 @@ router.post('/remove', validCookie, (req, res) => {
             res.status(200).json({"status":"Removed activity."})
         } else {
             res.status(403).json({"status":"No activity removed"})
-        }
-    })
-})
-
-router.post('/update', validCookie, (req, res) => {
-    const user = req.session.user
-    const {data, aid} = req.body
-
-    const update = db.prepare('UPDATE Activities SET data = ? WHERE uid = ? AND aid = ?')
-
-    update.run([data, user.id, aid], function(err) {
-        if (err) {
-            res.status(500).json({"error":"Internal server error"})
-            return
-        }
-
-        if (this.changes > 0) {
-            res.status(200).json({"status":"Updated activity."})
-        } else {
-            res.status(403).json({"status":"No activity updated"})
         }
     })
 })
