@@ -85,26 +85,6 @@ router.post('/remove', validCookie, (req, res) => {
     })
 })
 
-router.post('/update', validCookie, (req, res) => {
-    const user = req.session.user
-    const {data, aid} = req.body
-
-    const update = db.prepare('UPDATE Activities SET data = ? WHERE uid = ? AND aid = ?')
-
-    update.run([data, user.id, aid], function(err) {
-        if (err) {
-            res.status(500).json({"error":"Internal server error"})
-            return
-        }
-
-        if (this.changes > 0) {
-            res.status(200).json({"status":"Updated activity."})
-        } else {
-            res.status(403).json({"status":"No activity updated"})
-        }
-    })
-})
-
 //Takes in a number >= 0 (amount of user created activities in the database) and returns a number [0-60)
 const customActivityChance = (amount) => {
     if (amount === undefined) return 30

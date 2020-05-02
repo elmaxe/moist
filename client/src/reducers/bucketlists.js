@@ -26,7 +26,7 @@ const bucketlists = (state = initState, action) => {
                 return x
             })
 
-            //This is fishy, check redux-logger in console, list is same before and after action
+            //This is fishy, check redux-logger in console, list is same before and after action. No deep copy
             return newState
         case REMOVE_ACTIVITY:
             const activitylistToRemoveFrom = [...state].filter(x => x.bukketlist.bid === action.bid)[0].activities
