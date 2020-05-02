@@ -18,7 +18,7 @@ const ExpandableBukketlistView = ({bukketlist, activities, hide, fetching, onCli
                         {fetching ? 
                                 <img src={spinner} style={{width: "80px"}} />
                             :
-                                activities.length === 0 ? "No activities" : activities.map(x => <div id="title" key={x.aid}>{x.activity}</div>)
+                                activities.length === 0 ? <div id="title">No activities</div> : activities.map(x => <div id="title" key={x.aid}>{x.activity}</div>)
                         }
                     </div>
                 :
