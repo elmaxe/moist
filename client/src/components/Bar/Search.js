@@ -46,7 +46,7 @@ const SearchView = ({onSearch, onChange, value}) => {
                     className="SearchInput"
                     type="text" value={value}
                     onChange={onChange}
-                    placeholder="Search"
+                    placeholder="Search users or bukketlists"
                 />
                 <button
                     id="search-button"
