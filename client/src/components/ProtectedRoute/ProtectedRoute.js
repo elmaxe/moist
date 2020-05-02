@@ -7,7 +7,7 @@ import setUser from '../../actions/user'
 import addActivity, {removeActivity, setBucketlist, clearBucketlist, fetchBukketlists, removeBukketlist, createBukketlist} from '../../actions/bucketlist'
 import setAndShowAlert, {hideAlert} from '../../actions/alert'
 
-import Bar from '../Bar/Bar'
+import Bar from '../Bar/Views/Bar'
 
 const ProtectedRoute = ({component: Component, ...rest}) => {
     return (
