@@ -6,11 +6,6 @@ import './Bucketlist.css'
 class Bucketlist extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
-
-        this.state = {
-            bucketlist: this.props.bucketlist
-        }
     }
 
     removeFromList(index, activity) {
@@ -18,7 +13,6 @@ class Bucketlist extends React.Component {
     }
 
     render() {
-        // const {bucketlist} = this.props
         return (
             <>
                 <BucketlistView

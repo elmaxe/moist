@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom'
 
 import LeftBar from './LeftBar'
 import SubmittedActivity from './Views/SubmittedActivity'
-import SearchResultBukketlist from '../SearchResultPage/Views/SearchResultBukketlist'
+import ExpandableBukketlist from './ExpandableBukketlist'
 
 const initUser = {
     username: null,
@@ -158,7 +158,7 @@ const UserView = ({username, profilePicture, id, description, regDate, loggedInU
                 <div className="content">
                         <div><h3>Bukketlists</h3></div>
                     <div id="bukketlists">
-                        {bukketlists.length === 0 ? `${username} has no bukketlists` : bukketlists.map(x => <SearchResultBukketlist key={x.bid} title={x.name} isPrivate={x.private} description={x.description} username="" link="/"/>)}
+                        {bukketlists.length === 0 ? `${username} has no bukketlists` : bukketlists.map(x => <ExpandableBukketlist key={x.bid} bukketlist={x} />)}
                         {/* {bukketlists} */}
                     </div>
                     <div><h3>Submitted activities</h3></div>
