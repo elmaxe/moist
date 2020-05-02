@@ -18,7 +18,7 @@ import setUser from '../actions/user'
 import {bindActionCreators} from 'redux'
 
 import spinner from '../images/spinner.gif'
-import SearchPage from './Search/SearchPage';
+import SearchPage from './SearchResultPage/SearchPage';
 import UserPage from './UserPage/User'
 
 export function fetchIsAuth(setUser) {
