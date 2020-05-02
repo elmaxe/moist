@@ -22,15 +22,15 @@ const SuggestedActivity = ({fetching = false, suggestion, user, onClickHelp}) =>
                     <div id="info">
                         <span id="icon" title="Accessibility">  
                             <img src={Accessibility} height="30px" alt="Accessibility" />
-                            {suggestion.accessibility}
+                            {suggestion.accessibility ? suggestion.accessibility : "N/A"}
                         </span>
                         <span id="icon" title="Participants">
                             <img src={Participants} height="30px" alt="Participants" />
-                            {suggestion.participants}
+                            {suggestion.participants ? suggestion.participants : "N/A"}
                         </span>
                         <span id="icon" title="Price">
                             <img src={Price} height="30px" alt="Price" />
-                            {suggestion.price}
+                            {suggestion.price ? suggestion.price : "N/A"}
                         </span>
                     </div>
                     <div id="link">
