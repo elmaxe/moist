@@ -63,7 +63,7 @@ class App extends React.Component {
               <Switch>
               <Route exact path={ROUTES.LANDING} >
                 {/* <ProtectedRoute component={Landing} /> */}
-                <UnprotectedRoute component={Landing} />
+                <UnprotectedRoute component={Landing}/>
               </Route>
               <Route exact path={ROUTES.HOME} >
                 <ProtectedRoute component={Home} />

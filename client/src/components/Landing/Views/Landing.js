@@ -3,7 +3,8 @@ import './Landing.css'
 import Login from '../../Login/Login'
 import Register from '../../Register/Register'
 
-const Landing = () => {
+const Landing = ({actions}) => {
+    console.log(actions)
     return (
         <div className="Landing">
             <div className="LandingBar">
@@ -11,7 +12,7 @@ const Landing = () => {
                     <a href="/">bukket</a>
                 </div>
                 <div className="LandingBarLogin">
-                    <Login />
+                    <Login actions={actions} />
                 </div>
             </div>
             <div className="LandingContent">
