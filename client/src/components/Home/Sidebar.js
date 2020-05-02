@@ -116,8 +116,8 @@ class Sidebar extends React.Component {
                     {`${this.state.blistdesc.length}/50`}
                 </div>
                 <div style={{marginTop: "10px"}}>
-                    <span style={{marginRight: "10px"}}>Private</span>
                     <input name="privatechecked" type="checkbox" onChange={(e) => onChange(e)} checked={this.state.privatechecked} />
+                    <span style={{marginRight: "10px"}}>Private (Only visible to you)</span>
                 </div>
             </div>,
             buttons
