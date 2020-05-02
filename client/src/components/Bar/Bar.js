@@ -22,11 +22,11 @@ class Bar extends React.Component {
                 <div className="BarItemLogo">
                     {props.history.location.pathname !== "/home" ?
                         <Link to={ROUTES.HOME}>
-                            <img src={logo} className="logo" />
+                            <img src="/bukket/bukketlogo.png" className="logo" />
                         </Link>
                     :
                         <a href={ROUTES.HOME}>
-                            <img src={logo} className="logo" />
+                            <img src="/bukket/bukketlogo.png" className="logo" />
                         </a>
                     }
                 </div>

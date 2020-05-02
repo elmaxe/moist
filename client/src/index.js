@@ -12,11 +12,18 @@ import logger from 'redux-logger';
 import combineReducers from './reducers/index'
 import { doFirstAuth } from './actions/user';
 
+let middlewares = []
+
+if (process.env.NODE_ENV === "development") {
+    middlewares = [thunk, logger]
+} else {
+    middlewares = [thunk]
+}
+
 const store = createStore(
     combineReducers,
     applyMiddleware(
-        thunk,
-        logger
+        ...middlewares
     )
 );
 

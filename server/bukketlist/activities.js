@@ -38,10 +38,10 @@ router.post('/get', validCookie, (req, res) => {
 
 router.post('/add', validCookie, (req, res) => {
     const user = req.session.user
-    const {activity, accessibility, type, participants, price, link, key, saveGlobally} = req.body
-    const add = db.prepare('INSERT INTO Activities (uid, activity, accessibility, type, participants, price, link, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
-
-    add.run([user.id, activity, accessibility, type, participants, price, link, key], (err) => {
+    const {bid, activity, accessibility, type, participants, price, link, key, saveGlobally} = req.body
+    const add = db.prepare('INSERT INTO Activities (bid, activity, accessibility, type, participants, price, link, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+    //TODO: KOLLA ATT BID TILLHÖR DIG SJÄLV, SÅ MAN INTE KAN LÄGGA TILL I ANDRAS LISTOR (GÅR EJ ATT GÖRA FRÅN WEBBLÄSARE, BARA VIA KOMMANDS)
+    add.run([bid, activity, accessibility, type, participants, price, link, key], (err) => {
         if (err) {
             console.log(err)
             res.status(500).json({"error":"Internal server error"})
@@ -67,11 +67,11 @@ router.post('/add', validCookie, (req, res) => {
 })
 
 router.post('/remove', validCookie, (req, res) => {
-    const user = req.session.user
-    const {data, aid} = req.body
+    // const user = req.session.user
+    const {bid, activity} = req.body
 
-    const remove = db.prepare('DELETE FROM Activities WHERE uid = ? AND aid = ?')
-    remove.run([user.id, aid], function(err) {
+    const remove = db.prepare('DELETE FROM Activities WHERE bid = ? AND activity = ?')
+    remove.run([bid, activity], function(err) {
         if (err) {
             res.status(500).json({"error":"Internal server error"})
             return
@@ -170,6 +170,20 @@ router.get('/randomize', validCookie, (req, res) => {
         })
     })
 
+})
+
+router.get('/submitted/:user', (req, res) => {
+    const {username} = req.params.user
+
+    const submitted = db.prepare('SELECT * FROM UserCreatedActivities WHERE username = ?')
+
+    submitted.all([username], (err, rows) => {
+        if (err) {
+            res.status(500).json({"error":"Internal server error"})
+            return
+        }
+        res.status(200).json({rows})
+    })
 })
 
 module.exports = router

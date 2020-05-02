@@ -1,23 +1,13 @@
 .SearchPageView {
     width: 35vw;
-    border: solid 1px;
+    /* border: solid 1px; */
     padding: 10px 0 10px 0;
     overflow: auto;
     max-height: calc(100vh - 50px);
 }
 
-.SearchResult {
-    display: flex;
-    flex-direction: row;
-    padding: 5px;
-}
-
-.SearchResultText {
-    width: 100%;
-}
-
-.SearchResult:hover {
-    background-color: rgb(230, 230, 230);
+.SearchPageView >div> h4 {
+    padding: 15px 0 10px 0;
 }
 
 .NoResultsFound {

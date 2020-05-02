@@ -49,7 +49,8 @@ const SearchView = ({onSearch, onChange, value}) => {
                     placeholder="Search"
                 />
                 <button
-                    className="SearchButton"
+                    id="search-button"
+                    className="btn blue"
                     onClick={onSearch}
                     // disabled={value === ""}
                     >Search

@@ -13,7 +13,7 @@ router.post('/', validCookie, (req, res) => {
         return
     }
 
-    const users = db.prepare('SELECT DISTINCT username, email, profilePicture, id FROM Users WHERE username LIKE "%" || ? || "%"')
+    const users = db.prepare('SELECT DISTINCT username, email, profilePicture, id, description FROM Users WHERE username LIKE "%" || ? || "%"')
 
     var userResult
 
@@ -22,16 +22,34 @@ router.post('/', validCookie, (req, res) => {
             res.status(500).json({"error":"Internal server error."})
             return
         }
-        
+
+        // const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
+        // INNER JOIN Users ON Users.id = Bukketlists.uid \
+        // WHERE (Users.username = ? AND Users.username LIKE "%" || ? || "%" AND Bukketlists.private = true) \
+        // OR (Users.username LIKE "%" || ? || "%" AND Bukketlists.private = false)')
+
+        const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
+        INNER JOIN Users ON Users.id = Bukketlists.uid \
+        WHERE (Bukketlists.name LIKE "%" || ? || "%" AND Bukketlists.private = false) \
+        OR (Bukketlists.name LIKE "%" || ? || "%" AND Bukketlists.private = true AND Users.id = ?) \
+        OR (Users.username LIKE "%" || ? || "%" AND Bukketlists.private = false) \
+        OR (Users.username LIKE "%" || ? || "%" AND Bukketlists.private = true AND Users.id = ?)')
+    
         userResult = rows.splice(0, 10)
-        res.status(200).json({users: userResult})
+        console.log(req.session.user.username)
+        // bukketlists.all([req.session.user.username, query, query], (err, rows) => {
+        bukketlists.all([query, query, req.session.user.id, query, query, req.session.user.id], (err, rows) => {
+            // res.json({bukketlists: rows})
+            res.status(200).json({users: userResult, bukketlists: rows.splice(0,15)})
+        })
+        
     })
 })
 
 router.get('/user/:user', (req, res) => {
     const query = req.params.user
 
-    const user = db.prepare('SELECT username, profilePicture, id, regDate FROM Users WHERE username = ?')
+    const user = db.prepare('SELECT username, profilePicture, id, regDate, description FROM Users WHERE username = ?')
 
     user.get([query], (err, row) => {
         if (err) {
@@ -43,6 +61,31 @@ router.get('/user/:user', (req, res) => {
         } else {
             res.status(200).json({user: row})
         }
+    })
+})
+
+router.get('/bukketlists', (req, res) => {    
+    const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
+                                    INNER JOIN Users ON Users.id = Bukketlists.uid \
+                                    WHERE NOT Bukketlists.private = true')
+
+    bukketlists.all((err, rows) => {
+        if (err) {
+            res.status(500).json({"error":"Internal server error."})
+            return
+        }
+        res.json({bukketlists: rows})
+    })
+})
+
+router.get('/bukketlist/:username', validCookie, (req, res) => {
+    const bukketlists = db.prepare('SELECT Bukketlists.bid, Bukketlists.name, Bukketlists.description, Bukketlists.creationDate, Bukketlists.private, Users.id, Users.username FROM Bukketlists \
+    INNER JOIN Users ON Users.id = Bukketlists.uid \
+    WHERE (Users.username = ? AND Users.username = ? AND Bukketlists.private = true) \
+    OR (Users.username = ? AND Bukketlists.private = false)')
+
+    bukketlists.all([req.session.user.username, req.params.username, req.params.username], (err, rows) => {
+        res.json({bukketlists: rows})
     })
 })
 

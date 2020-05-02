@@ -12,6 +12,41 @@ const clearUserAction = () => {
     return {type: CLEAR_USER}
 }
 
+export const fetchIsAuth = (dispatch) => {
+    fetch(ROUTES.API_IS_AUTH, {
+        method: "GET",
+        credentials: "same-origin"
+    })
+    .then(res => res.json())
+    .then(json => {
+        if (json.error) {
+            dispatch(setUserAction({
+                authenticated: false,
+                hasFirstAuth: true,
+                user: {
+                    id: "",
+                    email: "",
+                    username: "",
+                    profilePicture: "",
+                    regDate: ""
+                }
+            }));
+        } else {
+            dispatch(setUserAction({
+                authenticated: json.authenticated,
+                hasFirstAuth: true,
+                user: {
+                    id: json.user.id,
+                    email: json.user.email,
+                    username: json.user.username,
+                    profilePicture: json.user.profilePicture,
+                    regDate: json.user.regDate
+                }
+            }));
+        }
+    })
+}
+
 /**
  * Set the current user in store.
  * @param {Boolean} authenticated if user is authenticated or not

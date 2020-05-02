@@ -6,27 +6,37 @@ import './Bucketlist.css'
 class Bucketlist extends React.Component {
     constructor(props) {
         super(props)
+        console.log(props)
+
+        this.state = {
+            bucketlist: this.props.bucketlist
+        }
     }
 
     removeFromList(index, activity) {
-        this.props.actions.removeActivity(index, activity.aid)
+        this.props.actions.removeActivity(index, activity.bid, activity.activity)
     }
 
+    // componentWillReceiveProps() {
+    //     this.setState({bucketlist: this.props.bucketlist})
+    // }
+
     render() {
-        const {bucketlist} = this.props
+        // const {bucketlist} = this.props
+        console.log("RERENDER")
         return (
             <>
-            <BucketlistView bucketlist={bucketlist} onRemove={this.removeFromList.bind(this)} />
+            <BucketlistView bucketlist={this.props.bucketlist.activities} onRemove={this.removeFromList.bind(this)} />
             </>
         )
     }
 }
 
 Bucketlist.propTypes = {
-    bucketlist: PropTypes.array.isRequired
+    bucketlist: PropTypes.object.isRequired
 }
 
-const BucketlistView = ({bucketlist, onRemove}) => {
+const BucketlistView = ({bucketlist = [], onRemove}) => {
     return (
         <div className="Bucketlist">
             {bucketlist.map((x,i) => <div  key={i}><BucketlistItem index={i} activity={x} onRemove={onRemove}/></div>)}
@@ -35,7 +45,7 @@ const BucketlistView = ({bucketlist, onRemove}) => {
 }
 
 BucketlistView.propTypes = {
-    bucketlist: PropTypes.array.isRequired,
+    bucketlist: PropTypes.array,
     onRemove: PropTypes.func.isRequired
 }
 
