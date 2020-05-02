@@ -2,7 +2,7 @@ import React from 'react'
 
 import './Home.css'
 import '../../Buttons.css'
-import Bucketlist from '../Bucketlist/Bucketlist'
+import Bucketlist from './Views/Bucketlist/Bucketlist'
 import SuggestionController from './SuggestionController'
 import Sidebar from './Sidebar'
 import Alert from '../Alert/Alert'
