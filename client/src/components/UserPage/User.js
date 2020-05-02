@@ -4,7 +4,8 @@ import './User.css'
 import {Redirect} from 'react-router-dom'
 
 import LeftBar from './LeftBar'
-import SearchResultBukketlist from '../Search/Views/SearchResultBukketlist'
+import SubmittedActivity from './Views/SubmittedActivity'
+import SearchResultBukketlist from '../SearchResultPage/Views/SearchResultBukketlist'
 
 const initUser = {
     username: null,
@@ -119,7 +120,7 @@ class UserPage extends React.Component {
 
     render() {
         const {fetching, error, user, submitted, bucketlists} = this.state
-        console.log(this.state)
+
         return (
             <div className="userview">
             {fetching ?
@@ -149,19 +150,20 @@ class UserPage extends React.Component {
 export default UserPage
 
 const UserView = ({username, profilePicture, id, description, regDate, loggedInUser, submitted, bukketlists, ...rest}) => {
+    console.log(bukketlists)
     return (
         <div>
             <div className="header">
                 <LeftBar history={rest.history} username={username} profilePicture={profilePicture} id={id} description={description === null ? "" : description} regDate={regDate} loggedInUser={loggedInUser} />
                 <div className="content">
-                    <div id="bukketlists">
                         <div><h3>Bukketlists</h3></div>
-                        {bukketlists.map(x => <div key={x.bid}>{x.name}</div>)}
+                    <div id="bukketlists">
+                        {bukketlists.length === 0 ? `${username} has no bukketlists` : bukketlists.map(x => <SearchResultBukketlist key={x.bid} title={x.name} isPrivate={x.private} description={x.description} username="" link="/"/>)}
                         {/* {bukketlists} */}
                     </div>
+                    <div><h3>Submitted activities</h3></div>
                     <div id="submittedactivities">
-                        <div><h3>Submitted activities</h3></div>
-                        {submitted.map(x => <div key={x.ucaid}>{x.activity}</div>)}
+                        {submitted.length === 0 ? `${username} has not submitted any activities` : submitted.map(x => <SubmittedActivity key={x.ucaid} text={x.activity} creationDate={x.creationDate}/>)}
                     </div>
                 </div>
             </div>

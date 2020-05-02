@@ -59,7 +59,7 @@ const SearchPageView = ({fetching, userResults = [], bukketlistResults = [], que
 SearchPageView.propTypes = {
     fetching: PropTypes.bool.isRequired,
     userResults: PropTypes.array.isRequired,
-    bukketlistResults: PropTypes.array.isRequired,
+    bukketlistResults: PropTypes.array,
     query: PropTypes.string.isRequired
 }
 
