@@ -1,16 +1,13 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import * as ROUTES from '../../routes';
 import './Landing.css'
-import Login from '../Login/Login'
-import Register from '../Register/Register'
+import Login from '../../Login/Login'
+import Register from '../../Register/Register'
 
 const Landing = () => {
     return (
         <div className="Landing">
             <div className="LandingBar">
                 <div className="LandingLogoText">
-                    {/* TODO: LOGO */}
                     <a href="/">bukket</a>
                 </div>
                 <div className="LandingBarLogin">
@@ -31,13 +28,6 @@ const Landing = () => {
                     <Register />
                 </div>
             </div>
-            {/* This is the landing page<br />
-            <Link to={ROUTES.LOGIN} >
-                Login
-            </Link><br />
-            <Link to={ROUTES.REGISTER} >
-                Register
-            </Link> */}
         </div>
     )
 }

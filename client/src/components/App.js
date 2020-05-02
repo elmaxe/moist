@@ -7,7 +7,7 @@ import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import * as ROUTES from '../routes';
 
-import Landing from './Landing/Landing';
+import Landing from './Landing/Views/Landing';
 import Logout from './Logout/Logout';
 import NotFound from './NotFound/NotFound';
 import Home from './Home/Home';
