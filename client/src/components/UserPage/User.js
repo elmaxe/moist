@@ -149,7 +149,6 @@ class UserPage extends React.Component {
 export default UserPage
 
 const UserView = ({username, profilePicture, id, description, regDate, loggedInUser, submitted, bukketlists, ...rest}) => {
-    console.log(rest)
     return (
         <div>
             <div className="header">
@@ -162,7 +161,7 @@ const UserView = ({username, profilePicture, id, description, regDate, loggedInU
                     </div>
                     <div id="submittedactivities">
                         <div><h3>Submitted activities</h3></div>
-                        {submitted.map(x => x.username)}
+                        {submitted.map(x => <div key={x.ucaid}>{x.activity}</div>)}
                     </div>
                 </div>
             </div>
