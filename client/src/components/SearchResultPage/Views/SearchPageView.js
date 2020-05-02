@@ -9,7 +9,7 @@ import NoResults from './NoResults'
 
 import './SearchPage.css'
 
-const SearchPageView = ({fetching, userResults = "", bukketlistResults = "", query}) => {
+const SearchPageView = ({fetching, userResults = [], bukketlistResults = [], query}) => {
     return (
         <div style={{paddingTop: "50px"}}>
             {fetching ?
@@ -38,8 +38,9 @@ const SearchPageView = ({fetching, userResults = "", bukketlistResults = "", que
                             <h4>Bukketlists</h4>
                         </div>
                         <div>
-                            {bukketlistResults.map(blist => 
+                            {bukketlistResults.map((blist,i) => 
                                 <SearchResultBukketlist
+                                    key={i}
                                     title={blist.name}    
                                     description={blist.description}
                                     username={blist.username}
