@@ -108,9 +108,13 @@ class Home extends React.Component {
             clearBucketlist: this.props.actions.clearBucketlist
         }
 
-        const currentBukketlist = this.props.state.bucketlists.map(item => item.bukketlist).filter(x => x.bid === this.props.state.bucketlist)[0]
-        // console.log(this.props.state.bucketlists.map(item => item.bukketlist).filter(x => x.bid === this.props.state.bucketlist)[0].name)
-        console.log(this.props.state.bucketlist)
+        const suggActions = {
+            setAndShowAlert: this.props.actions.setAndShowAlert,
+            hideAlert: this.props.actions.hideAlert,
+        }
+
+
+
         return (
             <div>
                 <div className="Home">
@@ -126,7 +130,7 @@ class Home extends React.Component {
                         {this.props.state.bucketlist.bukketlist === undefined && suggestion && "No bukketlist selected"}
                         </span>
                     <div>
-                        <SuggestionController state={this.props.state} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
+                        <SuggestionController state={this.props.state} actions={suggActions} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
                     </div>
                     <div>
                         <h1>{this.props.state.bucketlist.bukketlist ? this.props.state.bucketlist.bukketlist.name : "Select a bukketlist"}</h1>
