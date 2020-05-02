@@ -8,7 +8,7 @@ import questionmark from '../../../../images/questionmark.svg'
 import { Link } from 'react-router-dom'
 import './SuggestedActivity.css'
 
-const SuggestedActivity = ({fetching = false, suggestion, user}) => {
+const SuggestedActivity = ({fetching = false, suggestion, user, onClickHelp}) => {
     return (
         <div className="SuggestedActivity">
             {fetching ?
@@ -17,20 +17,20 @@ const SuggestedActivity = ({fetching = false, suggestion, user}) => {
                 suggestion ?
                 <>
                     {/* TODO: LAUNCH ALERT WHEN CLICK HELP */}
-                    <img id="help" src={questionmark} title="Help"/>
+                    <img id="help" src={questionmark} title="Help" onClick={(e) => onClickHelp(e)}/>
                     <div id="title">{suggestion.activity}</div>
                     <div id="info">
                         <span id="icon" title="Accessibility">  
                             <img src={Accessibility} height="30px" alt="Accessibility" />
-                            {suggestion.accessibility}
+                            {suggestion.accessibility ? suggestion.accessibility : "N/A"}
                         </span>
                         <span id="icon" title="Participants">
                             <img src={Participants} height="30px" alt="Participants" />
-                            {suggestion.participants}
+                            {suggestion.participants ? suggestion.participants : "N/A"}
                         </span>
                         <span id="icon" title="Price">
                             <img src={Price} height="30px" alt="Price" />
-                            {suggestion.price}
+                            {suggestion.price ? suggestion.price : "N/A"}
                         </span>
                     </div>
                     <div id="link">

@@ -23,7 +23,6 @@ class Bucketlist extends React.Component {
 
     render() {
         // const {bucketlist} = this.props
-        console.log("RERENDER")
         return (
             <>
             <BucketlistView bucketlist={this.props.bucketlist.activities} onRemove={this.removeFromList.bind(this)} />

@@ -173,16 +173,20 @@ router.get('/randomize', validCookie, (req, res) => {
 })
 
 router.get('/submitted/:user', (req, res) => {
-    const {username} = req.params.user
+    const {user} = req.params
 
     const submitted = db.prepare('SELECT * FROM UserCreatedActivities WHERE username = ?')
 
-    submitted.all([username], (err, rows) => {
+    submitted.all([user], (err, rows) => {
         if (err) {
             res.status(500).json({"error":"Internal server error"})
             return
         }
-        res.status(200).json({rows})
+        if (rows != undefined) {
+            res.status(200).json({rows})
+        } else {
+            res.status(200).json({"status":"No submitted activities"})
+        }
     })
 })
 

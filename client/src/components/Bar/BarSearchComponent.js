@@ -1,8 +1,9 @@
 import React from 'react'
-import './Search.css'
+
+import BarSearchView from './Views/BarSearchView'
 import * as ROUTES from '../../routes'
 
-class Search extends React.Component {
+class BarSearchComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,7 +29,7 @@ class Search extends React.Component {
         const {query} = this.state
         return (
             <div>
-                <SearchView
+                <BarSearchView
                     onChange={this.onChange.bind(this)}
                     onSearch={this.onSearch.bind(this)}
                     value={query}
@@ -38,26 +39,4 @@ class Search extends React.Component {
     }
 }
 
-const SearchView = ({onSearch, onChange, value}) => {
-    return (
-        <div>
-            <form>
-                <input
-                    className="SearchInput"
-                    type="text" value={value}
-                    onChange={onChange}
-                    placeholder="Search"
-                />
-                <button
-                    id="search-button"
-                    className="btn blue"
-                    onClick={onSearch}
-                    // disabled={value === ""}
-                    >Search
-                </button>
-            </form>
-        </div>
-    )
-}
-
-export default Search
+export default BarSearchComponent

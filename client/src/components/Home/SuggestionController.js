@@ -48,13 +48,22 @@ class Suggestion extends React.Component {
         // this.setState({...initState})
     }
 
+    onClickHelp() {
+        const {actions} = this.props
+        
+        actions.setAndShowAlert(
+            "Help I am retarded",
+            "TODO: A helpful text :)",
+            [<button className="btn green" onClick={() => actions.hideAlert()}>Close</button>]
+        )
+    }
+
     render() {
         const {fetching, suggestion , addOwn} = this.props
 
         return (
-            // <SuggestionView fetching={fetching} suggestion={suggestion} addOwn={addOwn} ownState={this.state} onChangeOwn={this.onChangeOwn.bind(this)} onSaveOwn={this.onSaveOwn.bind(this)} user={this.props.state.userData.user} />
             <>
-                {!addOwn && <SuggestedActivity fetching={fetching} suggestion={suggestion.activity === "" ? null : suggestion} user={this.props.state.userData.user} />}
+                {!addOwn && <SuggestedActivity fetching={fetching} suggestion={suggestion.activity === "" ? null : suggestion} user={this.props.state.userData.user} onClickHelp={this.onClickHelp.bind(this)} />}
                 {addOwn && <SuggestionAddOwn addOwnState={this.state} onChange={this.onChangeOwn.bind(this)} onSave={this.onSaveOwn.bind(this)}/>}
             </>
         )
