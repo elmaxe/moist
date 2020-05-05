@@ -7,7 +7,6 @@ class Logout extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         fetch(ROUTES.API_LOGOUT, {
             method: "GET"
         })

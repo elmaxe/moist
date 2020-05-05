@@ -21,7 +21,6 @@ class ExpandableBukketlist extends React.Component {
             })
             .then(res => res.json())
             .then(json => {
-                console.log(json)
                 this.setState({fetching: false})
                 if (json.error) {
                     this.setState({hide: true})

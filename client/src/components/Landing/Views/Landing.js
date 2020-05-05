@@ -4,7 +4,6 @@ import Login from '../../Login/Login'
 import Register from '../../Register/Register'
 
 const Landing = ({actions}) => {
-    console.log(actions)
     return (
         <div className="Landing">
             <div className="LandingBar">

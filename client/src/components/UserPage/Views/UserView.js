@@ -5,7 +5,6 @@ import SubmittedActivity from './SubmittedActivity'
 import ExpandableBukketlist from '../ExpandableBukketlist'
 
 const UserView = ({username, profilePicture, id, description, regDate, loggedInUser, submitted, bukketlists, ...rest}) => {
-    console.log(bukketlists)
     return (
         <div>
             <div className="header">
