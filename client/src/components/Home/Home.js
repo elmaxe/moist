@@ -25,30 +25,20 @@ class Home extends React.Component {
         }
         this.save = this.save.bind(this)
         this.getSuggestion = this.getSuggestion.bind(this)
-        this.get = this.get.bind(this)
         this.upload = this.upload.bind(this)
         this.toggleAddOwn = this.toggleAddOwn.bind(this)
     }
 
     componentDidMount() {
-        this.get()
+        
     }
 
     save()  {
-        //setBucketlist(bucketlist.concat([suggestion]))
         this.upload(this.state.suggestion)
     }
 
     getSuggestion() {
         this.setState({fetching: true})
-        // fetch('https://www.boredapi.com/api/activity', {
-        //     method: "GET"
-        // })
-        // .then(res => res.json())
-        // .then(json => {
-        //     console.log(json)
-        //     this.setState({fetching: false, suggestion: json})
-        // })
         fetch('/api/activities/randomize', {
             method: "GET",
             credentials: "same-origin"
@@ -62,19 +52,6 @@ class Home extends React.Component {
                 this.setState({fetching: false, suggestion: json.row})
             }
         })
-    }
-
-    get() {
-        // fetch('/api/activities/get', {
-        //     method: "GET",
-        //     credentials: "same-origin"
-        // })
-        // .then(res => res.json())
-        // .then(json => {
-        //     console.log(json)
-        //     this.props.actions.setBucketlist(json.rows)
-        //     // this.setState({bucketlist: json.rows})
-        // })
     }
     
     upload(data) {
@@ -110,8 +87,6 @@ class Home extends React.Component {
             setAndShowAlert: this.props.actions.setAndShowAlert,
             hideAlert: this.props.actions.hideAlert,
         }
-
-
 
         return (
             <div>
