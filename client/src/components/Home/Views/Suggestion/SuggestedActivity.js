@@ -12,7 +12,8 @@ const SuggestedActivity = ({fetching = false, suggestion, user, onClickHelp}) =>
     return (
         <div className="SuggestedActivity">
             {fetching ?
-                <img id="spinner" src={spinner} height="150px" />
+                <div style={{display: "flex", flexDirection: "column"}}><img id="spinner" src={spinner} height="150px" />
+                <div style={{paddingLeft: "10px"}}>Loading...</div></div>
                 :    
                 suggestion ?
                 <>
