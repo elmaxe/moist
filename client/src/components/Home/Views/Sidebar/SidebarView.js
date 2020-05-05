@@ -9,7 +9,7 @@ const SidebarView = ({bukketlists, selected, onClick, onDeleteClick, createNewCl
                 <div>
                     <SidebarItem
                         className="create-bukketlist"
-                        text="Create new Bukketlist..."
+                        text="Create new bukketlist..."
                         id={-1}
                         selected={-1}
                         onClick={() => createNewClick()}
