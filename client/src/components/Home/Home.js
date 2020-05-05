@@ -23,7 +23,6 @@ class Home extends React.Component {
             fetching: false,
             addOwn: false,
         }
-        console.log(props.state)
         this.save = this.save.bind(this)
         this.getSuggestion = this.getSuggestion.bind(this)
         this.get = this.get.bind(this)
@@ -56,7 +55,6 @@ class Home extends React.Component {
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
             if (json.error) {
                 //TODO: fetchIsAuth()
                 this.setState({fetching: false, suggestion: {activity: json.error}})

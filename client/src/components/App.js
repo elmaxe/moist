@@ -39,8 +39,6 @@ export function fetchIsAuth(setUser) {
 class App extends React.Component {
   constructor(props) {
     super(props)
-    
-    console.log(props)
   }
 
   componentDidMount() {
@@ -53,7 +51,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const {hasFirstAuth} = this.props.state.userData
     return (
         

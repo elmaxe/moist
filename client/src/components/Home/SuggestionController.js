@@ -16,7 +16,6 @@ class Suggestion extends React.Component {
         super(props)
 
         this.state = {...initState}
-        console.log(props)
     }
 
     onChangeOwn(e) {

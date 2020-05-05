@@ -4,7 +4,6 @@ import SearchPageView from './Views/SearchPageView'
 class SearchPage extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
         this.state = {
             query: props.history.location.state ? props.history.location.state.query : "",
             fetching: true,

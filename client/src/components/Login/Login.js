@@ -19,7 +19,6 @@ const initialState = {
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
         this.state = initialState;
 
         this.handleChange = this.handleChange.bind(this);

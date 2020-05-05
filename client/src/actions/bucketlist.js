@@ -7,7 +7,6 @@ export const CLEAR_BUCKETLIST = "CLEAR_BUCKETLIST"
 export const FETCH_BUKKETLISTS = "FETCH_BUKKETLISTS"
 
 function addActivity(activity, bid) {
-    console.log(activity)
     return dispatch => {
         fetch('/api/activities/add', {
             method: "POST",
@@ -33,7 +32,6 @@ function addActivity(activity, bid) {
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
             if (json.error) {
                 //TODO: SHOW ERROR
             } else {
@@ -69,7 +67,6 @@ export function removeActivity(index, bid, activity) {
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
             if (json.error) {
 
             } else {
@@ -105,7 +102,6 @@ const getBukketlists = (dispatch) => {
     })
     .then(res => res.json())
     .then(json => {
-        console.log(json)
         if (json.error) {
             dispatch({type: FETCH_BUKKETLISTS, bucketlists: []})
         } else {

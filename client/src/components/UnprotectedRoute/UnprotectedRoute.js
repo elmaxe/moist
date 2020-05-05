@@ -6,7 +6,6 @@ import {connect} from 'react-redux'
 import * as Actions from '../../actions/user'
 
 const UnprotectedRoute = ({component: Component, ...rest}) => {
-    console.log(rest.actions)
     return (
         <Route {...rest} render={props => (
             // rest.state.user.displayName ?

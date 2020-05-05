@@ -18,8 +18,6 @@ class Sidebar extends React.Component {
     }
 
     clickItem(bukketlist) {
-        console.log(bukketlist)
-        console.log(this.props.state)
         // if (this.props.state.bucketlist.bucketlist && this.props.state.bucketlist.bukketlist.bid !== bukketlist.bukketlist.bid) {
             // this.setState({selected: id})
             this.props.actions.setBukketlist(bukketlist)
@@ -29,7 +27,6 @@ class Sidebar extends React.Component {
     clickDelete(bukketlist) {
         const {name, bid} = bukketlist
         const {actions} = this.props
-        console.log(bukketlist)
         const buttons = [
             <button
                 className="btn red"

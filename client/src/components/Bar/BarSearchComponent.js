@@ -20,8 +20,6 @@ class BarSearchComponent extends React.Component {
     onSearch(e) {
         const {query} = this.state
         e.preventDefault()
-        console.log(this.props)
-        console.log(this.state.query)
         this.props.history.replace(ROUTES.SEARCH, {query})
     }
 

@@ -4,12 +4,10 @@ import './Alert.css'
 class AlertController extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
     }
 
     clickOutside(e) {
         if(e.target.className === "AlertBackground") {
-            console.log("RE")
             this.props.hideAlert()
         }
     }
