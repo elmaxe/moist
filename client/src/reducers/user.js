@@ -1,4 +1,4 @@
-import {SET_USER, CLEAR_USER} from '../actions/user.js'
+import {SET_USER, CLEAR_USER, SET_PROFILE_PIC} from '../actions/user.js'
 
 const initialState = {
     authenticated: false,
@@ -18,6 +18,18 @@ const userData = (state = initialState, action) => {
             return action.userData;
         case CLEAR_USER:
             return {...initialState};
+        case SET_PROFILE_PIC:
+            return {
+                authenticated: state.authenticated,
+                hasFirstAuth: state.hasFirstAuth,
+                user: {
+                    id: state.user.id,
+                    email: state.user.email,
+                    username: state.user.username,
+                    profilePicture: action.path,
+                    regDate: state.user.regDate
+                }
+            }
         default: return state;
     }
 }

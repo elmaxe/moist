@@ -10,7 +10,8 @@ class LeftBar extends React.Component {
             fetchDesc: false,
             description: this.props.description,
             inputDescription: this.props.description,
-            file: []
+            file: [],
+            profilePicError: ""
         }
     }
 
@@ -59,6 +60,50 @@ class LeftBar extends React.Component {
         })
     }
 
+    onFileChange(e) {
+        this.setState({file: e.target.files[0]})
+    }
+
+    onUpload(e) {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append('file', this.state.file)
+
+        fetch('/api/upload', {
+            method: "POST",
+            credentials: "same-origin",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.error) {
+                this.setState({profilePicError: json.error})
+            } else {
+                this.doUpdateImagePathFetch(json.image.path)
+            }
+        })
+    }
+
+    doUpdateImagePathFetch(path) {
+        fetch('/api/auth/user/profilepic/update', {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({path})
+        })
+        .then(res => res.json())
+        .then(json => {
+            //Update profile pic state
+            if (json.error) {
+                this.setState({profilePicError: json.error})
+            } else {
+                this.props.actions.setProfilePic(path)
+            }
+        })
+    }
+
     render() {
         const {edit, inputDescription, file} = this.state
         return (
@@ -73,6 +118,9 @@ class LeftBar extends React.Component {
                 inputDescription={inputDescription}
                 fetchDesc={this.state.fetchDesc}
                 file={file}
+                onFileChange={this.onFileChange.bind(this)}
+                onFileUpload={this.onUpload.bind(this)}
+                profilePicError={this.state.profilePicError}
             />
         )
     }

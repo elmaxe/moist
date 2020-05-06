@@ -3,6 +3,7 @@ import * as ROUTES from '../routes'
 export const SET_USER = 'SET_USER';
 export const CLEAR_USER = 'CLEAR_USER';
 export const SET_FIRST_AUTH = 'SET_FIRST_AUTH';
+export const SET_PROFILE_PIC = 'SET_PROFILE_PIC';
 
 const setUserAction = (userData) => {
     return {type: SET_USER, userData}
@@ -45,6 +46,12 @@ export const fetchIsAuth = (dispatch) => {
             }));
         }
     })
+}
+
+export function setProfilePic(path = "") {
+    return dispatch => {
+        dispatch({type: SET_PROFILE_PIC, path})
+    }
 }
 
 /**

@@ -10,7 +10,7 @@ router.use(fileUpload({
     createParentPath: true,
     safeFileNames: true,
     limits: {
-        fileSize: 1024*1024
+        fileSize: 3*1024*1024
     }
 }))
 
@@ -19,8 +19,7 @@ router.post('/', (req, res) => {
         res.status(400).json({"error":"No file provided, no file uploaded."})
         return
     }
-
-    let imageFile = req.files.imageFile
+    let imageFile = req.files.file
 
     if (imageFile.truncated) {
         res.status(413).json({"error":"File too big."})
