@@ -10,7 +10,7 @@ class LeftBar extends React.Component {
             fetchDesc: false,
             description: this.props.description,
             inputDescription: this.props.description,
-            file: [],
+            file: undefined,
             profilePicError: ""
         }
     }
