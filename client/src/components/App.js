@@ -20,6 +20,7 @@ import {bindActionCreators} from 'redux'
 import spinner from '../images/spinner.gif'
 import SearchPage from './SearchResultPage/SearchPage';
 import UserPage from './UserPage/User'
+import Report from './Report/Report'
 
 export function fetchIsAuth(setUser) {
       fetch(ROUTES.API_IS_AUTH, {
@@ -73,6 +74,9 @@ class App extends React.Component {
               </Route>
               <Route exact path={ROUTES.USER}>
                 <ProtectedRoute component={UserPage} />
+              </Route>
+              <Route exact path={ROUTES.REPORT}>
+                <ProtectedRoute component={Report} />
               </Route>
               <Route component={NotFound} />
             </Switch>

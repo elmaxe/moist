@@ -6,6 +6,7 @@ export const ACCOUNT = '/account'
 export const LOGOUT = '/logout'
 export const SEARCH = '/search'
 export const USER = '/u/:user'
+export const REPORT = '/report'
 //------------
 
 //------------

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './SubmittedActivity.css'
 import {Link} from 'react-router-dom'
 
-const SubmittedActivity = ({text, creationDate}) => {
+const SubmittedActivity = ({text, creationDate, onClickReport, user, suggestion}) => {
 
     let date = new Date(parseInt(creationDate, 10))
     let year = date.getUTCFullYear()
@@ -16,8 +16,8 @@ const SubmittedActivity = ({text, creationDate}) => {
             <div id="title">{text}</div>
             <div id="date">
                 Submitted on {date}
-                <span title="Report this activity" style={{float: "right", padding: "0 10px"}}>
-                    <Link to="/report">Report</Link>
+                <span onClick={onClickReport} title="Report this activity" style={{float: "right", padding: "0 10px"}}>
+                    <Link to={{pathname: "/report", state: {suggestion: suggestion, reporter: user, time: Date.now()}}}>Report</Link>
                 </span>
             </div>
             

@@ -15,6 +15,8 @@ const userCreatedActivities = 'CREATE TABLE IF NOT EXISTS UserCreatedActivities 
 
 const bukketlist = 'CREATE TABLE IF NOT EXISTS Bukketlists (bid INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, private BOOLEAN NOT NULL, name TEXT NOT NULL, description TEXT, creationDate TEXT NOT NULL, FOREIGN KEY(uid) REFERENCES Users(id) ON DELETE CASCADE)'
 
+const reports = 'CREATE TABLE IF NOT EXISTS Reports (rip INTEGER PRIMARY KEY AUTOINCREMENT, ucaid INTEGER NOT NULL, uid INTEGER NOT NULL, date TEXT, FOREIGN KEY(ucaid) REFERENCES UserCreatedActivities(ucaid) ON DELETE CASCADE)'
+
 db.serialize(() => {
     // db.run('DROP TABLE IF EXISTS Users');
     // db.run('DROP TABLE IF EXISTS Activities');
@@ -24,6 +26,7 @@ db.serialize(() => {
     db.run(activitiesTable)
     db.run(userCreatedActivities)
     db.run(bukketlist)
+    db.run(reports)
 });
 
 module.exports = db;

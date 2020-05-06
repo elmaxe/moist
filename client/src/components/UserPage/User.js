@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import UserView from './Views/UserView'
 import './Views/User.css'
-
+import Alert from '../Alert/Alert'
 import {Redirect} from 'react-router-dom'
 
 const initUser = {

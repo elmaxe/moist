@@ -159,7 +159,25 @@ router.get('/submitted/:user', (req, res) => {
             return
         }
         if (rows != undefined) {
-            res.status(200).json({rows})
+            const formattedRows = rows.map(x => {
+                return {
+                    ucaid: x.ucaid,
+                    activity: x.activity,
+                    accessibility: x.accessibility,
+                    type: x.type,
+                    participants: x.participants,
+                    price: x.price,
+                    link: x.link,
+                    key: x.key,
+                    createdBy: {
+                        username: x.username,
+                        uid: x.uid,
+                        date: x.creationDate
+                    }
+                }
+            })
+            console.log(formattedRows)
+            res.status(200).json({rows: formattedRows})
         } else {
             res.status(200).json({"status":"No submitted activities"})
         }

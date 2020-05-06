@@ -4,7 +4,7 @@ import LeftBar from '../LeftBar'
 import SubmittedActivity from './SubmittedActivity'
 import ExpandableBukketlist from '../ExpandableBukketlist'
 
-const UserView = ({username, profilePicture, id, description, regDate, loggedInUser, submitted, bukketlists, ...rest}) => {
+const UserView = ({username, profilePicture, id, description, regDate, loggedInUser, submitted, bukketlists, onClickReport, ...rest}) => {
     return (
         <div>
             <div className="header">
@@ -17,7 +17,7 @@ const UserView = ({username, profilePicture, id, description, regDate, loggedInU
                     </div>
                     <div><h3>Submitted activities</h3></div>
                     <div id="submittedactivities">
-                        {submitted.length === 0 ? `${username} has not submitted any activities` : submitted.map(x => <SubmittedActivity key={x.ucaid} text={x.activity} creationDate={x.creationDate}/>)}
+                        {submitted.length === 0 ? `${username} has not submitted any activities` : submitted.map(x => <SubmittedActivity key={x.ucaid} text={x.activity} creationDate={x.createdBy.date} onClickReport={onClickReport} user={loggedInUser} suggestion={x} />)}
                     </div>
                 </div>
             </div>
