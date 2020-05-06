@@ -60,9 +60,16 @@
 }
 
 .update-profile-pic-box {
-    border: solid 1px black;
+    /* border: solid 1px black; */
+    border-bottom: solid 1px rgb(200, 200, 200);
+    border-top: solid 1px rgb(200, 200, 200);
     border-radius: 5px;
     padding: 10px;
+    margin-bottom: 10px;
+}
+
+.update-profile-pic-box #profilePicError {
+    margin-top: 10px;
 }
 
 #uploadprofilepic {

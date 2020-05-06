@@ -8,7 +8,7 @@ const UserView = ({username, profilePicture, id, description, regDate, loggedInU
     return (
         <div>
             <div className="header">
-                <LeftBar history={rest.history} username={username} profilePicture={profilePicture} id={id} description={description === null ? "" : description} regDate={regDate} loggedInUser={loggedInUser} />
+                <LeftBar history={rest.history} username={username} profilePicture={profilePicture} id={id} description={description === null ? "" : description} regDate={regDate} loggedInUser={loggedInUser} actions={{setProfilePic: rest.actions.setProfilePic}} />
                 <div className="content">
                         <div><h3>Bukketlists</h3></div>
                     <div id="bukketlists">

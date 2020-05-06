@@ -3,7 +3,7 @@ import {Route, Redirect} from 'react-router-dom'
 import * as ROUTES from '../../routes'
 import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
-import setUser from '../../actions/user'
+import setUser, {setProfilePic} from '../../actions/user'
 import addActivity, {removeActivity, setBucketlist, clearBucketlist, fetchBukketlists, removeBukketlist, createBukketlist} from '../../actions/bucketlist'
 import setAndShowAlert, {hideAlert} from '../../actions/alert'
 
@@ -23,7 +23,7 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
 
 const mapActionsToProps = dispatch => {
     return {
-        actions: bindActionCreators({setUser, addActivity, removeActivity, setBucketlist, clearBucketlist, setAndShowAlert, hideAlert, fetchBukketlists, removeBukketlist,createBukketlist}, dispatch)
+        actions: bindActionCreators({setUser, setProfilePic, addActivity, removeActivity, setBucketlist, clearBucketlist, setAndShowAlert, hideAlert, fetchBukketlists, removeBukketlist,createBukketlist}, dispatch)
     }
 }
 
