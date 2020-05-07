@@ -13,13 +13,14 @@ class Bucketlist extends React.Component {
     }
 
     onMarkAsDone(index, activity) {
-        console.log(index)
-        console.log(activity)
+        // XOR:
+        // 0 ^ 1 = 1
+        // 1 ^ 1 = 0
+        //Basically invert the state
+        this.props.actions.markAsDone(index, activity.bid, activity.aid, activity.done ^ 1)
     }
 
     render() {
-
-        console.log(this.props.bucketlists)
         return (
             <>
                 <BucketlistView
@@ -34,12 +35,10 @@ class Bucketlist extends React.Component {
 }
 
 Bucketlist.propTypes = {
-    bucketlist: PropTypes.object.isRequired
+    bucketlist: PropTypes.number.isRequired
 }
 
 const BucketlistView = ({bucketlist, bucketlists = [], onRemove, onMarkAsDone}) => {
-    console.log(bucketlist)
-    console.log(bucketlists)
     if (bucketlist !== -100) {
         return (
             <div className="Bucketlist">
@@ -50,7 +49,8 @@ const BucketlistView = ({bucketlist, bucketlists = [], onRemove, onMarkAsDone}) 
 }
 
 BucketlistView.propTypes = {
-    bucketlist: PropTypes.array,
+    bucketlist: PropTypes.number,
+    bucketlists: PropTypes.array,
     onRemove: PropTypes.func.isRequired
 }
 
@@ -58,10 +58,10 @@ const BucketlistItem = ({index, activity, onRemove, onMarkAsDone}) => {
     return (
         <div className="BucketlistItem">
             <span className="BucketlistItemTitle">
-                {activity.activity}
+                {activity.done === 0 ? activity.activity : <s>{activity.activity}</s>}
             </span>
             <span className="BucketlistItemButtons">
-                <button className="btn green" onClick={() => onMarkAsDone(index, activity)}>Mark as done</button>
+                <button className="btn green" onClick={() => onMarkAsDone(index, activity)}>{activity.done === 0 ? "Mark as done" : "Undo"}</button>
                 <button className="btn red" onClick={() => onRemove(index, activity)}>Remove</button>
             </span>
         </div>

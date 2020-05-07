@@ -34,6 +34,7 @@ function addActivity(activity, bid) {
         .then(json => {
             if (json.error) {
                 //TODO: SHOW ERROR
+                fetchIsAuth(dispatch)
             } else {
                 //this.get()
                 //TODO: aid
@@ -68,7 +69,7 @@ export function removeActivity(index, bid, activity) {
         .then(res => res.json())
         .then(json => {
             if (json.error) {
-
+                fetchIsAuth(dispatch)
             } else {
                 dispatch({type: REMOVE_ACTIVITY, bid, index})
             }
@@ -89,12 +90,10 @@ export function markAsDone(index, bid, aid, state) {
         })
         .then(res => res.json())
         .then(json => {
-            console.log(json)
             if (json.error) {
-
+                fetchIsAuth(dispatch)
             } else {
-                //Dispatch, index
-                dispatch({type: MARK_AS_DONE, state})
+                dispatch({type: MARK_AS_DONE, index, bid, state})
             }
         })
     }
