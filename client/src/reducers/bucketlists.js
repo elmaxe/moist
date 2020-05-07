@@ -1,4 +1,4 @@
-import {FETCH_BUKKETLISTS, ADD_ACTIVITY, REMOVE_ACTIVITY} from '../actions/bucketlist'
+import {FETCH_BUKKETLISTS, ADD_ACTIVITY, REMOVE_ACTIVITY, MARK_AS_DONE} from '../actions/bucketlist'
 
 const initState = []
 
