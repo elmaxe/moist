@@ -47,7 +47,8 @@ function addActivity(activity, bid) {
                     participants: activity.participants,
                     price: activity.price,
                     link: activity.link,
-                    key: activity.key
+                    key: activity.key,
+                    done: 0
                 }})
                 // dispatch({type: FETCH_BUKKETLISTS, bukketlists: json.bukketlists})
                 // getBukketlists(dispatch)
