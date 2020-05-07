@@ -11,7 +11,7 @@ const {validCookie} = require('../auth/validCookie')
 router.get('/get/:bid', (req, res) => {
     const user = req.session.user
     const {bid} = req.params
-    const activities = db.prepare('SELECT Activities.activity, Activities.aid, Activities.bid, Bukketlists.private, Bukketlists.private, Users.id FROM Activities \
+    const activities = db.prepare('SELECT Activities.activity, Activities.aid, Activities.bid, Bukketlists.private, Bukketlists.private, Users.id, Activities.done FROM Activities \
                                     INNER JOIN Users ON Users.id = Bukketlists.uid \
                                     INNER JOIN Bukketlists ON Bukketlists.bid = Activities.bid \
                                     WHERE Bukketlists.bid = ?\
@@ -189,7 +189,7 @@ router.post('/markasdone', validCookie, (req, res) => {
     const {bid, aid, state} = req.body
 
     const hasaccess = db.prepare('SELECT * FROM Bukketlists WHERE bid = ? AND uid = ?')
-    const mark = db.prepare('UPDATE Activities SET done = ? AND aid = ?')
+    const mark = db.prepare('UPDATE Activities SET done = ? WHERE aid = ?')
     hasaccess.get([bid, user.id], (err, row) => {
         if (err) {
             res.status(500).json({"error":"Internal server error"})
