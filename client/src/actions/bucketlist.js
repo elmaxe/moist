@@ -100,9 +100,9 @@ export function markAsDone(index, bid, aid, state) {
     }
 }
 
-export function setBucketlist(bukketlist) {
+export function setBucketlist(index) {
     return dispatch => {
-        dispatch({type: SET_BUCKETLIST, bukketlist})
+        dispatch({type: SET_BUCKETLIST, index})
     }
 }
 

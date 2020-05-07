@@ -2,11 +2,11 @@ import React from 'react'
 import DeleteImage from '../../../../images/criss-cross.svg'
 import './SidebarItem.css'
 
-const SidebarItem = ({text, id, selected, onClick, onDeleteClick, noDeleteIcon = false, bukketlist}) => {
+const SidebarItem = ({index, text, id, selected, onClick, onDeleteClick, noDeleteIcon = false, bukketlist}) => {
     const itemStyle = selected === id ? " selected" : ""
 
     return (
-        <div className={"SidebarItem" + itemStyle} onClick={() => onClick(bukketlist)} >
+        <div className={"SidebarItem" + itemStyle} onClick={() => onClick(index)} >
             <span id="itemtitle">{text.substring(0, 24)}</span>
             {noDeleteIcon ?
                 <span id="delete" onClick={onDeleteClick}>

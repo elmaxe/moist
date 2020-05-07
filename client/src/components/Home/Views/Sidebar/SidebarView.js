@@ -9,15 +9,16 @@ const SidebarView = ({bukketlists, selected, onClick, onDeleteClick, createNewCl
                 <div>
                     <SidebarItem
                         className="create-bukketlist"
-                        text="Create new bukketlist..."
+                        text="Create new bukketlist"
                         id={-1}
                         selected={-1}
                         onClick={() => createNewClick()}
                         noDeleteIcon
                     ></SidebarItem>
-                    {bukketlists.map(list => 
+                    {bukketlists.map((list, i) => 
                         <SidebarItem
                             key={list.bukketlist.bid}
+                            index={i}
                             text={list.bukketlist.name}
                             id={list.bukketlist.bid}
                             selected={selected}

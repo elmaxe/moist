@@ -18,10 +18,10 @@ class Sidebar extends React.Component {
         this.props.actions.clearBucketlist()
     }
 
-    clickItem(bukketlist) {
+    clickItem(index) {
         // if (this.props.state.bucketlist.bucketlist && this.props.state.bucketlist.bukketlist.bid !== bukketlist.bukketlist.bid) {
             // this.setState({selected: id})
-            this.props.actions.setBukketlist(bukketlist)
+            this.props.actions.setBukketlist(index)
         // }
     }
 
@@ -125,13 +125,11 @@ class Sidebar extends React.Component {
     render() {
         return( 
             <SidebarView
-            // [{id: 0, text: "Reee"}, {id: 1, text: "Reee2eeeeeeeeeeeeeeeeeeeeeeees"}, {id: 2, text: "Reee3"}, {id: 3, text: "Reee4"}, {id: 4, text: "Reee4"}, {id: 5, text: "Reee4"}, {id: 6, text: "Reee4"}]
                 bukketlists={this.props.state.bucketlists}
-                selected={this.props.state.bucketlist.bukketlist ? this.props.state.bucketlist.bukketlist.bid : -1}
+                selected={this.props.state.bucketlist !== -100 ? this.props.state.bucketlists[this.props.state.bucketlist].bukketlist.bid : -1}
                 onClick={this.clickItem.bind(this)}
                 onDeleteClick={this.clickDelete.bind(this)}
                 createNewClick={this.clickCreateNew.bind(this)}
-                // actions={this.props.actions.setAndShowAlert}
             ></SidebarView>
         )
     }

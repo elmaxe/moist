@@ -18,10 +18,13 @@ class Bucketlist extends React.Component {
     }
 
     render() {
+
+        console.log(this.props.bucketlists)
         return (
             <>
                 <BucketlistView
-                    bucketlist={this.props.bucketlist.activities}
+                    bucketlist={this.props.bucketlist}
+                    bucketlists={this.props.bucketlists}
                     onRemove={this.removeFromList.bind(this)}
                     onMarkAsDone={this.onMarkAsDone.bind(this)}
                 />
@@ -34,12 +37,16 @@ Bucketlist.propTypes = {
     bucketlist: PropTypes.object.isRequired
 }
 
-const BucketlistView = ({bucketlist = [], onRemove, onMarkAsDone}) => {
-    return (
-        <div className="Bucketlist">
-            {bucketlist.map((x,i) => <div  key={i}><BucketlistItem index={i} activity={x} onRemove={onRemove} onMarkAsDone={onMarkAsDone}/></div>)}
-        </div>
-    )
+const BucketlistView = ({bucketlist, bucketlists = [], onRemove, onMarkAsDone}) => {
+    console.log(bucketlist)
+    console.log(bucketlists)
+    if (bucketlist !== -100) {
+        return (
+            <div className="Bucketlist">
+                {bucketlists[bucketlist].activities.map((x,i) => <div key={i}><BucketlistItem index={i} activity={x} onRemove={onRemove} onMarkAsDone={onMarkAsDone}/></div>)}
+            </div>
+        )
+    } else return <div className="Bucketlist"></div>
 }
 
 BucketlistView.propTypes = {
