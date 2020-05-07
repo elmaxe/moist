@@ -11,7 +11,7 @@ const {validCookie} = require('../auth/validCookie')
 router.get('/get/:bid', (req, res) => {
     const user = req.session.user
     const {bid} = req.params
-    const activities = db.prepare('SELECT Activities.activity, Activities.aid, Activities.bid, Bukketlists.private, Bukketlists.private, Users.id FROM Activities \
+    const activities = db.prepare('SELECT Activities.activity, Activities.aid, Activities.bid, Bukketlists.private, Bukketlists.private, Users.id, Activities.done FROM Activities \
                                     INNER JOIN Users ON Users.id = Bukketlists.uid \
                                     INNER JOIN Bukketlists ON Bukketlists.bid = Activities.bid \
                                     WHERE Bukketlists.bid = ?\
@@ -35,9 +35,9 @@ router.get('/get/:bid', (req, res) => {
 router.post('/add', validCookie, (req, res) => {
     const user = req.session.user
     const {bid, activity, accessibility, type, participants, price, link, key, saveGlobally} = req.body
-    const add = db.prepare('INSERT INTO Activities (bid, activity, accessibility, type, participants, price, link, key) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+    const add = db.prepare('INSERT INTO Activities (bid, activity, accessibility, type, participants, price, link, key, done) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
     //TODO: KOLLA ATT BID TILLHÖR DIG SJÄLV, SÅ MAN INTE KAN LÄGGA TILL I ANDRAS LISTOR (GÅR EJ ATT GÖRA FRÅN WEBBLÄSARE, BARA VIA KOMMANDS)
-    add.run([bid, activity, accessibility, type, participants, price, link, key], (err) => {
+    add.run([bid, activity, accessibility, type, participants, price, link, key, false], (err) => {
         if (err) {
             console.log(err)
             res.status(500).json({"error":"Internal server error"})
@@ -181,6 +181,34 @@ router.get('/submitted/:user', (req, res) => {
         } else {
             res.status(200).json({"status":"No submitted activities"})
         }
+    })
+})
+
+router.post('/markasdone', validCookie, (req, res) => {
+    const user = req.session.user
+    const {bid, aid, state} = req.body
+
+    const hasaccess = db.prepare('SELECT * FROM Bukketlists WHERE bid = ? AND uid = ?')
+    const mark = db.prepare('UPDATE Activities SET done = ? WHERE aid = ?')
+    hasaccess.get([bid, user.id], (err, row) => {
+        if (err) {
+            res.status(500).json({"error":"Internal server error"})
+            return
+        }
+
+        if (row == undefined) {
+            res.status(401).json({"error":"Unauthorized."})
+            return
+        }
+
+        mark.run([state, aid], (err) => {
+            if (err) {
+                res.status(500).json({"error":"Internal server error"})
+                return
+            }
+
+            res.status(200).json({"status":"Activity state updated."})
+        })
     })
 })
 

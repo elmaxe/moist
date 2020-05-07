@@ -3,7 +3,7 @@ export const ADD_ACTIVITY = "ADD_ACTIVITY"
 export const REMOVE_ACTIVITY = "REMOVE_ACTIVITY"
 export const SET_BUCKETLIST = "SET_BUCKETLIST"
 export const CLEAR_BUCKETLIST = "CLEAR_BUCKETLIST"
-
+export const MARK_AS_DONE = "MARK_AS_DONE"
 export const FETCH_BUKKETLISTS = "FETCH_BUKKETLISTS"
 
 function addActivity(activity, bid) {
@@ -34,6 +34,7 @@ function addActivity(activity, bid) {
         .then(json => {
             if (json.error) {
                 //TODO: SHOW ERROR
+                fetchIsAuth(dispatch)
             } else {
                 //this.get()
                 //TODO: aid
@@ -68,7 +69,7 @@ export function removeActivity(index, bid, activity) {
         .then(res => res.json())
         .then(json => {
             if (json.error) {
-
+                fetchIsAuth(dispatch)
             } else {
                 dispatch({type: REMOVE_ACTIVITY, bid, index})
             }
@@ -77,9 +78,30 @@ export function removeActivity(index, bid, activity) {
     }
 }
 
-export function setBucketlist(bukketlist) {
+export function markAsDone(index, bid, aid, state) {
     return dispatch => {
-        dispatch({type: SET_BUCKETLIST, bukketlist})
+        fetch('/api/activities/markasdone', {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({bid, aid, state})
+        })
+        .then(res => res.json())
+        .then(json => {
+            if (json.error) {
+                fetchIsAuth(dispatch)
+            } else {
+                dispatch({type: MARK_AS_DONE, index, bid, state})
+            }
+        })
+    }
+}
+
+export function setBucketlist(index) {
+    return dispatch => {
+        dispatch({type: SET_BUCKETLIST, index})
     }
 }
 

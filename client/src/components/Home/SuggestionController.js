@@ -64,6 +64,8 @@ class Suggestion extends React.Component {
                 <br/><br/><b>Creating activities: </b>
                 In addition to randomizing activities you can add your own activities by pressing <i style={{color: "#a82c2c"}}>"Add own activity"</i>. Fill the form and submit.
                 When creating your own activity, you have the choice to make it available as a suggestion for other users, i.e. there is a chance they can be randomly suggested to other users. Click the box <i style={{color: "gray"}}>"Add as suggestions for other users"</i> when creating your activity. If you don't click it the activity won't be suggested to other users.
+                <br/><br/><b>Mark as done: </b>
+                You can mark an activity as done by pressing the <i style={{color: "#2ca82c"}}>"Mark as done"</i>. When you mark an activity as done it will remain in the list. You can choose to keep it, or remove it if you want to. You can undo the activity as done by pressing the same button again.
                 <br/><br/><b>Viewing another user's bukketlist: </b>
                 If you want to view bukketlists from other users, search for their username in the search bar in the top of the screen. You can also search for bukketlist names.
             </div>,

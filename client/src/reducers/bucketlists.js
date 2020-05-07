@@ -1,14 +1,6 @@
-import {FETCH_BUKKETLISTS, ADD_ACTIVITY, REMOVE_ACTIVITY} from '../actions/bucketlist'
+import {FETCH_BUKKETLISTS, ADD_ACTIVITY, REMOVE_ACTIVITY, MARK_AS_DONE} from '../actions/bucketlist'
 
 const initState = []
-
-// case ADD_ACTIVITY:
-//     return [...state].concat(action.activity)
-// case REMOVE_ACTIVITY:
-//     console.log(action)
-//     let newArray = [...state]
-//     newArray.splice(action.index, 1)
-//     return newArray
 
 const bucketlists = (state = initState, action) => {
     switch (action.type) {
@@ -31,15 +23,6 @@ const bucketlists = (state = initState, action) => {
         case REMOVE_ACTIVITY:
             const activitylistToRemoveFrom = [...state].filter(x => x.bukketlist.bid === action.bid)[0].activities
             const newActivities2 = activitylistToRemoveFrom.filter((x,i) => i !== action.index)
-            // console.log([...state].filter(x => x.bukketlist.bid === action.bid)[0].activities)
-            // console.log(activitylistToRemoveFrom.filter((x,i) => i !== action.index))
-
-            // console.log([...state].map(x => {
-            //     if (x.bukketlist.bid === action.bid) {
-            //         x.activities = newActivities2
-            //     }
-            //     return x
-            // }))
 
             const newState2 = [...state].map(x => {
                 if (x.bukketlist.bid === action.bid) {
@@ -49,6 +32,12 @@ const bucketlists = (state = initState, action) => {
             })
 
             return newState2
+        case MARK_AS_DONE:
+            const toReturn = [...state]
+            const activity = toReturn.filter(x => x.bukketlist.bid === action.bid)[0].activities[action.index]
+            activity.done = action.state
+
+            return toReturn
         case FETCH_BUKKETLISTS:
             return action.bukketlists
         default: return state
