@@ -15,6 +15,7 @@ class Sidebar extends React.Component {
 
     componentDidMount() {
         this.props.actions.fetchBukketlists()
+        this.props.actions.clearBucketlist()
     }
 
     clickItem(bukketlist) {
