@@ -33,6 +33,12 @@
     border: solid 1px;
     width: 15vw;
     border-color: black;
+    height: 4vh;
+    font-size: 2vh;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* padding-top: 1vh;
+    padding-bottom: 1vh; */
 }
 
 .Login2 button {
@@ -71,4 +77,14 @@ td, th {
 
 tr {
     padding: 1%;
+}
+
+.Login2 th#logintitle {
+    font-size: 2vh;
+}
+
+#loginbtn {
+    height: 4vh;
+    min-width: 3vw;
+    font-size: 2vh;
 }

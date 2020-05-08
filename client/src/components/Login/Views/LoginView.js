@@ -11,8 +11,8 @@ const LoginView = ({email, password, error, loggingIn, isInvalid, handleChange, 
                 <table>
                     <tbody>
                         <tr>
-                            <th>Email</th>
-                            <th>Password</th>
+                            <th id="logintitle">Email</th>
+                            <th id="logintitle">Password</th>
                             <th></th>
                         </tr>
                         <tr>
@@ -39,7 +39,7 @@ const LoginView = ({email, password, error, loggingIn, isInvalid, handleChange, 
                                 <button
                                     disabled={isInvalid || loggingIn}
                                     onClick={handleSubmit}
-                                
+                                    id="loginbtn"
                                 >{loggingIn ? "Logging in..." : "Login"}
                                 </button>
                             </td>
@@ -47,13 +47,13 @@ const LoginView = ({email, password, error, loggingIn, isInvalid, handleChange, 
                         <tr>
                             <td></td>
                             <td>
-                                <Link to="#">Forgot password?</Link>
+                                {/* <Link to="#">Forgot password?</Link> */}
                             </td>
                         </tr>
                     </tbody>
                 </table>
+            {error && <Alert style={{fontSize: "2vh"}} variant="danger">{error}</Alert>}
             </form>
-            {error && <Alert variant="danger">{error}</Alert>}
         </div>
     )
 }

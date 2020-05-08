@@ -24,7 +24,7 @@ const Landing = ({actions}) => {
                         {/* <br /> */}
                         bukket is website which provides you with dynamically generated activities for your bukketlists - perfect for when you don't know what to do. Share your life goals with others, and view your friends life goals!
                         <div className="testelitest">
-                            <img src={landingman} style={{position: "absolute", bottom: "0px"}}/>
+                            <img src={landingman} />
                         </div>
                     </div>
                 </div>
