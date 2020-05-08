@@ -26,9 +26,13 @@
 }
 
 .profilecontent #head {
-    padding-bottom: 10px;
+    padding: 10px;
     border-bottom: solid 1px rgb(200, 200, 200);
     width: 100%;
+    background-color: white;
+    border-left: solid 3px gold;
+    border-right: solid 3px gold;
+    border-top: solid 3px gold;
 }
 
 .profilecontent #head > h1 {
@@ -50,10 +54,14 @@
 }
 
 .profilecontent #description {
-    padding: 10px 0 0 0;
+    padding: 10px;
     word-break: break-word;
     font-size: 15px;
     white-space: pre-wrap;
+    background-color: white;
+    border-left: solid 3px gold;
+    border-right: solid 3px gold;
+    border-bottom: solid 3px gold;
     /* border: solid 1px black; */
 }
 
@@ -93,12 +101,14 @@
     padding: 0 0 0 10px;
     margin: 15px 0 0 15px;
     width: 50vw;
+    /* border: solid 4px gold; */
 }
 
 .content #bukketlists {
     height: 37vh;
     overflow-y: auto;
     margin: 0 0 20px 0;
+    border: solid 3px gold;
 }
 
 .content #submittedactivities {
@@ -106,6 +116,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
+    border: solid 3px gold;
+    background-color: white;
 }
 
 #textareauserdesc {

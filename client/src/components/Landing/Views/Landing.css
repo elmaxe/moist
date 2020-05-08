@@ -54,6 +54,7 @@
     position: absolute;
     width: inherit;
     overflow: auto;
+    background-color: rgb(240, 240, 240);
 }
 
 .LandingContentLeft {
@@ -83,7 +84,7 @@
 }
 
 .testelitest > img {
-    z-index: -100;
+    /* z-index: -100; */
     position: absolute;
     bottom: 0;
     width: 30%;

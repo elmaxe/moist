@@ -6,9 +6,10 @@
 }
 
 .fill-window {
-  height: 100%;
+  height: 100vh;
   position: unset;
   left: 0;
   width: 100%;
   overflow: hidden;
+  background-color: rgb(240, 240, 240);
 }

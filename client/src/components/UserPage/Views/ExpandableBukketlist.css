@@ -2,6 +2,7 @@
     cursor: pointer;
     padding: 1vw;
     border-bottom: solid 1px rgb(230, 230, 230);
+    background-color: white;
 }
 
 .expandable-head #indicator {
@@ -43,6 +44,7 @@
     border-left: solid 1px rgb(230, 230, 230);
     border-right: solid 1px rgb(230, 230, 230);
     border-bottom: solid 1px rgb(230, 230, 230);
+    background-color: white;
 }
 
 .expandable-body #title {
