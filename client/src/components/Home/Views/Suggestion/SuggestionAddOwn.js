@@ -17,15 +17,15 @@ const SuggestionAddOwn = ({addOwnState, onChange, onSave}) => {
                     <input placeholder="Activity" autoFocus autoComplete="off" name="title" value={addOwnState.title} onChange={onChange} type="text" />
                 </div>
                 <div id="info">
-                    <span id="icon" title="Accessibility">  
+                    <span id="icon" title="Accessibility (0-1)">  
                         <img src={Accessibility} height="30px" alt="Accessibility" />
                         <input placeholder="0-1" autoComplete="off" name="accessibility" value={addOwnState.accessibility} onChange={onChange} type="text" />
                     </span>
-                    <span id="icon" title="Participants">
+                    <span id="icon" title="Participants (1+)">
                         <img src={Participants} height="30px" alt="Participants" />
                         <input placeholder="1-&#8734;" autoComplete="off" name="participants" value={addOwnState.participants} onChange={onChange} type="number" />
                     </span>
-                    <span id="icon" title="Price">
+                    <span id="icon" title="Price (0-1)">
                         <img src={Price} height="30px" alt="Price" />
                         <input placeholder="0-1" autoComplete="off" name="price" value={addOwnState.price} onChange={onChange} type="text" />
                     </span>

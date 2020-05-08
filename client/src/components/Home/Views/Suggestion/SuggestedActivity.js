@@ -20,15 +20,15 @@ const SuggestedActivity = ({fetching = false, suggestion, user, onClickHelp}) =>
                 <img id="help" src={questionmark} title="Help" onClick={(e) => onClickHelp(e)}/>
                     <div id="title">{suggestion.activity}</div>
                     <div id="info">
-                        <span id="icon" title="Accessibility">  
+                        <span id="icon" title="Accessibility (0-1)">  
                             <img src={Accessibility} height="30vh" alt="Accessibility" />
                             {suggestion.accessibility ? suggestion.accessibility : "N/A"}
                         </span>
-                        <span id="icon" title="Participants">
+                        <span id="icon" title="Participants (1+)">
                             <img src={Participants} height="30vh" alt="Participants" />
                             {suggestion.participants ? suggestion.participants : "N/A"}
                         </span>
-                        <span id="icon" title="Price">
+                        <span id="icon" title="Price (0-1)">
                             <img src={Price} height="30vh" alt="Price" />
                             {suggestion.price ? suggestion.price : "N/A"}
                         </span>
