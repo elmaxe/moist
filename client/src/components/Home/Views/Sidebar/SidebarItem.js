@@ -9,9 +9,7 @@ const SidebarItem = ({index, text, id, selected, onClick, onDeleteClick, noDelet
         <div className={"SidebarItem" + itemStyle} onClick={() => onClick(index)} >
             <span id="itemtitle">{text.substring(0, 24)}</span>
             {noDeleteIcon ?
-
-                    <img id="deleteimg" src="" />
-
+                    null
             : 
                 <span id="delete" onClick={onDeleteClick}>
                     <img id="deleteimg" src={DeleteImage}  />

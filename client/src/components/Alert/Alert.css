@@ -13,8 +13,13 @@
 }
 
 .AlertBox {
-    width: 40vw;
+    /* width: 60vw; */
     /* height: 30vh; */
+    max-height: 80vh;
+    max-width: 80vw;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
 
     border: solid 4px gold;
     border-radius: 10px;
