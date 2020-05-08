@@ -9,18 +9,17 @@
     align-items: center;
 
     width: 50vw;
-    /* height: 30vh; */
-    min-height: 30vh;
+    min-height: 25vh;
     text-align: center;
     overflow-wrap: break-word;
     
 }
 
 .SuggestedActivity #help {
-    height: 20px;
+    height: 2vh;
     position: relative;
-    top: calc(-50% + 7.5vh);
-    left: calc(50% - 20px);
+    left: calc(50% - 1vw);
+    padding-right: 3px;
     opacity: 0.2;
 }
 
@@ -58,7 +57,7 @@
 
 .SuggestedActivity #warningtext {
     color: red;
-    font-size: 12px;
+    font-size: calc(7px + 0.5vh);
 }
 
 .SuggestedActivity #createdby {

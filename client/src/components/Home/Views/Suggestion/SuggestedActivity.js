@@ -12,25 +12,24 @@ const SuggestedActivity = ({fetching = false, suggestion, user, onClickHelp}) =>
     return (
         <div className="SuggestedActivity">
             {fetching ?
-                <div style={{display: "flex", flexDirection: "column"}}><img id="spinner" src={spinner} height="150px" />
-                <div style={{paddingLeft: "10px"}}>Loading...</div></div>
+                <div style={{display: "flex", flexDirection: "column", height: "15vh"}}><img id="spinner" src={spinner} height="100%" />
+                <div style={{paddingLeft: "10px", fontSize: "2vh"}}>Loading...</div></div>
                 :    
                 suggestion ?
                 <>
-                    {/* TODO: LAUNCH ALERT WHEN CLICK HELP */}
-                    <img id="help" src={questionmark} title="Help" onClick={(e) => onClickHelp(e)}/>
+                <img id="help" src={questionmark} title="Help" onClick={(e) => onClickHelp(e)}/>
                     <div id="title">{suggestion.activity}</div>
                     <div id="info">
                         <span id="icon" title="Accessibility">  
-                            <img src={Accessibility} height="30px" alt="Accessibility" />
+                            <img src={Accessibility} height="30vh" alt="Accessibility" />
                             {suggestion.accessibility ? suggestion.accessibility : "N/A"}
                         </span>
                         <span id="icon" title="Participants">
-                            <img src={Participants} height="30px" alt="Participants" />
+                            <img src={Participants} height="30vh" alt="Participants" />
                             {suggestion.participants ? suggestion.participants : "N/A"}
                         </span>
                         <span id="icon" title="Price">
-                            <img src={Price} height="30px" alt="Price" />
+                            <img src={Price} height="30vh" alt="Price" />
                             {suggestion.price ? suggestion.price : "N/A"}
                         </span>
                     </div>
