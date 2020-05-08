@@ -9,8 +9,11 @@
     align-items: center;
 
     width: 50vw;
-    height: 30vh;
+    /* height: 30vh; */
+    min-height: 30vh;
     text-align: center;
+    overflow-wrap: break-word;
+    
 }
 
 .SuggestedActivity #help {
@@ -28,9 +31,11 @@
 }
 
 .SuggestedActivity #title {
+    width: 100%;
     font-size: 3vh;
     font-weight: bold;
     padding-bottom: 2vh;
+    overflow-wrap: break-word;
 }
 
 .SuggestedActivity #info {
