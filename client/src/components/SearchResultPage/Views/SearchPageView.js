@@ -11,7 +11,7 @@ import './SearchPage.css'
 
 const SearchPageView = ({fetching, userResults = [], bukketlistResults = [], query}) => {
     return (
-        <div style={{paddingTop: "50px"}}>
+        <div style={{paddingTop: "50px", height: "100vh"}}>
             {fetching ?
                 <img src={spinner} />
             :
