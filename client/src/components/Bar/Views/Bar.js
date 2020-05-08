@@ -40,44 +40,6 @@ const Bar = (props) => {
     )
 }
 
-// class Bar extends React.Component {
-//     constructor(props) {
-//         super(props)
-//     }
-
-//     render() {
-//         const {user} = this.props.state.userData
-//         const props = this.props
-//         return (
-//             <div className="Bar">
-//                 <div className="BarItemLogo">
-//                     {props.history.location.pathname !== "/home" ?
-//                         <Link to={ROUTES.HOME}>
-//                             <img src="/bukket/bukketlogo.png" className="logo" />
-//                         </Link>
-//                     :
-//                         <a href={ROUTES.HOME}>
-//                             <img src="/bukket/bukketlogo.png" className="logo" />
-//                         </a>
-//                     }
-//                 </div>
-//                 <SearchBar {...props} />
-//                 <div className="BarItem">
-//                     <Link to={{pathname: `/u/${user.username}`, state: {refresh: true}}}>
-//                     <img src={user.profilePicture? user.profilePicture : GenericProfile} style={{height:"30px", width:"30px",objectFit:"cover", borderRadius: "10%"}} />
-//                     <span style={{paddingLeft: "5px"}}>
-//                     {user.username}
-//                     </span>
-//                     </Link>
-//                 </div>
-//                 <div className="BarItem Logout">
-//                     <Link to={ROUTES.LOGOUT}>Logout</Link>
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
-
 Bar.propTypes = {
     state: PropTypes.object.isRequired
 }
