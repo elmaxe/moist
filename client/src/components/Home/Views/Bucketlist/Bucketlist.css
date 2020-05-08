@@ -1,5 +1,4 @@
 .Bucketlist {
-    /* overflow: auto; */
     margin: 2vh;
     margin-bottom: 5vh;
     width: 50vw;
@@ -14,11 +13,7 @@
     padding-bottom: 1vh;
     background-color: white;
     transition: 0.2s;
-    /* width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center; */
+    overflow: hidden;
 
     padding-left: 1vw;
     padding-right: 1vw;
@@ -29,19 +24,24 @@
 }
 
 .BucketlistItemTitle {
-    /* display: block; */
-    /* color: rebeccapurple; */
-    /* float: left; */
+    display: flex;
+    flex-direction: column;
+    float: left;
+    
+    width: 30vw;
+    overflow-wrap: break-word;
 }
 
 .BucketlistItemButtons {
-    /* position: unset; */
-    /* float: right; */
+    position: relative;
+    float: right;
     z-index: 1;
+    width: auto;
+    display: flex;
+    flex-direction: row;
 }
 
-.BucketlistItemButtons > button {
-    margin-left: 5px;
-    padding: 0px;
-    font-size: 15px;
+.BucketlistItemButtons > span > button {
+    width: 100%;
+    padding: 5px;
 }

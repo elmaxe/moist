@@ -57,13 +57,18 @@ BucketlistView.propTypes = {
 const BucketlistItem = ({index, activity, onRemove, onMarkAsDone}) => {
     return (
         <div className="BucketlistItem">
-            <span className="BucketlistItemTitle">
+            <div className="BucketlistItemTitle">
                 {activity.done === 0 ? activity.activity : <s>{activity.activity}</s>}
-            </span>
-            <span className="BucketlistItemButtons">
+            </div>
+            <div className="BucketlistItemButtons">
+                <span>
                 <button className="btn green" onClick={() => onMarkAsDone(index, activity)}>{activity.done === 0 ? "Mark as done" : "Undo"}</button>
-                <button className="btn red" onClick={() => onRemove(index, activity)}>Remove</button>
-            </span>
+                </span>
+                <span>
+                <button id="remove" className="btn red" onClick={() => onRemove(index, activity)}>Remove</button>
+
+                </span>
+            </div>
         </div>
     )
 }
