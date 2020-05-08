@@ -115,7 +115,7 @@ class Home extends React.Component {
                         <SuggestionController state={this.props.state} actions={suggActions} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
                     </div>
                     {this.props.state.bucketlist === -100 ?
-                        <span style={{color: "red", fontSize: "2vh", padding: "4vh"}}><b>No bukketlist selected. Create or select one in the right sidebar.</b></span>
+                        <span style={{color: "red", textAlign: "center",fontSize: "2vh", padding: "4vh"}}><b>No bukketlist selected. Create or select one in the right sidebar.</b></span>
                     :
                     <>
                         <div>
