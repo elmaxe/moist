@@ -18,10 +18,11 @@
 .register_title {
     margin-top: 3vh;
     margin-bottom: 3vh;
+    font-size: 2vh;
 }
 
 .Register2 {
-    border: solid 4px gold;
+    border: solid 0.4vh gold;
     border-radius: 10px;
     padding: 30px;
 }
@@ -29,6 +30,7 @@
 .Register2 th {
     padding-bottom: 5vh;
     width: 100%;
+    font-size: 2vh;
 }
 
 .Register2 th > input {
@@ -62,4 +64,9 @@
     cursor: not-allowed;
     background-color: rgb(150, 212, 150);
     border: solid 1px black;
+}
+
+#httpwarning {
+    font-size: 2vh;
+    padding: 2vh;
 }
