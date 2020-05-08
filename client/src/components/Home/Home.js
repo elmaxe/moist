@@ -110,15 +110,20 @@ class Home extends React.Component {
                     </div>
                         <span className="SuggestionSaveButton">
                         <button className="btn green" onClick={this.save} disabled={suggestion.activity === "" || suggInList || addOwn || this.props.state.bucketlist === -100}>Save to bucketlist</button>
-                        {this.props.state.bucketlist === -100 && suggestion && <span className="SuggestionSaveButtonWarning">No bukketlist selected</span>}
                         </span>
                     <div>
                         <SuggestionController state={this.props.state} actions={suggActions} fetching={fetching} suggestion={suggestion} addOwn={this.state.addOwn} setSuggestion={this.setSuggestion.bind(this)} />
                     </div>
-                    <div>
-                        <h1>{this.props.state.bucketlist !== -100 ? this.props.state.bucketlists[this.props.state.bucketlist].bukketlist.name : "Select a bukketlist"}</h1>
-                    </div>
-                    <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} bucketlists={this.props.state.bucketlists} />
+                    {this.props.state.bucketlist === -100 ?
+                        <span style={{color: "red", fontSize: "2vh", padding: "4vh"}}><b>No bukketlist selected. Create or select one in the right sidebar.</b></span>
+                    :
+                    <>
+                        <div>
+                            <h1>{this.props.state.bucketlist !== -100 ? this.props.state.bucketlists[this.props.state.bucketlist].bukketlist.name : "Select a bukketlist"}</h1>
+                        </div>
+                        <Bucketlist actions={this.props.actions} bucketlist={this.props.state.bucketlist} bucketlists={this.props.state.bucketlists} />
+                    </>
+                    }
                 </div>
                 <Sidebar actions={sidebarActions} state={{bucketlists: this.props.state.bucketlists, bucketlist: this.props.state.bucketlist}}/>
                 {this.props.state.alertReducer.show ?
