@@ -40,8 +40,7 @@ const LoginView = ({email, password, error, loggingIn, isInvalid, handleChange, 
                                     disabled={isInvalid || loggingIn}
                                     onClick={handleSubmit}
                                     id="loginbtn"
-                                >{loggingIn ? "Logging in..." : "Login"}
-                                </button>
+                                >Login</button>
                             </td>
                         </tr>
                         <tr>
