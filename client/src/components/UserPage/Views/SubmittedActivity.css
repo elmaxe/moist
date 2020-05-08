@@ -1,13 +1,16 @@
 .submittedactivity {
     border-bottom: solid 1px rgb(200, 200, 200);
     padding: 10px 0 0 0;
+    width: 100%;
 }
 
 .submittedactivity #title {
     font-weight: 500;
+    font-size: 1vw;
+    overflow-wrap: break-word;
 }
 
 .submittedactivity #date {
-    font-size: 12px;
+    font-size: 0.8vw;
     color: gray;
 }

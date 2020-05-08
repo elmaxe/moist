@@ -8,7 +8,7 @@ const LeftBarView = ({username, profilePicture, id, description, inputDescriptio
 
     return (
         <div className="profile">
-            <img src={picture} className="profilePic" alt={`${username}'s profile picture.`} title={username} style={{width: "250px", height: "250px", objectFit: "cover"}}/>
+            <img src={picture} className="profilePic" alt={`${username}'s profile picture.`} title={username} style={{width: "15vw", height: "15vw", objectFit: "cover"}}/>
             {edit ? 
                 <div className="update-profile-pic-box">
                     <form onSubmit={(e) => onFileUpload(e)}>

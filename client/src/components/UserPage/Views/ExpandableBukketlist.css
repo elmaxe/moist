@@ -1,12 +1,12 @@
 .expandable-head {
     cursor: pointer;
-    padding: 10px;
+    padding: 1vw;
     border-bottom: solid 1px rgb(230, 230, 230);
 }
 
 .expandable-head #indicator {
     margin-left: 10px;
-    width: 10px;
+    width: 1vw;
     opacity: 0.5;
 }
 
@@ -26,15 +26,19 @@
 
 .expandable-head #title {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1vw;
+    overflow-wrap: break-word;
 }
 
 .expandable-head #desc {
     padding-left: 10px;
-    font-size: 14px;
+    font-size: 1vw;
+    overflow-wrap: break-word;
 }
 
 .expandable-body {
+    width: 100%;
+    overflow-wrap: break-word;
     padding-left: 10px;
     border-left: solid 1px rgb(230, 230, 230);
     border-right: solid 1px rgb(230, 230, 230);
@@ -42,5 +46,5 @@
 }
 
 .expandable-body #title {
-    font-size: 14px;
+    font-size: 1vw;
 }

@@ -11,31 +11,35 @@
 
 .header {
     height: 100vh;
-    width: 60vw;
+    width: 70vw;
     display: flex;
     flex-direction: row;
+    overflow: auto;
     /* align-items: center; */
     /* border: solid 1px; */
 }
 
 .profile {
     /* border: solid 1px; */
-    width: 250px;
+    /* width: 250px; */
+    width: 15vw;
 }
 
 .profilecontent #head {
     padding-bottom: 10px;
     border-bottom: solid 1px rgb(200, 200, 200);
+    width: 100%;
 }
 
 .profilecontent #head > h1 {
-    font-size: calc(25px - 15%);
+    font-size: 1.5vw;
     font-weight: bold;
+    overflow-wrap: break-word;
     /* text-align: center; */
 }
 
 .profilecontent #head > h4 {
-    font-size: 16px;
+    font-size: 1vw;
     font-weight: 400;
 }
 
@@ -57,6 +61,7 @@
     border-radius: 10%;
     border: solid 4px gold;
     margin: 10px 0 10px 0;
+    width: 100%;
 }
 
 .update-profile-pic-box {
@@ -74,18 +79,20 @@
 
 #uploadprofilepic {
     width: 100%;
+    font-size: 1vw;
 }
 
 #uploadprofilepicbtn {
     padding: 5px;
     width: 100%;
     margin: 10px 0 0 0;
+    font-size: 1vw;
 }
 
 .content {
     padding: 0 0 0 10px;
     margin: 15px 0 0 15px;
-    width: 100%;
+    width: 50vw;
 }
 
 .content #bukketlists {
@@ -98,11 +105,13 @@
     height: 37vh;
     overflow-y: auto;
     overflow-x: hidden;
+    width: 100%;
 }
 
 #textareauserdesc {
+    font-size: 1.5vh;
     resize: none;
-    height: 250px;
+    height: 30vh;
     width: 100%;
     border: solid 1px white;
     outline: none;
@@ -112,9 +121,11 @@
 h3 {
     border-top: solid 1px rgb(200, 200, 200);
     padding-top: 10px;
+    font-size: 1.8vw;
 }
 
 #editdescbtn {
+    font-size: 1vw;
     padding: 5px;
     margin: 0 2.5% 10px 2.5%;
     width: 45%;
