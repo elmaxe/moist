@@ -11,7 +11,12 @@
 }
 
 .NoResultsFound {
-    border: solid 1px;
-    width: 35vw;
+    font-size: 1vw;
+    text-align: center;
+    border: solid 0.2vw gold;
+    border-radius: 1vw;
+    width: 60vw;
     word-break: break-word;
+    margin-top: 10vh;
+    padding: 2vw;
 }
