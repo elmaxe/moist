@@ -5,7 +5,7 @@ import searchimg from '../../../images/search.svg'
 const BarSearchView = ({onSearch, onChange, value}) => {
     return (
         <div>
-            <form>
+            <form onSubmit={onSearch}>
                 <input
                     className="SearchInput"
                     type="text" value={value}
